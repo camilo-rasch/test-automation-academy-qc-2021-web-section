@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Facebook exercise" verbose="1">
+	<listeners>
+		<listener class-name="listener.Listener"/>
+	</listeners>
+
+	<test name="Delete Facebook Friend">
+		<classes>
+			<class name="com.automation.web.tests.DeleteFacebookFriend"/>
+		</classes>
+	</test>
+	<test name="Update Profile Picture">
+		<classes>
+			<class name="com.automation.web.tests.UpdateProfilePicture"/>
+		</classes>
+	</test>
+</suite>
