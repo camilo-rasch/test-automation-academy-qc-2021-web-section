@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 /**
  * Class for the out user test.
- * @author juan.montes
+ * @author camilo.mogollon
  */
 public class OutUserSuite {
 

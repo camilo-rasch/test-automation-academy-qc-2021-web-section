@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 /**
  * Class for the in user test.
- * @author juan.montes
+ * @author camilo.mogollon
  */
 public class InUserSuite {
 
