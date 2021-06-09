@@ -1,10 +1,7 @@
 package com.automation.web.tests;
 
 import org.apache.log4j.Logger;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 /**
  * Class for the in user test.
@@ -13,11 +10,6 @@ import org.testng.annotations.Test;
 public class InUserSuite {
 
     public Logger log = Logger.getLogger(InUserSuite.class);
-
-    @BeforeTest()
-    public void beforeTest() {
-        log.info("Open Browser");
-    }
 
     @AfterTest()
     public void afterTest() {
@@ -37,4 +29,8 @@ public class InUserSuite {
         log.info("Log Out Test Case");
     }
 
+    @BeforeTest()
+    public void beforeTest() {
+        log.info("Open Browser");
+    }
 }

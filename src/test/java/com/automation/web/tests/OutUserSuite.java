@@ -1,11 +1,7 @@
 package com.automation.web.tests;
 
 import org.apache.log4j.Logger;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 /**
  * Class for the out user test.
@@ -38,4 +34,8 @@ public class OutUserSuite {
         log.info("Log In Test Case");
     }
 
+    @BeforeSuite
+    public void esteEsUnEjemplo(){
+        log.info("BeforeSuite");
+    }
 }
