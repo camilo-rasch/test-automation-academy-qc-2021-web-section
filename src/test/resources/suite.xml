@@ -5,14 +5,14 @@
 		<listener class-name="listener.Listener"/>
 	</listeners>
 
-	<test name="In User">
+	<test name="DeleteFriends">
 		<classes>
-			<class name="com.automation.web.tests.InUserSuite"/>
+			<class name="com.automation.web.tests.DeleteFriends"/>
 		</classes>
 	</test>
-	<test name="Out User">
+	<test name="ChangingPhoto">
 		<classes>
-			<class name="com.automation.web.tests.OutUserSuite"/>
+			<class name="com.automation.web.tests.ChangingPhoto"/>
 		</classes>
 	</test>
 </suite>
