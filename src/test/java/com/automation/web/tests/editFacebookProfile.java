@@ -2,6 +2,7 @@ package com.automation.web.tests;
 
 import org.apache.log4j.Logger;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -16,19 +17,19 @@ public class editFacebookProfile {
     @BeforeTest()
     public void openFacebookUrl() { log.info("Open url: www.facebook.com"); }
 
-    @Test()
+    @BeforeMethod()
     public void inputEmail() { log.info("Input the correct email"); }
 
-    @Test()
+    @BeforeMethod()
     public void inputPassword() { log.info("Input the correct password"); }
 
     @Test()
-    public void loginFacebook() { log.info("Click on the loguin button"); }
+    public void loginFacebook() { log.info("Click on the login button and the content page is display"); }
 
-    @Test()
+    @BeforeMethod()
     public void goProfile() { log.info("Click on the profile name"); }
 
-    @Test()
+    @BeforeMethod()
     public void editprofile() { log.info("Click on the Edit Profile button"); }
 
     @Test()
