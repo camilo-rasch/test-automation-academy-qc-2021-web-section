@@ -5,10 +5,7 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-/**
- * Class listeners.
- * @author camilo.mogollon
- */
+
 public class Listener implements ITestListener {
 	
 	private Logger log = Logger.getLogger(Listener.class);

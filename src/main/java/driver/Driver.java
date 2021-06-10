@@ -9,18 +9,12 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-/**
- * Driver class
- * @author camilo.mogollon
- */
+
 public class Driver {
 
 	private WebDriver driver;
 
-	/**
-	 * Constructor.
-	 * @param browser String
-	 */
+
 	public Driver(String browser) {
 		switch (browser) {
 			case "remoteFirefox":
@@ -50,10 +44,6 @@ public class Driver {
 		}
 	}
 
-	/**
-	 * Get the driver.
-	 * @return {@link WebDriver}
-	 */
 	public WebDriver getDriver() {
 		return this.driver;
 	}

@@ -1,18 +1,18 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="example test suite" verbose="1">
+<suite name="exercise1 TestNG Annotations" verbose="1">
 	<listeners>
 		<listener class-name="listener.Listener"/>
 	</listeners>
 
-	<test name="In User">
+	<test name="Delete Facebook Friend">
 		<classes>
-			<class name="com.automation.web.tests.InUserSuite"/>
+			<class name="com.automation.web.tests.deleteFacebookFriend"/>
 		</classes>
 	</test>
-	<test name="Out User">
+	<test name="Edit Facebook Profile">
 		<classes>
-			<class name="com.automation.web.tests.OutUserSuite"/>
+			<class name="com.automation.web.tests.editFacebookProfile"/>
 		</classes>
 	</test>
 </suite>
