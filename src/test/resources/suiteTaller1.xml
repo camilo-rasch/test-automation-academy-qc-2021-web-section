@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite Taller 1" verbose="1">
+	<listeners>
+		<listener class-name="listener.Listener"/>
+	</listeners>
+
+	<test name="Select a Friend">
+		<classes>
+			<class name="com.automation.web.tests.SelectFriend"/>
+		</classes>
+	</test>
+	<test name="Change profile picture">
+		<classes>
+			<class name="com.automation.web.tests.ChangePicture"/>
+		</classes>
+	</test>
+</suite>

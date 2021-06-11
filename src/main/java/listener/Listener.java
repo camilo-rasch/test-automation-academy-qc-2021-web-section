@@ -11,7 +11,7 @@ import org.testng.ITestResult;
  */
 public class Listener implements ITestListener {
 	
-	private Logger log = Logger.getLogger(Listener.class);
+	private final Logger log = Logger.getLogger(Listener.class);
 
 	@Override
 	public void onFinish(ITestContext arg0) {
