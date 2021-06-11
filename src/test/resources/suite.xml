@@ -15,6 +15,11 @@
 			<class name="com.automation.web.tests.DeleteFriend"/>
 		</classes>
 	</test>
+	<test name="Change my photo profile">
+		<classes>
+			<class name="com.automation.web.tests.ChangePhoto"/>
+		</classes>
+	</test>
 	<test name="Out User">
 		<classes>
 			<class name="com.automation.web.tests.OutUserSuite"/>

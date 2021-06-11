@@ -3,11 +3,11 @@ package com.automation.web.tests;
 import org.apache.log4j.Logger;
 import org.testng.annotations.*;
 /**
- * Class for the Delete friend on facebook.
+ * Class for the Change my profile picture on facebook.
  * @author jonathan.triana
  */
-public class DeleteFriend {
-    public Logger log = Logger.getLogger(DeleteFriend.class);
+public class ChangePhoto {
+    public Logger log = Logger.getLogger(ChangePhoto.class);
     @BeforeSuite()
     public void initiateDriver() {
         log.info("Initiate the chrome driver");
@@ -35,15 +35,16 @@ public class DeleteFriend {
     @Test(description = "Open my profile") public void testCaseOpenMyProfile() {
         log.info("Open my profile");
     }
-    @Test(description = "Open the friends section") public void testCaseOpenFriendsSection() {
-        log.info("Open the friends section");
+    @Test(description = "Update profile picture") public void testCaseUpdateProfilePicture() {
+        log.info("In the photo choose the update profile picture option");
     }
-    @Test(description = "Select a friend") public void testCaseSelectFriend() {
-        log.info("Select a friend");
+    @Test(description = "Select a photo") public void testCaseSelectPhoto() {
+        log.info("Select a photo");
     }
-    @Test(description = "Delete from my friends") public void testCaseDeleteFriends() {
-        log.info("Delete from my friends");
+    @Test(description = "Save the new picture") public void testCaseSavePicture() {
+        log.info("Save the new picture");
     }
+
     @AfterMethod()
     public void logOut() {
         log.info("Log out");
