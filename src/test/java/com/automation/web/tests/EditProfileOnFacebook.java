@@ -11,42 +11,24 @@ public class EditProfileOnFacebook {
 
     public Logger log = Logger.getLogger(EditProfileOnFacebook.class);
 
-    @BeforeTest()
-    public void AnOpenBrowser() { log.info("Open the Browser"); }
+    @BeforeSuite()
+    public void validateFacebookAccount(){ log.info("Having a Facebook account");}
 
     @BeforeTest()
-    public void getFacebookWebPage() { log.info("Get 'https://www.facebook.com'"); }
+    public void AnOpenBrowser() { log.info("Open the Browser"); log.info("Get 'https://www.facebook.com'");}
 
     @BeforeMethod()
-    public void  loginAccount() { log.info("Sign in Type the credentials");}
-
-    @BeforeMethod()
-    public void personalProfile() {
-        log.info("Personal Profile is displayed");
-    }
-
-    @BeforeMethod()
-    public void photoProfile() {
-        log.info("Photo editing is displayed");
-    }
-
-    @BeforeMethod()
-    public void selectPhotoProfile() {
-        log.info("Search for a photo");
-    }
+    public void  goToLoginAccount() { log.info("Sign in bt typing the credentials"); log.info("Personal Profile is displayed");}
 
     @Test(description = "Select a photo from the gallery")
     public void setPhotoProfile() {
+        log.info("Clicking on 'Photo editing' button");
+        log.info("Search for a photo");
         log.info("Click on set image as photo profile");
     }
-
+    
     @AfterMethod
-    public void savingNewPhotoProfile() {
-        log.info("The new photo profile is changed");
-    }
-
-    @AfterMethod
-    public void  signOutTheAccount() { log.info("Sign out from Facebook account");}
+    public void  signOutTheAccount() { log.info("The new photo profile is changed"); log.info("Sign out from Facebook account");}
 
     @AfterTest()
     public void closeBrowser() {
