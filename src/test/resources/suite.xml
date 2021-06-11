@@ -2,17 +2,6 @@
 
 <suite name="example test suite" verbose="1">
 	<listeners>
-		<listener class-name="listener.Listener"/>
+		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
-
-	<test name="In User">
-		<classes>
-			<class name="com.automation.web.tests.InUserSuite"/>
-		</classes>
-	</test>
-	<test name="Out User">
-		<classes>
-			<class name="com.automation.web.tests.OutUserSuite"/>
-		</classes>
-	</test>
 </suite>
