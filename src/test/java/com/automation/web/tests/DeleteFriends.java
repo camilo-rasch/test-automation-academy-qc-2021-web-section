@@ -17,22 +17,17 @@ public class DeleteFriends {
     @BeforeTest()
     public void beforeTest() {
         log.info("Open Browser");
-    }
-
-    @BeforeTest()
-    public void beforeTest2() {
-        log.info("Open 'Facebook' app");
+        log.info("Open 'Facebook' app 'https://www.facebook.com'");
     }
 
     @BeforeMethod()
-    public void  loginAccount() { log.info("Login the app \nType the username and password \nClick on 'Sing in session' button");}
+    public void  loginAccount() { log.info("Login the app \nType the username and password");}
 
-    @BeforeMethod()
-    public void  profile() { log.info("Click on Personal profile");}
 
     @Test(description = "Delete a friend")
     public void testDeleteAFriend() {
-        log.info("Open the full list of friends");
+        log.info("Click on Personal profile");
+        log.info("Click on 'friends' and open the full list of friends");
         log.info("Seek for a specific friend and click on 'Friends' button to eliminate as friend");
     }
 

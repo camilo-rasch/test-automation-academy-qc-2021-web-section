@@ -15,4 +15,9 @@
 			<class name="com.automation.web.tests.ChangingPhoto"/>
 		</classes>
 	</test>
+	<test name="BothPointInAClass">
+		<classes>
+			<class name="com.automation.web.tests.BothPointInAClass"/>
+		</classes>
+	</test>
 </suite>
