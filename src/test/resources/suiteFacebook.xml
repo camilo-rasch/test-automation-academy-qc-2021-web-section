@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="facebook test suite" verbose="1">
+    <listeners>
+        <listener class-name="listener.Listener"/>
+    </listeners>
+
+<!--    <test name="Base Test">-->
+<!--        <classes>-->
+<!--            <class name="com.automation.web.tests.BaseFacebookTests"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+    <test name="Change Profile Facebook">
+        <classes>
+            <class name="com.automation.web.tests.FacebookChangeProfileTests"/>
+        </classes>
+    </test>
+    <test name="Delete Friend Facebook">
+        <classes>
+            <class name="com.automation.web.tests.FacebookDeleteFriendTests"/>
+        </classes>
+    </test>
+</suite>
