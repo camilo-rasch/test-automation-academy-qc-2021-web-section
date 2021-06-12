@@ -10,9 +10,4 @@
 			<class name="com.automation.web.tests.InUserSuite"/>
 		</classes>
 	</test>
-	<test name="Out User">
-		<classes>
-			<class name="com.automation.web.tests.OutUserSuite"/>
-		</classes>
-	</test>
 </suite>
