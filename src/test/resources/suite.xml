@@ -1,7 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="example test suite" verbose="1">
-	<listeners>
-		<listener class-name="com.web.automation.listener.Listener"/>
-	</listeners>
+    <test name="First Suite">
+        <classes>
+            <class name="com.web.automation.test.BaseTest"/>
+        </classes>
+    </test>
+
 </suite>

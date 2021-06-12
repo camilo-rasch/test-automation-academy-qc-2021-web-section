@@ -1,44 +1,77 @@
 package com.web.automation.test;
 
-
-import com.web.automation.driver.Driver;
-import com.web.automation.pages.HomePage;
 import org.apache.log4j.Logger;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
 /**
- * Parent of the other classes of test.
- * @author camilo.mogollon
+ * TestNG Taller
+ * @author `lina.gallego`
  */
 public class BaseTest {
-	
-	Driver driver;
-	
-	private HomePage Home;
+
 	public Logger log = Logger.getLogger(BaseTest.class);
 	
 	
-	@BeforeTest(alwaysRun=true)
-	@Parameters({"browser", "url"})
-	public void beforeTest(String browser, String url) {
-		driver = new Driver(browser);
-		driver.getDriver().manage().window().maximize();
-		Home= new HomePage(driver.getDriver(), url);
+	@BeforeSuite(description = "Before Suite")
+	public void beforeTest() {
+		log.info("****BeforeSuite****");
+		log.info("Open browser");
+
 	}
 
-	@AfterTest(alwaysRun=true)
-	public void afterTest() {
-		Home.dispose();
+	@BeforeMethod()
+	public void facebookLogin() {
+		log.info("***** Before Method Log In*************************");
+		log.info("Select and enter the Email/Phone Number field");
+		log.info("Select and enter the Password");
+		log.info(" click on the button 'Log In'");
+		log.info("Change to Facebook Main Page");
+		log.info("******User Logged in******************");
+		log.info("******My Profile******************");
+		log.info("Find and click on my Name icon to change to profile page");
+
+	}
+
+	@Test(priority = 1)
+	public void DeleteAFriend(){
+		log.info("*****Test 1********************");
+		log.info("Find and click on Friends option");
+		log.info("Find the friend will be deleted");
+		log.info("Find and click on the 3 points inline block option");
+		log.info("Find and  click on the 'Unfriend' option in the list");
+		log.info("Change to the modal popup ");
+		log.info("Find and  click on 'Confirm' button ");
+
+	}
+	@Test(priority = 2)
+	public void changeProfilePicture(){
+		log.info("*****Test 2********************");
+		log.info("Find and click on The camera icon to change the picture");
+		log.info("Change to the 'Update Profile Picture' popup ");
+		log.info("Find and click on a picture ");
+		log.info("Change to the Modal to update picture size ");
+		log.info("Find and click on 'Save' button ");
+		log.info("Change to the Modal to confirm ");
+		log.info("Find and click on 'OK' button ");
+
+	}
+
+	@AfterMethod()
+	public void Logout() {
+		log.info("After Method********************");
+		log.info("Find and click on the down arrow ");
+		log.info("Change to the iframe ");
+		log.info("Find and click on 'Log Out' option from the list ");
+
+	}
+
+	@AfterSuite()
+	public void closingBrowser() {
+		log.info("*****After Suite********************");
+		log.info("Close browser");
+
 	}
 	
-	/**
-	 * Get the home page.
-	 * @return {@link HomePage}
-	 */
-	public HomePage getHomePage() {
-		return Home;
-	}
+
 
 }
