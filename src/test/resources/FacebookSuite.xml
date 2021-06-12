@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Facebook suite - Taller 1" verbose="1">
+	<listeners>
+		<listener class-name="listener.Listener"/>
+	</listeners>
+
+	<test name="Unfriend Someone">
+		<classes>
+			<class name="com.automation.web.tests.UnfriendSomeone"/>
+		</classes>
+	</test>
+	<test name="Change Profile Picture">
+		<classes>
+			<class name="com.automation.web.tests.ChangeProfilePictureSuite"/>
+		</classes>
+	</test>
+</suite>
