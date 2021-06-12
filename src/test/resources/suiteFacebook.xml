@@ -5,19 +5,10 @@
         <listener class-name="listener.Listener"/>
     </listeners>
 
-<!--    <test name="Base Test">-->
-<!--        <classes>-->
-<!--            <class name="com.automation.web.tests.BaseFacebookTests"/>-->
-<!--        </classes>-->
-<!--    </test>-->
-    <test name="Change Profile Facebook">
+    <test name="Base Facebook Test">
         <classes>
-            <class name="com.automation.web.tests.FacebookChangeProfileTests"/>
-        </classes>
-    </test>
-    <test name="Delete Friend Facebook">
-        <classes>
-            <class name="com.automation.web.tests.FacebookDeleteFriendTests"/>
+            <class name="com.automation.web.tests.BaseFacebookTests"/>
+            <class name="com.automation.web.tests.FacebookTests"/>
         </classes>
     </test>
 </suite>
