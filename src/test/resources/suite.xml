@@ -17,7 +17,7 @@
 	</test>
 	<test name="Delete friend and change photo">
 		<classes>
-			<class name="com.automation.web.tests.FacebookTests"/>
+			<class name="com.automation.web.tests.Herokuapp"/>
 		</classes>
 	</test>
 </suite>
