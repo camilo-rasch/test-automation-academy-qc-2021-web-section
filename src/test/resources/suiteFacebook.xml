@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="example test suite" verbose="1">
+	<listeners>
+		<listener class-name="listener.Listener"/>
+	</listeners>
+
+	<test name="FacebookTarea1">
+		<classes>
+			<class name="com.automation.web.tests.FacebookTest"/>
+		</classes>
+	</test>
+</suite>

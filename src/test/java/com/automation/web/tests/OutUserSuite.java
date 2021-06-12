@@ -9,7 +9,7 @@ import org.testng.annotations.*;
  */
 public class OutUserSuite {
 
-    public Logger log = Logger.getLogger(InUserSuite.class);
+    public Logger log = Logger.getLogger(OutUserSuite.class);
 
     @BeforeTest()
     public void beforeTest() {
