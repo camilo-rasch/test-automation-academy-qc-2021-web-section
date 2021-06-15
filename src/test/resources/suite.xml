@@ -4,4 +4,10 @@
 	<listeners>
 		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
+	
+	<test name="myTest">
+		<classes>
+			<class name=""></class>
+		</classes>
+	</test>
 </suite>
