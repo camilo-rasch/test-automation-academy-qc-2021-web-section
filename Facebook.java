@@ -8,7 +8,7 @@ public class Facebook {
 
 
 	//Logout
-	String logoutList="By.css [role]>.iyyx5f41:nth-of-type(1) [role]";
+	String logoutList="By.css div[aria-label=Account]";
 	String logoutButton="By.css [data-visualcompletion='ignore-dynamic']:nth-of-type(4) [data-visualcompletion='ignore']";
 
 	//My Profile
