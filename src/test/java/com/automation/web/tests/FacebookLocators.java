@@ -18,7 +18,7 @@ public class FacebookLocators {
 
     //Log out locators
     String accountButton = "By.css [role='banner']  > div:nth-child(4) > div > span > div > div:first-child";
-    String logOutButton = "";
+    String logOutButton = "By.css ._featuredLogin__formContainer div:nth-child(6) > button";
 
 
     //My profile
