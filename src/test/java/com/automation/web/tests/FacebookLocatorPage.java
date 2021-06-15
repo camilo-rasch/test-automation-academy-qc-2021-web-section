@@ -13,5 +13,5 @@ public class FacebookLocatorPage {
     String myProfile = "by.css .buofh1pr:nth-child(1) li:nth-child(1) div a[href='https://www.facebook.com/norma.losada1']";
 
     //LOCATORS MY FRIENDS
-    String elemendFriends = "by.css .buofh1pr:nth-child(1) li:nth-child(2) div a[href='https://www.facebook.com/friends/']";
+    String friendsOption = "by.css .buofh1pr:nth-child(1) li:nth-child(2) div a[href='https://www.facebook.com/friends/']";
 }
