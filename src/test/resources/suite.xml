@@ -7,12 +7,12 @@
 
 	<test name="In User">
 		<classes>
-			<class name="com.automation.web.tests.InUserSuite"/>
+			<class name="com.automation.web.tests.testPagePaulHerokuApp"/>
 		</classes>
 	</test>
 	<test name="Out User">
 		<classes>
-			<class name="com.automation.web.tests.OutUserSuite"/>
+			<class name="com.automation.web.tests.facebookPage"/>
 		</classes>
 	</test>
 </suite>
