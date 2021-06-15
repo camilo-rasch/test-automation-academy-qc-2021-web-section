@@ -40,7 +40,7 @@ public class HomePage extends BasePage {
         return new SignUpModal(getDriver());
     }
 
-    public Boolean isLoginButtonDisplayed() {
+    public boolean isLoginButtonDisplayed() {
         waitElementVisibility(loginButton);
         return loginButton.isDisplayed();
     }
