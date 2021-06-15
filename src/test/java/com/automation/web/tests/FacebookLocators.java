@@ -21,17 +21,17 @@ public class FacebookLocators {
     //locators: [role="banner"]  > div:nth-child(4) > div > span > div > div:first-child,
     // div:nth-child(4) div:nth-child(2) >div div:last-of-type> div:nth-child(5) > div > div:nth-child(4) > div > div:nth-child(1)
 
-    String clickOnAccount = "By.css [role=\"banner\"]  > div:nth-child(4) > div > span > div > div:first-child";
+    String clickOnAccount = "By.css [role='banner']  > div:nth-child(4) > div > span > div > div:first-child";
     String clickOnLogOut = "By.css div:nth-child(4) div:nth-child(2) >div div:last-of-type> div:nth-child(5) > div > div:nth-child(4) > div > div:nth-child(1)";
 
     //Mi perfil
     //Dar click en el nombre
-    String profile = "By.css [role=\"banner\"] > div:nth-child(4)>div:first-child>div:last-child>a";
+    String profile = "By.css [role='banner'] > div:nth-child(4)>div:first-child>div:last-child>a";
 
     //Mis amigos
     //Primero dar click en “Mi perfil” y luego click en “Amigos”
     //locators: [role="banner"] > div:nth-child(4)>div:first-child>div:last-child>a, [role="tablist"] > div > div >a:nth-child(4)
 
-    String friends = "By.css [role=\"tablist\"] > div > div >a:nth-child(4)";
+    String friends = "By.css [role='tablist'] > div > div >a:nth-child(4)";
 
 }
