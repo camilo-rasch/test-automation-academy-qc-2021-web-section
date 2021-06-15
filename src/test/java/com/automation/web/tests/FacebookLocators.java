@@ -11,6 +11,22 @@ import org.testng.annotations.Test;
  * @author juancarlos.ortiz
  */
 public class FacebookLocators {
+    //Log in locators
+    String emailField = "By.id email";
+    String passwordField = "By.id pass";
+    String logInButton = "By.css ._featuredLogin__formContainer div:nth-child(6) > button";
+
+    //Log out locators
+    String accountButton = "By.css [role='banner']  > div:nth-child(4) > div > span > div > div:first-child";
+    String logOutButton = "";
+
+
+    //My profile
+    String profile = "By.css a[href='/me/']";
+
+    //My friends
+    String friends = "By.xpath //span[contains(text(),'See All Friends')]";
+
 
 
 }
