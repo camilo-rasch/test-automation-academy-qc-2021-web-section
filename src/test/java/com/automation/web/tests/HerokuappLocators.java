@@ -9,9 +9,9 @@ public class HerokuappLocators {
 
     //locators en CSS de los pantallazos de la página http://test-page-paul.herokuapp.com/
     String photo1 = "By.css .container address:nth-child(6) > a:nth-child(1)";
-    String photo2 = "By.css .container ul>li:nth-child(3)";
-    String photo3 = "By.css .container menu>li:nth-child(1)";
-    String photo4 = "By.css .container dir>li:nth-child(3)";
+    String photo2 = "By.css .container ul > li:nth-child(3)";
+    String photo3 = "By.css .container menu > li:nth-child(1)";
+    String photo4 = "By.css .container dir > li:nth-child(3)";
     String photo5 = "By.id #but";
     String photo6 = "By.id #f0";
     String photo7 = "By.id #f3";
