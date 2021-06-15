@@ -14,6 +14,8 @@ public class FacebookLocators {
 
     String myFriendsOption = "By.css (div.soycq5t1.l9j0dhe7 div:nth-child(1) a:nth-child(4))";
 
+    String account = "By.css ([role='navigation'] > span > div > div:nth-child(1))";
+
     String logOut = "By.css (div.b20td4e0.muag1w35 div:nth-child(4))";
 
 }
