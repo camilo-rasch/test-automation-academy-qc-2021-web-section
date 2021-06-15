@@ -16,7 +16,7 @@ public class Facebook {
 	
 
 	//My Friends
-	String myFriends ="By.xpath [data-pagelet='ProfileTabs'] .kr520xx4 .j1lvzwm4:nth-child(7)";
+	String myFriends ="By.xpath [role='tab']:nth-child(4) [data-visualcompletion]";
 
 
 
