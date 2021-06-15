@@ -9,7 +9,7 @@ public class Facebook {
 
 	//Logout
 	String logoutList="By.css div[aria-label=Account]";
-	String logoutButton="By.css [data-visualcompletion='ignore-dynamic']:nth-of-type(4) [data-visualcompletion='ignore']";
+	String logoutButton="By.css [data-visualcompletion='ignore-dynamic']:nth-of-type(4) [role]";
 
 	//My Profile
 	String myProfile="By.css a[href='/me/']";
