@@ -13,17 +13,12 @@ import java.util.Optional;
  */
 public class HomePage extends BasePage {
 
-    @FindBy(className = "central-textlogo__image")
-    private WebElement title;
+    @FindBy(css = "div.fop5sh7t.fv0vnmcu.j83agx80")
+    private WebElement profile_button;
 
-    @FindBy(id = "searchInput")
-    private WebElement searchField;
+    @FindBy(css = "div.b20td4e0.muag1w35 div:nth-child(4)")
+    private WebElement logout_button;
 
-    @FindBy(className = "pure-button")
-    private WebElement searchButton;
-
-    @FindBy(css = ".link-box Strong")
-    private List<WebElement> languages;
 
     /**
      * Constructor.
@@ -38,12 +33,12 @@ public class HomePage extends BasePage {
     /**
      * Get Text title
      * @return String text title
-     */
+
     public String getTitle() {
         log.info("Get Text title");
         waitElementVisibility(title);
         return title.getText();
-    }
+    }*/
 
 
 }
