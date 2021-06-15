@@ -7,9 +7,10 @@ import org.testng.annotations.DataProvider;
  * @author camilo.mogollon
  */
 public class Data {
-
+/*
     @DataProvider(name = "countries")
     public Object[][] inputData() {
         return new Object[][] {{"Colombia"}, {"Brazil"}, {"Peru"}};
     }
+ */
 }
