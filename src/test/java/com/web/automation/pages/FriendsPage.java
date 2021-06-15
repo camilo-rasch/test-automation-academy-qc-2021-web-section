@@ -11,11 +11,11 @@ import org.openqa.selenium.support.FindBy;
 public class FriendsPage extends BasePage {
 
     //Search friend field to input the friend that you want to send message
-    @FindBy(css = ".aahdfvyu.buofh1pr ~div >div:nth-child(1)")
+    @FindBy(css = ".aahdfvyu.buofh1pr ~div >div:nth-child(1)>label>div~input")
     private WebElement search_friend_field;
 
     // Select friend
-    @FindBy(css = "[data-pagelet='ProfileAppSection_0']>div>div>div>div>div:nth-child(3)>div>div:nth-child(2")
+    @FindBy(css = "[data-pagelet='ProfileAppSection_0']>div>div>div>div>div:nth-child(3)>div>div:nth-child(2)")
     private WebElement select_friend;
 
     /**
