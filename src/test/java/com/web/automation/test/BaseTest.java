@@ -40,4 +40,8 @@ public class BaseTest {
     public HomePage getHomePage() {
         return homePage;
     }
+
+    public void reload_page(String url){
+        this.driver.getDriver().get(url);
+    }
 }
