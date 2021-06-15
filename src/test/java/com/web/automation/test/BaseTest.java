@@ -13,8 +13,8 @@ import org.testng.annotations.Parameters;
  * @author camilo.mogollon
  */
 public class BaseTest {
-	
-	Driver driver;
+
+	private Driver driver;
 	
 	private HomePage Home;
 	public Logger log = Logger.getLogger(BaseTest.class);
