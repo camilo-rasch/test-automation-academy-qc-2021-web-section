@@ -1,7 +1,7 @@
 public class Facebook {
 //https://www.facebook.com/
 
-      //Login
+       //Login
 	String email ="By.id #email";
 	String pass ="By.id #pass";
 	String loing="By.id #u_0_h_Fj";
@@ -15,9 +15,8 @@ public class Facebook {
 	String myProfile="By.css a[href='/me/']";
 	
 
-	//My Friends
-	String myFriends ="By.xpath [role='tab']:nth-child(4) [data-visualcompletion]";
-
+	//My Friends button
+	String myFriends ="By.css [role='tab']:nth-child(4) [data-visualcompletion]";
 
 
 
