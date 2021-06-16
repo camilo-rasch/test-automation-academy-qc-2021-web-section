@@ -12,7 +12,7 @@ public class FriendsFacebookPage extends BasePage{
     @FindBy (css = "div[data-pagelet='ProfileAppSection_0'] div.lhclo0ds i")
     private WebElement friendsList;
 
-    @FindBy (css = "div[data-pagelet='ProfileAppSection_0']  div.lhclo0ds >div:nth-child(1)")
+    @FindBy (css = "div[data-pagelet='ProfileAppSection_0']  div.lhclo0ds > div:first-child img[referrerpolicy='origin-when-cross-origin']")
     private WebElement selectFriend;
 
     @FindBy (css = ".k4urcfbm div[aria-label='Mensaje']")
