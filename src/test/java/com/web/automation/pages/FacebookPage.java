@@ -41,13 +41,13 @@ public class FacebookPage extends BasePage{
     private WebElement passwordInputText;
 
     //Botón para iniciar sesión
-    @FindBy(css = "[role='banner'] > div:nth-child(4) > div > span > div > div:first-child")
+    @FindBy(name = "login")
     private WebElement loginButton;
 
 
 
     /**Ir a mi perfil**/
-    @FindBy(css = "[role='banner'] > div:nth-child(4) > div:first-child > div:last-child > a")
+    @FindBy(css = "[role='navigation'] > div:nth-child(5) > a")
     private WebElement profileLink;
 
 
@@ -57,29 +57,31 @@ public class FacebookPage extends BasePage{
 
 
     /**Lista de amigos**/
-    @FindBy(css = "[role='tablist'] > div > div:nth-child(2) > a:nth-child(2) > div")
+    @FindBy(css = "[role='tablist'] > div > div:nth-child(2) > a:nth-child(2)")
     private WebElement allFriendsButton;
 
 
 
     /**En el perfil de un amigo, el botón “enviar mensaje”**/
-    //Para seleccionar el primer amigo en la lista
-    @FindBy(css = "[role='main'] > div:last-child > div > div > div > div > div > div > div > div > div:last-child > div:nth-child(1) > div > a > img")
+    //Para seleccionar un amigo de la lista
+    @FindBy(css = "[role='main'] > div:last-child > div > div > div > div > div > div > div > div > div:last-child > div:nth-child(1) > div > a")
+    //[data-pagelet = 'ProfileAppSection_0'] > div > div > div > div > div:last-child
     private WebElement selectFriendLink;
 
     //En el perfil de un amigo se da click al botón "Mensaje"
     @FindBy(css = "[data-pagelet='ProfileActions'] > div > div > div:nth-child(2)")
+
     private WebElement sendMessageButton;
 
 
 
     /**Cerrar sesión**/
     //Click en el botón "Cuenta" en la parte superior derecha del perfil
-    @FindBy(css = "[role='banner'] > div:nth-child(4) > div > span > div > div:first-child")
+    @FindBy(css = "[role='navigation'] > span > div > div:first-child")
     private WebElement accountButton;
 
     //Click en la opción "Cerrar Sesión"
-    @FindBy(css = "[role='banner'] > div:nth-child(4) div:nth-child(2) > div div:last-of-type > div:nth-child(5) > div > div:nth-child(4) > div > div:nth-child(1)")
+    @FindBy(css = "[role='dialog'] div > div:nth-child(4) > div > div:nth-child(1)")
     private WebElement logoutButton;
 
 
