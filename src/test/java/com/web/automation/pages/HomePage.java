@@ -5,10 +5,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
-    @FindBy(css = "a[data-testid=\"loginButton\"]")
-    private WebElement loginButton;
-    @FindBy(css = "a[data-testid=\"signupButton\"]")
-    private WebElement signUpButton;
+
+    //FacebookLogOut
+    @FindBy(css = "div[role='button'] > img")
+    private WebElement actionList;
+    @FindBy(xpath = "//span[contains(text(), 'Cerrar sesión')]")
+    private WebElement logOutLabelButton;
+
+
+    //goProfilePage
+    @FindBy(css = "[data-pagelet] .buofh1pr:nth-of-type(1) > ul:nth-of-type(1) .stjgntxs")
+    private WebElement profileLabelButton;
+
+
+
+
 
     /**
      * Page Constructor with url
@@ -21,27 +32,5 @@ public class HomePage extends BasePage {
         driver.get(url);
     }
 
-    /**
-     * Page Constructor
-     *
-     * @param driver to execute
-     */
-    public HomePage(WebDriver driver) {
-        super(driver);
-    }
 
-    public LoginPage clickOnLoginButton() {
-        clickOnElement(loginButton);
-        return new LoginPage(getDriver());
-    }
-
-    public SignUpModal clickOnSignUpButton() {
-        clickOnElement(signUpButton);
-        return new SignUpModal(getDriver());
-    }
-
-    public boolean isLoginButtonDisplayed() {
-        waitElementVisibility(loginButton);
-        return loginButton.isDisplayed();
-    }
 }

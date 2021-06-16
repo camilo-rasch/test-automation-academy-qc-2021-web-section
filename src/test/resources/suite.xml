@@ -5,7 +5,7 @@
 		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
 
-	<parameter name="browser" value="firefox"/>
+	<parameter name="browser" value="chrome"/>
 	<parameter name="url" value="https://www.twitter.com"/>
 
 	<test name="myFirstTest">
