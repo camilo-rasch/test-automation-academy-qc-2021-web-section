@@ -12,7 +12,7 @@ public class LoginFacebookPage extends BasePage {
     @FindBy (css = "#pass")
     private WebElement loginPassword;
 
-    @FindBy (css = "#u_0_h_jV")
+    @FindBy (css = "button[data-testid='royal_login_button']")
     private WebElement loginButton;
 
     /**
