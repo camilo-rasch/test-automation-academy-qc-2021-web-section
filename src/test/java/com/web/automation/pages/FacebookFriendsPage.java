@@ -10,10 +10,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class FacebookFriendsPage {
 
-    @FindBy(css = "div[data-pagelet='ProfileAppSection_0'] div:nth-child(3) > div:first-child > div:nth-child(1)")
+    @FindBy(css = "[data-pagelet = 'ProfileAppSection_0'] > div > div > div > div > div:last-child")
     private WebElement Friends_List;
 
-    @FindBy(css = "div[data-pagelet='ProfileAppSection_0'] div:nth-child(3) > div:first-child > div:nth-child(1) >div:nth-child(3) > div:nth-child(1)")
+    @FindBy(css = "[data-pagelet = 'ProfileAppSection_0'] > div > div > div > div > div:last-child >div:first-child")
     private WebElement Friend_element;
 
     @FindBy(css = "div[class='k4urcfbm'] div[aria-label='Mensaje']")
