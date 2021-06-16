@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
  * Locators of the Facebook page.
  * @author Harvey.Yepes
  */
-public class FacebookPage extends BasePage{
+public class FacebookFriendPage extends BasePage{
     /**En la siguiente página:
      https://www.facebook.com
      Inspeccionar y escribir en una clase de Java los locators de los elementos requeridos para:
@@ -26,7 +26,7 @@ public class FacebookPage extends BasePage{
      *
      * @param pDriver WebDriver
      */
-    public FacebookPage(WebDriver pDriver) {
+    public FacebookFriendPage(WebDriver pDriver) {
         super(pDriver);
     }
 
@@ -65,7 +65,12 @@ public class FacebookPage extends BasePage{
     /**En el perfil de un amigo, el botón “enviar mensaje”**/
     //Para seleccionar un amigo de la lista
     @FindBy(css = "div[role='main'] > div:last-child > div > div > div > div > div > div > div > div > div:last-child > div:nth-child(1) > div > a")
-    //[data-pagelet = 'ProfileAppSection_0'] > div > div > div > div > div:last-child
+
+
+    //div[role='main'] > div:last-child > div > div > div > div > div > div > div > div > div:last-child > div:nth-child(1) > div > a
+    //div[data-pagelet = 'ProfileAppSection_0'] > div > div > div > div > div:last-child
+
+
     private WebElement selectFriendLink;
 
     //En el perfil de un amigo se da click al botón "Mensaje"
