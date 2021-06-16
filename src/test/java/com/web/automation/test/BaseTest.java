@@ -24,7 +24,7 @@ public class BaseTest {
     public void beforeTest(String browser, String url) {
         driver = new Driver(browser);
         driver.getDriver().manage().window().maximize();
-        homePage = new HomePage(driver.getDriver(),url );
+        homePage = new HomePage(driver.getDriver(), url );
     }
 
     @AfterTest(alwaysRun=true)

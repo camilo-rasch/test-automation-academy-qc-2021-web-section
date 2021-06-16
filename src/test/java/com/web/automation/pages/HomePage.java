@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 public class HomePage extends BasePage {
     @FindBy(css = "a[data-testid=\"loginButton\"]")
     private WebElement loginButton;
+    
     @FindBy(css = "a[data-testid=\"signupButton\"]")
     private WebElement signUpButton;
 
@@ -21,27 +22,5 @@ public class HomePage extends BasePage {
         driver.get(url);
     }
 
-    /**
-     * Page Constructor
-     *
-     * @param driver to execute
-     */
-    public HomePage(WebDriver driver) {
-        super(driver);
-    }
 
-    public LoginPage clickOnLoginButton() {
-        clickOnElement(loginButton);
-        return new LoginPage(getDriver());
-    }
-
-    public SignUpModal clickOnSignUpButton() {
-        clickOnElement(signUpButton);
-        return new SignUpModal(getDriver());
-    }
-
-    public boolean isLoginButtonDisplayed() {
-        waitElementVisibility(loginButton);
-        return loginButton.isDisplayed();
-    }
 }
