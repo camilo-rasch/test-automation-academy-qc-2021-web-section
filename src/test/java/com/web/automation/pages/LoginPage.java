@@ -7,29 +7,22 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
 
-    @FindBy(css = "input[name='session[username_or_email]'")
-    private WebElement username;
+    @FindBy(css = "#email")
+    private WebElement userName;
 
-    @FindBy(name = "session[password]")
+    @FindBy(css = "#pass")
     private WebElement password;
 
-    @FindBy(css = "div[data-testid='LoginForm_Login_Button']")
+    @FindBy(css = "button[name=\"login\"]")
     private WebElement login_button;
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
-    }
 
-    public void login(String email, String password) {
-        waitElementVisibility(this.username);
-        this.username.sendKeys(email);
-
-        waitElementVisibility(this.password);
-        this.password.sendKeys(password);
-
-        getWait().until(ExpectedConditions.elementToBeClickable(this.login_button));
-        this.login_button.click();
-
-
+    /**
+     * Constructor.
+     *
+     * @param pDriver WebDriver
+     */
+    public LoginPage(WebDriver pDriver) {
+        super(pDriver);
     }
 }
