@@ -1,7 +1,5 @@
 package com.web.automation.test;
 
-import com.web.automation.pages.HomePage;
-import com.web.automation.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

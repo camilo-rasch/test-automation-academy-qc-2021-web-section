@@ -2,7 +2,6 @@ package com.web.automation.test;
 
 
 import com.web.automation.driver.Driver;
-import com.web.automation.pages.HomePage;
 import org.apache.log4j.Logger;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
