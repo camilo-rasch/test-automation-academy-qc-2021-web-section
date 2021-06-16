@@ -70,4 +70,27 @@ public class BasePage {
 		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
 	}
 
+	/**
+	 * Click on a web element
+	 * @param element
+	 */
+	public void clickOnElement(WebElement element){
+		waitElementVisibility(element);
+		element.click();
+	}
+
+	/**
+	 * Reload page
+	 * @param url
+	 */
+	public void reload(String url){
+		this.driver.get(url);
+	}
+
+	/**
+	 * Close page
+	 */
+	public void closePage(){
+		this.driver.close();
+	}
 }

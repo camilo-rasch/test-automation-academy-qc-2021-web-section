@@ -5,9 +5,12 @@
 		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
 	
+	<parameter name="browser" value="firefox"></parameter>
+	<parameter name="url" value="https://courses.letskodeit.com/practice"></parameter>
+
 	<test name="myTest">
 		<classes>
-			<class name=""></class>
+			<class name="com.web.automation.test.openNewTabTest"></class>
 		</classes>
 	</test>
 </suite>
