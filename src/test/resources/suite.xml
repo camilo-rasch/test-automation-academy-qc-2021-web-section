@@ -4,4 +4,7 @@
 	<listeners>
 		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
+
+	<parameter name="browser" value="chrome"/>
+	<parameter name="url" value="https://www.facebook.com"/>
 </suite>

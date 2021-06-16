@@ -17,7 +17,7 @@ public class SendMessageToFriend  extends BasePage{
 
     @FindBy (css = "div div[class=\"k4urcfbm\"] img[src=\"https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/111xWLHJ_6m.png\"]")
     private WebElement buttonSendMessage;
-    
+
     /**
      * Constructor.
      *
