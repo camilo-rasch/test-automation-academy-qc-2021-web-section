@@ -9,11 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-/**
- * Parent of the other classes of pages.
- *
- * @author camilo.mogollon
- */
 public class BasePage {
 
     public Logger log = Logger.getLogger(BasePage.class);
