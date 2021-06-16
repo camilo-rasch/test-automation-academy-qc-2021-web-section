@@ -6,11 +6,11 @@ import org.openqa.selenium.support.FindBy;
 public class Logout {
 
     //Expandable frame icon
-    @FindBy(css = "[role]>.iyyx5f41:nth-of-type(1) [role]")
+    @FindBy(css = "div[aria-label=Account]")
     private WebElement expandableFrameIcon;
 
     //Logout option
-    @FindBy(css = "[data-visualcompletion='ignore-dynamic']:nth-of-type(4) [data-visualcompletion='ignore']")
+    @FindBy(css = "[data-visualcompletion='ignore-dynamic']:nth-of-type(4) [role]")
     private WebElement logoutLink;
 
 

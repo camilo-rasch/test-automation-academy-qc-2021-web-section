@@ -2,7 +2,7 @@ package com.web.automation.test;
 
 
 import com.web.automation.driver.Driver;
-import com.web.automation.pages.LoginPage;
+import com.web.automation.pages.HomePage;
 import org.apache.log4j.Logger;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -16,7 +16,7 @@ public class BaseTest {
 	
 	Driver driver;
 	
-	private LoginPage Home;
+	private HomePage Home;
 	public Logger log = Logger.getLogger(BaseTest.class);
 	
 	
@@ -25,7 +25,7 @@ public class BaseTest {
 	public void beforeTest(String browser, String url) {
 		driver = new Driver(browser);
 		driver.getDriver().manage().window().maximize();
-		Home= new LoginPage(driver.getDriver(), url);
+		Home= new HomePage(driver.getDriver(), url);
 	}
 
 	@AfterTest(alwaysRun=true)
@@ -35,9 +35,9 @@ public class BaseTest {
 	
 	/**
 	 * Get the home page.
-	 * @return {@link LoginPage}
+	 * @return {@link HomePage}
 	 */
-	public LoginPage getHomePage() {
+	public HomePage getHomePage() {
 		return Home;
 	}
 
