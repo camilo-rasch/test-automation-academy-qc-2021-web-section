@@ -5,9 +5,12 @@
 		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
 	
-	<test name="myTest">
+	<parameter name="browser" value="chrome"></parameter>
+	<parameter name="url" value="https://www.seleniumeasy.com/test/basic-select-dropdown-demo.html"></parameter>
+	
+	<test name="testDropdown">
 		<classes>
-			<class name=""></class>
+			<class name="com.web.automation.test.SelectDropdownDayTest"></class>
 		</classes>
 	</test>
 </suite>

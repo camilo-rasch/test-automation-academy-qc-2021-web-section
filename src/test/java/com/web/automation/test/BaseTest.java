@@ -4,6 +4,7 @@ package com.web.automation.test;
 import com.web.automation.driver.Driver;
 import com.web.automation.pages.HomePage;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -25,7 +26,9 @@ public class BaseTest {
 	public void beforeTest(String browser, String url) {
 		driver = new Driver(browser);
 		driver.getDriver().manage().window().maximize();
+		//((WebDriver) driver).get(url);
 		Home= new HomePage(driver.getDriver(), url);
+		
 	}
 
 	@AfterTest(alwaysRun=true)
