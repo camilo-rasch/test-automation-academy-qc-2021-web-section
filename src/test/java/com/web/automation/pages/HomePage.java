@@ -9,7 +9,7 @@ import java.util.Optional;
 
 /**
  * Class for interact with the home page.
- * @author camilo.mogollon
+ * @author jessica.cardona
  */
 public class HomePage extends BasePage {
 
@@ -23,8 +23,15 @@ public class HomePage extends BasePage {
         driver.get(url);
     }
     
-    public void playsVideoYouTubeIframe(){
+    /**
+     * Switch to Youtube Iframe
+     * @return 
+     */
+    public YouTubeIframe playsVideoYouTubeIframe(){
     	
     	getDriver().switchTo().frame(0);
+    	return  new YouTubeIframe(getDriver());
     }
+    
+    
 }
