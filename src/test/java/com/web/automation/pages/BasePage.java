@@ -11,16 +11,18 @@ import java.util.List;
 
 /**
  * Parent of the other classes of pages.
+ *
  * @author camilo.mogollon
  */
 public class BasePage {
-	
-	private WebDriver driver;
-	private WebDriverWait wait;
+
 	public Logger log = Logger.getLogger(BasePage.class);
-	
+	private final WebDriver driver;
+	private final WebDriverWait wait;
+
 	/**
 	 * Constructor.
+	 *
 	 * @param pDriver WebDriver
 	 */
 	public BasePage(WebDriver pDriver) {
@@ -31,6 +33,7 @@ public class BasePage {
 
 	/**
 	 * Get the web driver wait.
+	 *
 	 * @return {@link WebDriverWait}
 	 */
 	protected WebDriverWait getWait() {
@@ -39,23 +42,25 @@ public class BasePage {
 
 	/**
 	 * Get the  web driver.
+	 *
 	 * @return {@link WebDriver}
 	 */
 	protected WebDriver getDriver() {
 		return driver;
 	}
-	
+
 	/**
 	 * Close the web driver.
 	 */
-	public void dispose() {
-		if (driver != null) {
-			driver.quit();
-		}
-	}
+    /*public void dispose() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }*/
 
 	/**
 	 * Wait element to be visible.
+	 *
 	 * @param element WebElement
 	 */
 	public void waitElementVisibility(WebElement element) {
@@ -64,10 +69,20 @@ public class BasePage {
 
 	/**
 	 * Wait element to be visible.
+	 *
 	 * @param elements list WebElement
 	 */
 	public void waitElementsVisibility(List<WebElement> elements) {
 		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
+	}
+
+	/**
+	 * Click on Element
+	 * @param element to click
+	 */
+	public void clickOnElement(WebElement element) {
+		getWait().until(ExpectedConditions.elementToBeClickable(element));
+		element.click();
 	}
 
 }

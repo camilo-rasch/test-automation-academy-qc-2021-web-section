@@ -22,6 +22,7 @@ public class Driver {
 	 * @param browser String
 	 */
 	public Driver(String browser) {
+		String basePath=System.getProperty("user.dir");
 		switch (browser) {
 			case "remoteFirefox":
 				try {
@@ -42,7 +43,8 @@ public class Driver {
 				driver = new FirefoxDriver();
 				break;
 			case "chrome":
-				System.setProperty("webdriver.chrome.driver", "./src/main/resources/chromedriverMac91");
+
+				System.setProperty("webdriver.chrome.driver", basePath+"/src/main/resources/chromedriver91.exe");
 				driver = new ChromeDriver();
 				break;
 			default:

@@ -4,10 +4,13 @@
 	<listeners>
 		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
-	
-	<test name="myTest">
+
+	<parameter name="browser" value="chrome"/>
+	<parameter name="url" value="https://mdbootstrap.com/docs/b4/jquery/plugins/iframe/"/>
+
+	<test name="myFirstTest">
 		<classes>
-			<class name=""></class>
+			<class name="com.web.automation.test.IframeTest"/>
 		</classes>
 	</test>
 </suite>
