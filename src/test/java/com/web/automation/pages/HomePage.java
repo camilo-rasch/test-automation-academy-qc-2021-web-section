@@ -22,4 +22,9 @@ public class HomePage extends BasePage {
         super(driver);
         driver.get(url);
     }
+    
+    public void playsVideoYouTubeIframe(){
+    	
+    	getDriver().switchTo().frame(0);
+    }
 }
