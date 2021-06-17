@@ -4,10 +4,13 @@
 	<listeners>
 		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
-	
-	<test name="myTest">
+
+	<parameter name="browser" value="chrome"/>
+	<parameter name="url" value="https://www.seleniumeasy.com/test/basic-select-dropdown-demo.html"/>
+
+	<test name="dropDownTest">
 		<classes>
-			<class name=""></class>
+			<class name="com.web.automation.test.DropdownTest"/>
 		</classes>
 	</test>
 </suite>
