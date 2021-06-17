@@ -1,5 +1,6 @@
 
 package com.web.automation.pages;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +11,9 @@ public class HomePage extends BasePage {
 
     @FindBy(name = "submit")
     private WebElement submitButton;
+
+    @FindBy(css = ".barone")
+    private WebElement homeText;
 
     /**
      * Page Constructor with url
@@ -42,4 +46,20 @@ public class HomePage extends BasePage {
         clickOnElement(submitButton);
         return new HomePage(getDriver());
     }
+    public HomePage switchToAlert() {
+        Alert alert=driver.switchTo().alert();
+        String alert_text=alert.getText();
+        System.out.print(alert_text);
+        alert.accept();
+        String alert_text2=alert.getText();
+        System.out.print(alert_text2);
+        alert.accept();
+        return new HomePage(getDriver());
+    }
+    public String getTextHomeLabel() {
+        waitElementVisibility(this.homeText);
+        String label_text = this.homeText.getText();
+        return label_text;
+    }
+
 }
