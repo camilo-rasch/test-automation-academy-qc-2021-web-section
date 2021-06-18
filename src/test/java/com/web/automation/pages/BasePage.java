@@ -1,6 +1,7 @@
 package com.web.automation.pages;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -70,4 +71,7 @@ public class BasePage {
 		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
 	}
 
+	public Alert switchToAlert(){
+		return getDriver().switchTo().alert();
+	}
 }
