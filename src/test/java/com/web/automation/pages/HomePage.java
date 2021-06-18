@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
+
 /**
  * Home page.
  *
@@ -29,7 +29,6 @@ public class HomePage extends BasePage {
 
     /**
      * Page Constructor
-     *
      * @param driver to execute
      */
     public HomePage(WebDriver driver) {

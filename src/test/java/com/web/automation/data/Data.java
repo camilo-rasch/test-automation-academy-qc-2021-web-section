@@ -4,12 +4,12 @@ import org.testng.annotations.DataProvider;
 
 /**
  * Data provider class.
- * @author camilo.mogollon
+ * @author jonathan.triana
  */
 public class Data {
 
-    @DataProvider(name = "countries")
+    @DataProvider(name = "day")
     public Object[][] inputData() {
-        return new Object[][] {{"Colombia"}, {"Brazil"}, {"Peru"}};
+        return new Object[][] {{"Wednesday"}};
     }
 }
