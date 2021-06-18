@@ -32,7 +32,7 @@ public class HomePage extends BasePage {
      */
     public void clickDropDown(){
         String currentWindowHandle = getDriver().getWindowHandle();
-        clickOnElement(this.selectingAnElement);
+        clickOnElement(this.principalList);
     }
 
     /**
