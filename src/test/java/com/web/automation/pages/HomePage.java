@@ -1,13 +1,11 @@
 package com.web.automation.pages;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Class for interact with the home page.
@@ -65,9 +63,9 @@ public class HomePage extends BasePage {
 
     /**
      * Search a one way trip flight
-     * @param origin
-     * @param destination
-     * @param daysFromToday
+     * @param origin origin
+     * @param destination destination
+     * @param daysFromToday days from today to choose
      * @return
      */
     public ResultsSearchFlight searchFlight(String origin, String destination, int daysFromToday){
