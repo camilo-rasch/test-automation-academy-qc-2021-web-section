@@ -1,13 +1,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="example test suite" verbose="1">
+<suite name="Test Suite Alerts" verbose="1">
 	<listeners>
 		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
-	
+
+	<parameter name="browser" value="chrome"></parameter>
+	<parameter name="url" value="http://demo.guru99.com/test/delete_customer.php"></parameter>
+
 	<test name="myTest">
 		<classes>
-			<class name=""></class>
+			<class name="com.web.automation.test.AlertTest"></class>
 		</classes>
 	</test>
 </suite>
