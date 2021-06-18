@@ -28,11 +28,18 @@ public class HomePage extends BasePage {
 
 
     /**
-     * Click on Dropdown and select an option
+     * Click on Dropdown
      */
     public void clickDropDown(){
         String currentWindowHandle = getDriver().getWindowHandle();
-        clickOnElement(this.principalList);
+        clickOnElement(this.selectingAnElement);
+    }
+
+    /**
+     * Select an option
+     */
+    public void selectAnOption(){
+        String currentWindowHandle = getDriver().getWindowHandle();
         clickOnElement(this.selectingAnElement);
     }
 

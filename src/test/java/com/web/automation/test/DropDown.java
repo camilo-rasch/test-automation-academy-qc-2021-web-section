@@ -18,8 +18,10 @@ public class DropDown extends BaseTest{
     public void test(){
         log.info("Opening homePage");
         homePage = getHomePage();
-        log.info("Click on the dropdown and select an option");
+        log.info("Click on the dropdown");
         homePage.clickDropDown();
+        log.info("Selecting an option");
+        homePage.selectAnOption();
         log.info("Assert");
         Assert.assertTrue(homePage.isTuesdayVisible(),"Verify if 'Tuesday' was selected");
     }
