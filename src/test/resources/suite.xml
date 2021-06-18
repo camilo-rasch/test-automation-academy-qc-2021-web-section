@@ -1,16 +1,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Delete Customer Suite" verbose="1">
+<suite name="Select option in the dropdown" verbose="1">
 	<listeners>
 		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
 
 	<parameter name="browser" value="chrome"/>
-	<parameter name="url" value="http://demo.guru99.com/test/delete_customer.php/"/>
+	<parameter name="url" value="https://www.seleniumeasy.com/test/basic-select-dropdown-demo.html"/>
 
-	<test name="Delete Customer">
+	<test name="Select Option">
 		<classes>
-			<class name="com.web.automation.test.DeleteCustomerTest"></class>
+			<class name="com.web.automation.test.SelectOptionTest"></class>
 		</classes>
 	</test>
 </suite>

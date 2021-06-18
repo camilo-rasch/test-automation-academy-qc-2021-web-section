@@ -8,8 +8,8 @@ import org.testng.annotations.DataProvider;
  */
 public class Data {
 
-    @DataProvider(name = "customerID")
+    @DataProvider(name = "dropDownDays")
     public Object[][] inputData() {
-        return new Object[][] {{"CustomerJuan"}};
+        return new Object[][] {{"Thursday"}};
     }
 }

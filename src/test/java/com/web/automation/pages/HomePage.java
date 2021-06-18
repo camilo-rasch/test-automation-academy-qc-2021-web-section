@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import java.util.List;
@@ -16,22 +17,23 @@ import java.util.List;
  */
 public class HomePage extends BasePage {
 
-    @FindBy(css = "input[name='cusid']")
-    private WebElement customerIdField;
+    @FindBy(id = "select-demo']")
+    private WebElement selectDropDown;
 
-    @FindBy(css = "input[name='submit']")
-    private WebElement submitButton;
+    @FindBy(css = "p.selected-value")
+    private WebElement selectedValue;
 
-    public WebElement getCustomerIdField() {
-        return this.customerIdField;
+    /**
+     * getter for webelement selectDropDown
+     * @return
+     */
+    public WebElement getSelectDropDown() {
+        return selectDropDown;
     }
 
-    public WebElement getSubmitButton() {
-        return this.submitButton;
+    public WebElement getSelectedValue() {
+        return selectedValue;
     }
-
-
-
 
     /**
      * Constructor.
@@ -44,12 +46,20 @@ public class HomePage extends BasePage {
     }
 
     /**
-     * Method to switch to alert
-     * @return the switch to the alert
+     * Method to instantiate the dropdown element
+     * @param dropDownOption for the value to select in the dropdown
      */
-    public Alert switchToAlert() {
-        return getDriver().switchTo().alert();
+    public void getDropdownValue(String dropDownOption) {
+        Select myDropDown = new Select(getDriver().findElement(By.id("select-demo")));
+        myDropDown.selectByValue(dropDownOption);
+
     }
+
+
+
+
+
+
 
 
 
