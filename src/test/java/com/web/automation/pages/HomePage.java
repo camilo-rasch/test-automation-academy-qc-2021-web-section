@@ -4,19 +4,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
+    //Home page
     @FindBy(css = "[href='#youtube']")
     private WebElement youtubeLink;
 
-    @FindBy(css = "button.ytp-large-play-button.ytp-button")
-    private WebElement youtubeVideo;
-
     @FindBy(css = "[href='#vimeo']")
     private WebElement vimeoLink;
-
-    /*@FindBy(css = "[src*='1378']")
-    private WebElement vimeoVideo;*/
-    @FindBy(css = "div.play-icon")
-    private WebElement vimeoVideo;
 
     /**
      * Page Constructor with url
@@ -37,34 +30,19 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
+    // Methods Home page
     public HomePage clickOnYoutubeLink() {
         clickOnElement(youtubeLink);
         return new HomePage(getDriver());
     }
-    public HomePage clickOnYoutubeVideo() {
-        clickOnElement(youtubeVideo);
-        return new HomePage(getDriver());
-    }
+
     public HomePage clickOnVimeoLink() {
         clickOnElement(vimeoLink);
         return new HomePage(getDriver());
     }
-    public HomePage clickOnVimeoVideo() {
-        clickOnElement(vimeoVideo);
-        return new HomePage(getDriver());
-    }
-   public HomePage switchIframe() {
-        getDriver().switchTo().frame(0);
-        return new HomePage(getDriver());
-    }
 
-    public HomePage switchMain() {
+    public HomePage switchToMain() {
         getDriver().switchTo().defaultContent();
-        return new HomePage(getDriver());
-    }
-
-    public HomePage switchIframe1() {
-        getDriver().switchTo().frame(1);
         return new HomePage(getDriver());
     }
 }
