@@ -5,9 +5,12 @@
 		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
 	
-	<test name="myTest">
+	<parameter name="browser" value="chrome"></parameter>
+	<parameter name="url" value="http://demo.guru99.com/test/delete_customer.php"></parameter>
+	
+	<test name="testAlert">
 		<classes>
-			<class name=""></class>
+			<class name="com.web.automation.test.AlertTest"></class>
 		</classes>
 	</test>
 </suite>
