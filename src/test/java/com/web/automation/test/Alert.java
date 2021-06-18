@@ -16,7 +16,7 @@ public class Alert extends BaseTest{
     private HomePage homePage;
 
     @Test(description = "Check the alerts functions")
-    public void checkWebPagebehaviour(){
+    public void checkWebPageBehaviour(){
         homePage = getHomePage();
         homePage.clickInTheTextBox();
         log.info("Input some text");
