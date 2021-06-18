@@ -8,8 +8,13 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ * Tests class
+ * @author fabio.alarcon
+ */
+
 public class PlayYoutubeVideo extends BaseTest {
-    HomePage homePage;
+    private HomePage homePage;
 
     @Test(description = "Test to play the first youtube video")
     public void test1(){

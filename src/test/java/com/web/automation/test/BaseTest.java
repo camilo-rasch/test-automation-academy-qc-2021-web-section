@@ -11,7 +11,7 @@ import org.testng.annotations.Parameters;
 
 /**
  * Parent of the other classes of test.
- * @author camilo.mogollon
+ * @author fabio.alarcon
  */
 public class BaseTest {
 

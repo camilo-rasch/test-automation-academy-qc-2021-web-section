@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * Parent of the other classes of pages.
- * @author camilo.mogollon
+ * @author fabio.alarcon
  */
 public class BasePage {
 	
