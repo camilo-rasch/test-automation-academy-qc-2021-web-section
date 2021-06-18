@@ -1,5 +1,6 @@
 package com.web.automation.pages;
 
+import com.web.automation.test.TestSuite;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,8 +16,11 @@ import java.util.Optional;
  */
 public class HomePage extends BasePage {
 
-    @FindBy(css = "div a[href*=\"github.com/mdbootstrap\"] .fa-edit")
-    private WebElement testIframe;
+    @FindBy(css = "#movie_player div.ytp-cued-thumbnail-overlay > button")
+    private WebElement buttonPlayVideoYoutube;
+
+    @FindBy(css = "div[aria-valuetext*=\"5 Minutes\"]")
+    private WebElement buttonPlayVideoVimeo;
 
     /**
      * Constructor.
@@ -28,9 +32,24 @@ public class HomePage extends BasePage {
         driver.get(url);
     }
 
-    public void reproduceVideos() {
-        this.testIframe.click();
+    public Iframe playVideoYoutube() {
+        getDriver().switchTo().frame(1);
+        clickOnElement(this.buttonPlayVideoYoutube);
+        getDriver().switchTo().defaultContent();
+        return new Iframe(getDriver());
     }
+
+    public Iframe playVideoVimeo() {
+        getDriver().switchTo().frame(2);
+        clickOnElement(this.buttonPlayVideoVimeo);
+        getDriver().switchTo().defaultContent();
+        return new Iframe(getDriver());
+    }
+
+
+
+
+
 
 
 

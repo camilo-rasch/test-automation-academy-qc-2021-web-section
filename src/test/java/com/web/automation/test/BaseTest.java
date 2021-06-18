@@ -3,7 +3,6 @@ package com.web.automation.test;
 
 import com.web.automation.driver.Driver;
 import com.web.automation.pages.HomePage;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
@@ -28,10 +27,6 @@ public class BaseTest {
 		driver = new Driver(browser);
 		driver.getDriver().manage().window().maximize();
 		Home= new HomePage(driver.getDriver(), url);
-	}
-	@BeforeClass
-	public void setUp(){
-		WebDriverManager.chromedriver().setup();
 	}
 
 	@AfterTest(alwaysRun=true)
