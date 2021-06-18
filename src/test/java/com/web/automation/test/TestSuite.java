@@ -1,6 +1,10 @@
 package com.web.automation.test;
 
+import com.web.automation.pages.CustomerPaymentPage;
+import com.web.automation.pages.FlightConfirmationPage;
 import com.web.automation.pages.HomePage;
+import com.web.automation.pages.ResultsSearchFlight;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class TestSuite extends BaseTest{
@@ -10,6 +14,23 @@ public class TestSuite extends BaseTest{
     @Test(description = "Booking a flight in Travelocity")
     public void bookAFlight(){
         homePage = getHomePage();
-        homePage.searchFlight("BOG","PAR", 5);
+        log.info("Searching flight");
+        ResultsSearchFlight resultsSearchFlight = homePage.searchFlight("BOG","PAR", 5);
+        log.info("Click on one stop checkbox");
+        resultsSearchFlight.clickOnOneStopCheckBox();
+        log.info("Select a flight from flights result list by Airline");
+        resultsSearchFlight.selectAFlightByAirlineLambda("Air Europa");
+        log.info("Assert departure time matches on emergent window");
+        Assert.assertTrue(resultsSearchFlight.departureTimeMatchesFromSelectedFlight(),"Assert departure time matches");
+        log.info("Click on continue button");
+        resultsSearchFlight.clickOnContinueButton();
+        log.info("Click on no thanks link");
+        FlightConfirmationPage flightConfirmationPage = resultsSearchFlight.clickOnNoThanksLink();
+        log.info("Assert CheckOut button is displayed");
+        Assert.assertTrue(flightConfirmationPage.isCheckOutButtonPresent(), "Assert CheckOut button is displayed");
+        log.info("Click on CheckOut button");
+        CustomerPaymentPage customerPaymentPage = flightConfirmationPage.clickOnCheckOutButton();
+        log.info("Select by index on Customer title Select");
+        customerPaymentPage.selectOptionInCustomerTitleSelectByIndex(2);
     }
 }
