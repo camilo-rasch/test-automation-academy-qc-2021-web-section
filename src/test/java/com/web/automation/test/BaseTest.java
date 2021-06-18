@@ -4,13 +4,14 @@ package com.web.automation.test;
 import com.web.automation.driver.Driver;
 import com.web.automation.pages.HomePage;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Alert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
 /**
  * Parent of the other classes of test.
- * @author camilo.mogollon
+ * @author fabio.alarcon
  */
 public class BaseTest {
 
@@ -18,7 +19,7 @@ public class BaseTest {
 	
 	private HomePage Home;
 	public Logger log = Logger.getLogger(BaseTest.class);
-	
+
 	
 	@BeforeTest(alwaysRun=true)
 	@Parameters({"browser", "url"})
