@@ -19,12 +19,17 @@ public class Alert extends BaseTest{
     public void checkWebPagebehaviour(){
         homePage = getHomePage();
         homePage.clickInTheTextBox();
+        log.info("Input some text");
         homePage.insertData("Something");
+        log.info("Clicking on Submit button");
         homePage.clickOnSubmitButton();
+        log.info("The text of the first alert is:");
         log.info(homePage.getTextOfAlert());
         homePage.clickOkInTheAlertButton();
+        log.info("The text of the second alert is:");
         log.info(homePage.getTextOfAlert());
         homePage.clickOkInTheAlertButton();
+        log.info("Assert");
         Assert.assertTrue(homePage.isSubmitButtonAvailable().isEnabled());
     }
 
