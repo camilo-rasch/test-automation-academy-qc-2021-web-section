@@ -27,10 +27,10 @@ public class HomePage extends BasePage {
     @FindBy(css = "li[data-stid=\"location-field-leg1-origin-result-item\"]")
     private List<WebElement> depaturesResultsList;
 
-    @FindBy(css = "section #location-field-leg1-destination-input")
+    @FindBy(css = "section #location-field-leg1-destination")
     private WebElement destinationInput;
 
-    @FindBy(css = "li[data-stid=\"location-field-leg1-origin-result-item\"]")
+    @FindBy(css = "li[data-stid=\"location-field-leg1-destination-result-item\"]")
     private List<WebElement> destinationResultsList;
 
     @FindBy(id = "d1-btn")
@@ -45,8 +45,14 @@ public class HomePage extends BasePage {
     @FindBy(css = "button[data-stid=\"apply-date-picker\"]")
     private WebElement calendarDoneButton;
 
+    @FindBy(css = "div[data-testid='location-field-leg1-origin-container']")
+    private WebElement inputDepatureWrapper;
+
+    @FindBy(css = "div[data-testid='location-field-leg1-destination-container']")
+    private WebElement inputDestinationWrapper;
+
     private String focusDayCalendar = "edge";
-    private String inputDepatureSelector = "div[data-testid='location-field-leg1-origin-container']";
+
     /**
      * Constructor.
      * @param driver WebDriver
@@ -57,13 +63,19 @@ public class HomePage extends BasePage {
         driver.get(url);
     }
 
-    public void searchFlight(String origin, String destination, int daysFromToday){
+    /**
+     * Search a one way trip flight
+     * @param origin
+     * @param destination
+     * @param daysFromToday
+     * @return
+     */
+    public ResultsSearchFlight searchFlight(String origin, String destination, int daysFromToday){
         clickOnElement(this.flightsButton);
         clickOnElement(this.oneWayButton);
 
-        getWait().until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(inputDepatureSelector)));
-        WebElement divPrueba = getDriver().findElement(By.cssSelector(this.inputDepatureSelector));
-        divPrueba.click();
+        waitElementVisibility(this.inputDepatureWrapper);
+        clickOnElement(this.inputDepatureWrapper);
         this.departureInput.click();
         this.departureInput.sendKeys(origin);
         for(WebElement element: this.depaturesResultsList){
@@ -72,22 +84,32 @@ public class HomePage extends BasePage {
            }
         }
 
+        waitElementVisibility(this.inputDestinationWrapper);
+        clickOnElement(this.inputDestinationWrapper);
         clickOnElement(this.destinationInput);
         this.destinationInput.sendKeys(destination);
         for(WebElement element: this.destinationResultsList){
-            if(element.getText().contains(destination)){
+            String elementText = element.getText();
+            if(elementText.contains(destination)){
                 element.click();
             }
         }
 
         clickOnElement(this.calendarButton);
         int daysCalendarSize = this.calendarDayLists.size();
-        for(int i=0; i<daysCalendarSize-1;i++){
-            if(this.calendarDayLists.get(i).getAttribute("class").contains(this.focusDayCalendar)){
-                this.calendarDayLists.get(i+daysFromToday).click();
+        int cont = 0;
+        boolean selectedDayFlag = false;
+
+        while (cont < daysCalendarSize-1 && !selectedDayFlag){
+            if(this.calendarDayLists.get(cont).getAttribute("class").contains(this.focusDayCalendar)){
+                this.calendarDayLists.get(cont+daysFromToday).click();
+                selectedDayFlag = true;
             }
+            cont++;
         }
         clickOnElement(this.calendarDoneButton);
         clickOnElement(this.submitButton);
+
+        return new ResultsSearchFlight(getDriver());
     }
 }
