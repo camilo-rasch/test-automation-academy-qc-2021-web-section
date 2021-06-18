@@ -13,6 +13,10 @@ public class TestSuite extends BaseTest {
         homePage = getHomePage();
         log.info("Select a option on the dropdown");
         homePage.selectOptionDropdown();
+    }
+
+    @Test(description = "This test validate if the option was selected")
+    public void validateOptionSelected() {
         log.info("Validate if the option was select on the dropdown");
         Assert.assertTrue(homePage.isElementSelected());
     }
