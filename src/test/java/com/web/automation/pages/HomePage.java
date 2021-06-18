@@ -35,7 +35,8 @@ public class HomePage extends BasePage {
     }
 
     public HomePage clickOnCustomerIdField() {
-        clickOnElement(customerIdField);
+        waitElementVisibility(this.customerIdField);
+        clickOnElement(this.customerIdField);
         return new HomePage(getDriver());
     }
     public HomePage sendKeysCustomerIdField(String id) {
@@ -43,7 +44,7 @@ public class HomePage extends BasePage {
         return new HomePage(getDriver());
     }
     public HomePage clickOnSubmitButton() {
-        clickOnElement(submitButton);
+        clickOnElement(this.submitButton);
         return new HomePage(getDriver());
     }
     public Alert switchToAlert() {

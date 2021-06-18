@@ -8,7 +8,7 @@
 	<parameter name="browser" value="chrome"/>
 	<parameter name="url" value="http://demo.guru99.com/test/delete_customer.php"/>
 
-	<test name="myFirstTest">
+	<test name="myAlertTest">
 		<classes>
 			<class name="com.web.automation.test.AlertText"/>
 		</classes>

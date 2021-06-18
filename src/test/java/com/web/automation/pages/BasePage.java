@@ -52,11 +52,11 @@ public class BasePage {
 	/**
 	 * Close the web driver.
 	 */
-    /*public void dispose() {
+    public void dispose() {
         if (driver != null) {
             driver.quit();
         }
-    }*/
+    }
 
 	/**
 	 * Wait element to be visible.
@@ -68,15 +68,6 @@ public class BasePage {
 	}
 
 	/**
-	 * Wait element to be visible.
-	 *
-	 * @param elements list WebElement
-	 */
-	public void waitElementsVisibility(List<WebElement> elements) {
-		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
-	}
-
-	/**
 	 * Click on Element
 	 * @param element to click
 	 */
@@ -84,5 +75,4 @@ public class BasePage {
 		getWait().until(ExpectedConditions.elementToBeClickable(element));
 		element.click();
 	}
-
 }

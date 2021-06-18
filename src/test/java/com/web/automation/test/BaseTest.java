@@ -1,6 +1,5 @@
 package com.web.automation.test;
 
-
 import com.web.automation.driver.Driver;
 import com.web.automation.pages.HomePage;
 import org.apache.log4j.Logger;
@@ -30,7 +29,7 @@ public class BaseTest {
 
 	@AfterTest(alwaysRun=true)
 	public void afterTest() {
-		//Home.dispose();
+		Home.dispose();
 	}
 	
 	/**
@@ -40,5 +39,4 @@ public class BaseTest {
 	public HomePage getHomePage() {
 		return Home;
 	}
-
 }
