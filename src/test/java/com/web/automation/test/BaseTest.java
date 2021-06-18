@@ -4,6 +4,7 @@ package com.web.automation.test;
 import com.web.automation.driver.Driver;
 import com.web.automation.pages.HomePage;
 import org.apache.log4j.Logger;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -39,6 +40,15 @@ public class BaseTest {
 	 */
 	public HomePage getHomePage() {
 		return Home;
+	}
+
+
+	/**
+	 * Calling the driver.
+	 * @return {@link HomePage}
+	 */
+	public Driver getDriver() {
+		return driver;
 	}
 
 }
