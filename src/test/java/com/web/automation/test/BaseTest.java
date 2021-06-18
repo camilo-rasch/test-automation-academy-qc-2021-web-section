@@ -41,4 +41,8 @@ public class BaseTest {
 	public HomePage getHomePage() {
 		return Home;
 	}
+
+	public Driver getDriver() {
+		return driver;
+	}
 }

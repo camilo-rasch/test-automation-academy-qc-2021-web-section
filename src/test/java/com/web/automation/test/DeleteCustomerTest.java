@@ -21,18 +21,39 @@ import org.testng.annotations.Test;
  */
 public class DeleteCustomerTest extends BaseTest{
 	
-	Driver driver;
+	Driver driver = getDriver();
 
 	HomePage homepage;
 
 
 
 	@Test(description = "Delete customerid", dataProviderClass = Data.class, dataProvider = "customerID")
+
 	public void executeTest(String data){
 		log.info("Open homePage");
 		homepage = getHomePage();
-		homepage.deleteCustomer(data);
+
+		homepage.clickOnElement(homepage.getCustomerIdField());
+		homepage.getCustomerIdField().sendKeys(data);
+		log.info("entering customerId: "+data);
+		homepage.clickOnElement(homepage.getSubmitButton());
+		log.info("click on submit button");
+		Alert alert= homepage.switchToAlert();
+		log.info("switch to alert");
+		log.info("printing in console the alert text");
+		log.info(alert.getText());
+		alert.accept();
+		log.info("Accept in alert button");
+		log.info("print alert response");
+		log.info(alert.getText());
+		alert.accept();
+		log.info("Accept on the alert");
+		Assert.assertTrue(homepage.getCustomerIdField().isDisplayed(),"The home page loaded as expected");
+
+
 	}
+
+
 
 
 
