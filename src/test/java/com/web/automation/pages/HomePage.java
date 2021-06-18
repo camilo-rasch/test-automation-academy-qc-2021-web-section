@@ -1,8 +1,10 @@
 package com.web.automation.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +15,11 @@ import java.util.Optional;
  */
 public class HomePage extends BasePage {
 
+    @FindBy (css = "p.selected-value")
+    private WebElement selectedDay;
+
+    Select myDropDown;
+
     /**
      * Constructor.
      * @param driver WebDriver
@@ -21,5 +28,17 @@ public class HomePage extends BasePage {
     public HomePage(WebDriver driver, String url) {
         super(driver);
         driver.get(url);
+        this.myDropDown = new Select(getDriver().findElement(By.id("select-demo")));
+    }
+
+
+    public void selectOptionFromDropDown(){
+
+        this.myDropDown.selectByValue("Friday");
+    }
+
+    public boolean isSelectedDayDisplayed(){
+        waitElementVisibility(selectedDay);
+        return selectedDay.isDisplayed();
     }
 }
