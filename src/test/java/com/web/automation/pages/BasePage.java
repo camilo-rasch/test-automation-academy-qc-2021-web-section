@@ -15,8 +15,8 @@ import java.util.List;
  */
 public class BasePage {
 	
-	private WebDriver driver;
-	private WebDriverWait wait;
+	WebDriver driver;
+	private final WebDriverWait wait;
 	public Logger log = Logger.getLogger(BasePage.class);
 	
 	/**

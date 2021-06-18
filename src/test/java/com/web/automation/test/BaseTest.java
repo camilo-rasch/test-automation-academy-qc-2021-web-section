@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
 /**
  * Parent of the other classes of test.
@@ -15,11 +16,9 @@ import org.testng.annotations.Parameters;
 public class BaseTest {
 
 	private Driver driver;
-	
 	private HomePage Home;
 	public Logger log = Logger.getLogger(BaseTest.class);
-	
-	
+
 	@BeforeTest(alwaysRun=true)
 	@Parameters({"browser", "url"})
 	public void beforeTest(String browser, String url) {
