@@ -19,7 +19,6 @@ public class SelectOptionDropDownTest extends BaseTest{
     @Test(description = "Test to validate the option was selected")
     public void testValidateSelectedOption(){
         log.info("Verify the option was selected");
-        homePage = getHomePage();
         Assert.assertTrue(homePage.isSelectedDayDisplayed());
     }
 
