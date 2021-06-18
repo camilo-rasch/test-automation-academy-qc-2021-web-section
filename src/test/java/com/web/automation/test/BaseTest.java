@@ -41,4 +41,7 @@ public class BaseTest {
 		return Home;
 	}
 
+	public Driver getDriver() {
+		return driver;
+	}
 }
