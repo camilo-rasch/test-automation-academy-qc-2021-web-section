@@ -14,10 +14,12 @@ public class IframeTest extends BaseTest {
         log.info("Opening mdbootstrap Page");
         HomePage homePage = getHomePage();
         HomePage homePage1 = homePage.clickOnYoutubeLink();
+        HomePage switchIframe = homePage.switchIframe();
         HomePage homePage2 = homePage.clickOnYoutubeVideo();
+        HomePage switchMain = homePage.switchMain();
         HomePage homePage3 = homePage.clickOnVimeoLink();
         sleep(3000);
-        //HomePage switchIframe = homePage.switchIframe();
+        HomePage switchIframe1 = homePage.switchIframe1();
         HomePage homePage4 = homePage.clickOnVimeoVideo();
 
 

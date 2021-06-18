@@ -7,13 +7,15 @@ public class HomePage extends BasePage {
     @FindBy(css = "[href='#youtube']")
     private WebElement youtubeLink;
 
-    @FindBy(css = "[src*='v64KOxKVLVg']")
+    @FindBy(css = "button.ytp-large-play-button.ytp-button")
     private WebElement youtubeVideo;
 
     @FindBy(css = "[href='#vimeo']")
     private WebElement vimeoLink;
 
-    @FindBy(css = "[src*='1378']")
+    /*@FindBy(css = "[src*='1378']")
+    private WebElement vimeoVideo;*/
+    @FindBy(css = "div.play-icon")
     private WebElement vimeoVideo;
 
     /**
@@ -51,8 +53,18 @@ public class HomePage extends BasePage {
         clickOnElement(vimeoVideo);
         return new HomePage(getDriver());
     }
-   /*public HomePage switchIframe() {
+   public HomePage switchIframe() {
+        getDriver().switchTo().frame(0);
+        return new HomePage(getDriver());
+    }
+
+    public HomePage switchMain() {
+        getDriver().switchTo().defaultContent();
+        return new HomePage(getDriver());
+    }
+
+    public HomePage switchIframe1() {
         getDriver().switchTo().frame(1);
         return new HomePage(getDriver());
-    }*/
+    }
 }
