@@ -14,11 +14,15 @@ public class AlertText extends BaseTest {
         HomePage clickOnCustomerIdField = homePage.clickOnCustomerIdField();
         HomePage sendKeysCustomerIdField = homePage.sendKeysCustomerIdField("34323");
         HomePage clickOnSubmitButton = homePage.clickOnSubmitButton();
-        HomePage switchToAlert = homePage.switchToAlert();
+        Alert alert = homePage.switchToAlert();
+        String alert_text=alert.getText();
+        System.out.print(alert_text);
+        alert.accept();
+        String alert_text2=alert.getText();
+        System.out.print(alert_text2);
+        alert.accept();
         homePage.getTextHomeLabel();
         Assert.assertEquals(homePage.getTextHomeLabel(),"Guru99 Bank");
-
-
     }
 }
 

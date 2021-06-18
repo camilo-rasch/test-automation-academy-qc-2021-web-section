@@ -46,15 +46,8 @@ public class HomePage extends BasePage {
         clickOnElement(submitButton);
         return new HomePage(getDriver());
     }
-    public HomePage switchToAlert() {
-        Alert alert=driver.switchTo().alert();
-        String alert_text=alert.getText();
-        System.out.print(alert_text);
-        alert.accept();
-        String alert_text2=alert.getText();
-        System.out.print(alert_text2);
-        alert.accept();
-        return new HomePage(getDriver());
+    public Alert switchToAlert() {
+        return getDriver().switchTo().alert();
     }
     public String getTextHomeLabel() {
         waitElementVisibility(this.homeText);
