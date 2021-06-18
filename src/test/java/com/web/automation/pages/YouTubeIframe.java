@@ -22,7 +22,7 @@ public class YouTubeIframe extends BasePage {
 	}
 	
 	/**
-	 * Click on play youtube video
+	 * Click on play Youtube video
 	 */
 	public void clickOnPlayYouTubeButton() {
 		
@@ -30,6 +30,10 @@ public class YouTubeIframe extends BasePage {
 		clickOnElement(this.playYouTubeVideoButton);
 	}
 	
+	/**
+	 * Get progress Bar Attributes
+	 * @return
+	 */
 	public String getProgressBarAttributes() {
 		
 		waitElementVisibility(videoProgressBar);

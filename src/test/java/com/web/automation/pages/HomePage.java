@@ -33,5 +33,15 @@ public class HomePage extends BasePage {
     	return  new YouTubeIframe(getDriver());
     }
     
+    /**
+     * Switch to Vimeo Iframe
+     * @return 
+     */
+    public VimeoIframe playsVimeoIframe(){
+    	
+    	getDriver().switchTo().frame(1);
+    	return  new VimeoIframe(getDriver());
+    }
+    
     
 }
