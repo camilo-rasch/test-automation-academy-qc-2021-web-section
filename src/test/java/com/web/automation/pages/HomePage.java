@@ -9,9 +9,13 @@ import java.util.Optional;
 
 /**
  * Class for interact with the home page.
- * @author camilo.mogollon
+ * @author hernan.barroso
  */
 public class HomePage extends BasePage {
+
+    @FindBy(css = "div[id='scrollspy'] ul li:nth-child(3) [href='#vimeo']")
+    private WebElement linkVimeoIframe;
+
 
     /**
      * Constructor.
@@ -22,4 +26,20 @@ public class HomePage extends BasePage {
         super(driver);
         driver.get(url);
     }
+
+    public void clickLinkVimeo(){
+        waitElementVisibility(linkVimeoIframe);
+        linkVimeoIframe.click();
+    }
+
+    public YouTubeIframePage switchToYouTubeIframePage() {
+        getDriver().switchTo().frame(0);
+        return new YouTubeIframePage(getDriver());
+    }
+
+    public VimeoIframePage switchToVimeoframePage(){
+        getDriver().switchTo().frame(1);
+        return new VimeoIframePage(getDriver());
+    }
+
 }
