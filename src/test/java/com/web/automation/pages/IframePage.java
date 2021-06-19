@@ -31,10 +31,9 @@ public class IframePage extends BasePage{
 
     /**
      * Switch to parent window
-     * @param handle
+     * @param
      */
-    public void switchToMainPage(String handle){
+    public void switchToMainPage(){
         getDriver().switchTo().defaultContent();
-        getDriver().close();
     }
 }

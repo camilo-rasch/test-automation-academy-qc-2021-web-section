@@ -79,4 +79,13 @@ public class BasePage {
 		element.click();
 	}
 
+	/**
+	 * Wait element to be visible.
+	 * @param element, timeout
+	 */
+	public void explicitWait(WebElement element, int timeout){
+		WebDriverWait wait = new WebDriverWait(getDriver(), timeout);
+		wait.until(ExpectedConditions.visibilityOf(element));
+	}
+
 }
