@@ -8,15 +8,15 @@ import org.testng.annotations.Test;
 public class AlertText extends BaseTest {
 
     @Test(description = "Open the page, input the value an validate the alert")
-    public void login_test() {
+    public void alert_test() {
         log.info("Opening Twitter Home Page");
         HomePage homePage = getHomePage();
         log.info("Click on customer id field");
-        HomePage clickOnCustomerIdField = homePage.clickOnCustomerIdField();
+        homePage.clickOnCustomerIdField();
         log.info("Input customer id");
-        HomePage sendKeysCustomerIdField = homePage.sendKeysCustomerIdField("34323");
+        homePage.sendKeysCustomerIdField("34323");
         log.info("Click on submit button");
-        HomePage clickOnSubmitButton = homePage.clickOnSubmitButton();
+        homePage.clickOnSubmitButton();
         log.info("Switch to first alert popup");
         Alert alert = homePage.switchToAlert();
         log.info("* Alert first message * ----"+alert.getText());
