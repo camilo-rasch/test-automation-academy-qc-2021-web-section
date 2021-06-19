@@ -11,7 +11,7 @@ import java.util.Optional;
 
 /**
  * Class for interact with the home page.
- * @author camilo.mogollon
+ * @author hernan.barroso
  */
 public class HomePage extends BasePage {
 
