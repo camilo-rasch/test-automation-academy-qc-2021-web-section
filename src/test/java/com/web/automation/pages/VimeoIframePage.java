@@ -18,10 +18,9 @@ public class VimeoIframePage extends BasePage{
 
     }
 
-    public VimeoIframePage playVimeoVideo(){
+    public void playVimeoVideo(){
         waitElementVisibility(playVimeoButton);
         this.playVimeoButton.click();
-        return new VimeoIframePage(getDriver());
     }
 
     public boolean isPlayButtonDisplayed(){

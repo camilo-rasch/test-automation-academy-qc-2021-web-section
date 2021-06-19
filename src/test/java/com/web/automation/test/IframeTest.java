@@ -21,7 +21,7 @@ public class IframeTest extends BaseTest{
         youTubeIframePage = homePage.switchToYouTubeIframePage();
         log.info("Click on the button play");
         youTubeIframePage.playYouTubeVideo();
-        log.info("The spherical control is displayed");
+        log.info("The video was played properly");
         Assert.assertTrue(youTubeIframePage.isSphericalControlDisplayed());
         youTubeIframePage.switchDefaultContent();
 
@@ -37,7 +37,7 @@ public class IframeTest extends BaseTest{
         vimeoIframePage = homePage.switchToVimeoframePage();
         log.info("Click on the button play");
         vimeoIframePage.playVimeoVideo();
-        log.info("The play button is displayed");
+        log.info("The video was played properly");
         Assert.assertFalse(vimeoIframePage.isPlayButtonDisplayed());
         vimeoIframePage.switchDefaultContent();
 

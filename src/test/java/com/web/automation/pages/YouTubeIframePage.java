@@ -25,11 +25,9 @@ public class YouTubeIframePage extends BasePage {
 
     }
 
-    public YouTubeIframePage playYouTubeVideo() {
+    public void playYouTubeVideo() {
         waitElementVisibility(playYouTubeButton);
         playYouTubeButton.click();
-        return new YouTubeIframePage(getDriver());
-
     }
 
     public boolean isSphericalControlDisplayed(){
