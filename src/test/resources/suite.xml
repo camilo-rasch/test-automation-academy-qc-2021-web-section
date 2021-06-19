@@ -1,16 +1,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="example test suite" verbose="1">
-	<listeners>
-		<listener class-name="com.web.automation.listener.Listener"/>
-	</listeners>
+    <listeners>
+        <listener class-name="com.web.automation.listener.Listener"/>
+    </listeners>
 
-	<parameter name="browser" value="firefox"/>
-	<parameter name="url" value="https://www.travelocity.com/"/>
+    <parameter name="browser" value="firefox"/>
+    <parameter name="url" value="https://www.seleniumeasy.com/test/basic-select-dropdown-demo.html"/>
 
-	<test name="myTest">
-		<classes>
-			<class name="com.web.automation.test.TestSuite"></class>
-		</classes>
-	</test>
+    <test name="myTest">
+        <classes>
+            <class name="com.web.automation.test.OptionListTest"></class>
+        </classes>
+    </test>
 </suite>

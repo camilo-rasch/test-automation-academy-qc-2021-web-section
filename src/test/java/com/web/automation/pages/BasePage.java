@@ -12,6 +12,7 @@ import java.util.List;
 /**
  * Parent of the other classes of pages.
  * @author camilo.mogollon
+ * @modified by Alejandro.Giraldo
  */
 public class BasePage {
 	
@@ -70,6 +71,11 @@ public class BasePage {
 		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
 	}
 
+
+	/**
+	 * Wait element to be visible.
+	 * @param element list WebElement
+	 */
 	public void clickOnElement(WebElement element){
 		waitElementVisibility(element);
 		element.click();
