@@ -1,40 +1,43 @@
 package com.web.automation.test;
 
-import com.web.automation.pages.HomePage;
-import com.web.automation.pages.VimeoPage;
-import com.web.automation.pages.YoutubePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import static java.lang.Thread.sleep;
-
+/**
+ * Class with the tests.
+ * @author jonathan.triana
+ */
 public class IframeTest extends BaseTest {
 
 
     @Test(description = "open mdbootstrap page and play the Youtube video in the iframes")
     public void youtube_test() throws InterruptedException {
         log.info("Click on Youtube link");
-        HomePage homePage1 = homePage.clickOnYoutubeLink();
+        homePage.clickOnYoutubeLink();
         log.info("Switch to Youtube Iframe");
-        YoutubePage switchIframe = youtubePage.switchToIframe0();
+        youtubePage.switchToIframe0();
         log.info("Play Youtube video");
-        YoutubePage youtubeClick = youtubePage.clickOnYoutubeVideo();
-        log.info("-----------------------Assert");
+        youtubePage.clickOnYoutubeVideo();
+        log.info("With this sleep the video can progress and change the initial status");
+        sleep(6000);
+        log.info("Assert to compare the progress of the video");
+        Assert.assertTrue((youtubePage.getProgressBarValue().equals("Pause (k)")));
         log.info("Switch to main Iframe");
-        HomePage switchMain = homePage.switchToMain();
-        sleep(3000);
+        homePage.switchToMain();
     }
     @Test(description = "play the Vimeo video in the iframes")
     public void vimeo_test() throws InterruptedException {
         log.info("Click on Vimeo link");
-        HomePage homePage3 = homePage.clickOnVimeoLink();
-        log.info("-----------------------Assert");
+        homePage.clickOnVimeoLink();
         log.info("Switch to vimeo Iframe");
-        VimeoPage switchIframe1 = vimeoPage.switchToIframe1();
+        vimeoPage.switchToIframe1();
         log.info("Play Youtube video");
-        VimeoPage homePage4 = vimeoPage.clickOnVimeoVideo();
+        vimeoPage.clickOnVimeoVideo();
+        log.info("With this sleep the video can progress and change the initial value");
+        sleep(6000);
+        log.info("Assert to compare the progress of the video");
+        Assert.assertTrue((!vimeoPage.getProgressBarValue().equals("0")));
         log.info("Switch to main Iframe");
-        HomePage switchMain1 = homePage.switchToMain();
-        sleep(3000);
-
+        homePage.switchToMain();
     }
 }

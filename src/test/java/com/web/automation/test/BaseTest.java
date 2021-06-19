@@ -10,7 +10,6 @@ import org.testng.annotations.Parameters;
 
 /**
  * Parent of the other classes of test.
- *
  * @author camilo.mogollon
  */
 public class BaseTest {
@@ -35,7 +34,7 @@ public class BaseTest {
 
 	@AfterTest(alwaysRun=true)
 	public void afterTest() {
-		//homePage.dispose();
+		homePage.dispose();
 	}
 
 	/**

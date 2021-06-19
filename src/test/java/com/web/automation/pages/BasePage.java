@@ -1,22 +1,17 @@
 package com.web.automation.pages;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
-
 /**
  * Parent of the other classes of pages.
- *
  * @author camilo.mogollon
  */
 public class BasePage {
 
-	public Logger log = Logger.getLogger(BasePage.class);
 	private final WebDriver driver;
 	private final WebDriverWait wait;
 
@@ -52,11 +47,11 @@ public class BasePage {
 	/**
 	 * Close the web driver.
 	 */
-    /*public void dispose() {
+    public void dispose() {
         if (driver != null) {
             driver.quit();
         }
-    }*/
+    }
 
 	/**
 	 * Wait element to be visible.
@@ -65,15 +60,6 @@ public class BasePage {
 	 */
 	public void waitElementVisibility(WebElement element) {
 		getWait().until(ExpectedConditions.visibilityOf(element));
-	}
-
-	/**
-	 * Wait element to be visible.
-	 *
-	 * @param elements list WebElement
-	 */
-	public void waitElementsVisibility(List<WebElement> elements) {
-		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
 	}
 
 	/**
