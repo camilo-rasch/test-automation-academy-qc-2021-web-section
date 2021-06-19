@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.Select;
  * @author jonathan.triana
  */
 public class HomePage extends BasePage {
+
+    //Locator to find the select element
     @FindBy(css = "p.selected-value")
     private WebElement label_day;
 
@@ -35,11 +37,17 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
+    /**
+     * Method to select a day
+     */
     public HomePage selectDropdownValue(String value) {
         this.myDropDown.selectByValue(value);
         return new HomePage(getDriver());
     }
-
+    /**
+     * Method to select the value in the label to compare if is the correct one
+     * @return the label value
+     */
     public String getTextLabelDropdownValue() {
         waitElementVisibility(this.label_day);
         String label_text = this.label_day.getText();

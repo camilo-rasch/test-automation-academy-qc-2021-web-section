@@ -1,6 +1,5 @@
 package com.web.automation.test;
 
-
 import com.web.automation.driver.Driver;
 import com.web.automation.pages.HomePage;
 import org.apache.log4j.Logger;
@@ -15,10 +14,8 @@ import org.testng.annotations.Parameters;
 public class BaseTest {
 
 	private Driver driver;
-	
 	private HomePage Home;
 	public Logger log = Logger.getLogger(BaseTest.class);
-	
 	
 	@BeforeTest(alwaysRun=true)
 	@Parameters({"browser", "url"})
@@ -40,5 +37,4 @@ public class BaseTest {
 	public HomePage getHomePage() {
 		return Home;
 	}
-
 }
