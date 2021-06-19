@@ -14,10 +14,9 @@ import org.testng.annotations.Parameters;
 public class BaseTest {
 
 	private Driver driver;
-	
 	private HomePage Home;
 	public Logger log = Logger.getLogger(BaseTest.class);
-	
+
 	
 	@BeforeTest(alwaysRun=true)
 	@Parameters({"browser", "url"})

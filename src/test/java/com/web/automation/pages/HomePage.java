@@ -33,8 +33,7 @@ public class HomePage extends BasePage {
     }
 
     /**
-     * Wait until the element be present.
-     * Click in the customer id field
+     * Method to click in the customer id field
      */
     public HomePage clickOnCustomerIdField() {
         waitElementVisibility(this.customerIdField);

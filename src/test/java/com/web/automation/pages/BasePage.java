@@ -1,13 +1,9 @@
 package com.web.automation.pages;
-
-import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.List;
 
 /**
  * Parent of the other classes of pages.
@@ -16,7 +12,6 @@ import java.util.List;
  */
 public class BasePage {
 
-	public Logger log = Logger.getLogger(BasePage.class);
 	final WebDriver driver;
 	private final WebDriverWait wait;
 
