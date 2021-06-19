@@ -6,13 +6,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import java.util.concurrent.TimeUnit;
 
 import java.util.List;
 
 /**
  * Parent of the other classes of pages.
- *
  * @author camilo.mogollon
+ * @modified By alejandro.giraldo
  */
 public class BasePage {
 
@@ -68,6 +69,15 @@ public class BasePage {
     }
 
     /**
+     * Wait Implicit way.
+     *
+     * @param time int
+     */
+    public void waitImplicit(int time) {
+        driver.manage().timeouts().implicitlyWait(time,TimeUnit.SECONDS);
+    }
+
+    /**
      * Wait element to be visible.
      *
      * @param elements list WebElement
@@ -76,11 +86,20 @@ public class BasePage {
         getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
     }
 
-	/**
-	 * Click on Element
-	 * @param element to click
-	 */
-	public void clickOnElement(WebElement element) {
+    /**
+     * Click on Element waiting visibility
+     * @param element to click
+     */
+    public void clickOnElementVisibility(WebElement element) {
+        getWait().until(ExpectedConditions.visibilityOf(element));
+        element.click();
+    }
+
+    /**
+     * Click on Element waiting Clickeable
+     * @param element to click
+     */
+    public void clickOnElementClickeable(WebElement element) {
         getWait().until(ExpectedConditions.elementToBeClickable(element));
         element.click();
     }

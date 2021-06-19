@@ -5,13 +5,14 @@ import com.web.automation.driver.Driver;
 import com.web.automation.pages.HomePage;
 import org.apache.log4j.Logger;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
 /**
  * Parent of the other classes of test.
- *
  * @author camilo.mogollon
+ * modified By alejandro.giraldo
  */
 public class BaseTest {
 
@@ -19,7 +20,7 @@ public class BaseTest {
     public HomePage homePage;
     Driver driver;
 
-    @BeforeTest(alwaysRun = true)
+    @BeforeClass(alwaysRun = true)
     @Parameters({"browser", "url"})
     public void beforeTest(String browser, String url) {
         driver = new Driver(browser);

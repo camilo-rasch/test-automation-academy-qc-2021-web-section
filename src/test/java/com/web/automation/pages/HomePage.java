@@ -1,20 +1,19 @@
 package com.web.automation.pages;
 
+import com.web.automation.driver.Driver;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
+/**
+ * Class for interact with the home page.
+ * @author camilo.mogollon
+ * @modifyed by alejandro.giraldo
+ */
 public class HomePage extends BasePage {
-    @FindBy(css = "a[data-testid=\"loginButton\"]")
-    private WebElement loginButton;
-    @FindBy(css = "a[data-testid=\"signupButton\"]")
-    private WebElement signUpButton;
 
     /**
-     * Page Constructor with url
-     *
-     * @param driver to execute
-     * @param url    to get
+     * Constructor.
+     * @param driver WebDriver
+     * @param url String
      */
     public HomePage(WebDriver driver, String url) {
         super(driver);
@@ -22,26 +21,30 @@ public class HomePage extends BasePage {
     }
 
     /**
-     * Page Constructor
-     *
-     * @param driver to execute
+     * Change to YouTube Iframe Focus.
      */
-    public HomePage(WebDriver driver) {
-        super(driver);
+    public WebDriver changeYoutubeFrameFocus() {
+        return getDriver().switchTo().frame(0);
     }
 
-    public LoginPage clickOnLoginButton() {
-        clickOnElement(loginButton);
-        return new LoginPage(getDriver());
+    /**
+     * Change to Vimeo Iframe Focus.
+     */
+    public WebDriver changeVimeoFrameFocus() {
+        return getDriver().switchTo().frame(1);
     }
 
-    public SignUpModal clickOnSignUpButton() {
-        clickOnElement(signUpButton);
-        return new SignUpModal(getDriver());
+    /**
+     * Change to default Content.
+     */
+    public WebDriver changeDefaultContent() {
+        return getDriver().switchTo().defaultContent();
     }
 
-    public boolean isLoginButtonDisplayed() {
-        waitElementVisibility(loginButton);
-        return loginButton.isDisplayed();
+    /**
+     * Return homePageDriver
+     */
+    public WebDriver getHomePage(){
+        return this.getDriver();
     }
 }
