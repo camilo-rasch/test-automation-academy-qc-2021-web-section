@@ -18,7 +18,7 @@ public class HomePage extends BasePage {
     @FindBy (css = "p.selected-value")
     private WebElement selectedDay;
 
-    Select myDropDown;
+    private Select myDropDown;
 
     /**
      * Constructor.
