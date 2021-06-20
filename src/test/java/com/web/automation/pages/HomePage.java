@@ -22,6 +22,9 @@ public class HomePage extends BasePage {
     @FindBy(css = "button.play.rounded-box.state-paused")
     private WebElement playVimeoVideo;
 
+    @FindBy(css = "section#youtube")
+    private WebElement youtubeSection;
+
     @FindBy(css = "section#vimeo")
     private WebElement vimeoSection;
 
@@ -29,6 +32,8 @@ public class HomePage extends BasePage {
     private WebElement modalCloseButton;
 
     private String mainPageHandle = "";
+
+
 
 
     /**
@@ -47,11 +52,15 @@ public class HomePage extends BasePage {
      */
 
     public IframePage clickPlayYoutubeVideo(){
+        log.info("This is the scroll to go Youtube video");
+        Actions actions = new Actions(getDriver());
+        actions.moveToElement(youtubeSection);
+        actions.perform();
+        explicitWait(vimeoSection, 30);
         getDriver().switchTo().frame(0);
         clickOnElement(this.playYoutubeVideo);
         log.info("This is the Youtube Video");
         return new IframePage(getDriver());
-        //getDriver().switchTo().defaultContent();
     }
 
     /**

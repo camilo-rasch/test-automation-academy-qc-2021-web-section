@@ -17,8 +17,9 @@ public class IframeTest extends BaseTest{
         homePage = getHomePage();
         log.info("Click on Youtube Video");
         IframePage iFrame = homePage.clickPlayYoutubeVideo();
+       log.info("Is the Youtube video playing?");
+        Assert.assertTrue(iFrame.isTheYoutubeVideoPlaying());
         iFrame.switchToMainPage();
-      //  Assert.assertTrue(iFrame.IsTheVideoPlaying(), "Verify the video is playing");
     }
 
     @Test(description = "Test to open the page and play Vimeo video")
@@ -26,7 +27,8 @@ public class IframeTest extends BaseTest{
         log.info("Opening homePage");
         homePage = getHomePage();
         log.info("Click on Vimeo Video");
-        homePage.clickPlayVimeoVideo();
-       // Assert.assertTrue(iFrame.IsTheVideoPlaying(), "Verify the video is playing");
+        IframePage iFrame = homePage.clickPlayVimeoVideo();
+        log.info("Is the Vimeo video playing?");
+        Assert.assertTrue(iFrame.isTheVimeoVideoPlaying(), "Verify the video is playing");
     }
 }
