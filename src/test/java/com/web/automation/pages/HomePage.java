@@ -1,27 +1,27 @@
 package com.web.automation.pages;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
 /**
  * Class for interact with the home page.
  * @author camilo.mogollon
+ * @modified by alejandro.giraldo
  */
 public class HomePage extends BasePage {
 
-    @FindBy(id = "openwindow")
-    private WebElement openNewWindowButton;
 
-    @FindBy(id = "opentab")
-    private WebElement openNewTabButton;
-    
-    private String mainPageHandle = "";
+    @FindBy(css="input[name=cusid]") //Selects CostumerId input
+    private WebElement inputCostumerId;
+
+    @FindBy(css="input[name=submit]")//Selects submitButton
+    private WebElement submitButton;
+
+
+    @FindBy(css="h2.barone")//Selects Home Label
+    private WebElement homeLabel;
 
     /**
      * Constructor.
@@ -34,54 +34,48 @@ public class HomePage extends BasePage {
     }
 
     /**
-     * Click on open new window button and switch to it
+     * Click on CostumerId input
+     *
      * @return
      */
-    public NewTabSample clickOnOpenNewPageButton(){
-        String currentWindowHandle = getDriver().getWindowHandle();
-
-        clickOnElement(this.openNewTabButton);
-
-        Set<String> windowHandles = getDriver().getWindowHandles();
-        Iterator<String> i1 = windowHandles.iterator();
-
-        while (i1.hasNext()){
-            String childWindowHandle = i1.next();
-            if(!currentWindowHandle.equalsIgnoreCase(childWindowHandle)){
-                getDriver().switchTo().window(childWindowHandle);
-            }
-        }
-        this.mainPageHandle = currentWindowHandle;
-        return  new NewTabSample(getDriver());
+    public void selectCostumerIdInput(){
+        clickOnElement(inputCostumerId);
     }
 
     /**
-     * Click on open new tab button and switch to it
+     * Send Costumer Id to Input
+     * @param cosId String
      * @return
      */
-    public NewTabSample clickOnOpenNewTabButton(){
-        clickOnElement(this.openNewWindowButton);
-
-        String currentWindowHandle = getDriver().getWindowHandle();
-
-        Set<String> windowHandles = getDriver().getWindowHandles();
-        Iterator<String> i1 = windowHandles.iterator();
-
-        while (i1.hasNext()){
-            String childWindowHandle = i1.next();
-            if(!currentWindowHandle.equalsIgnoreCase(childWindowHandle)){
-                getDriver().switchTo().window(childWindowHandle);
-            }
-        }
-        this.mainPageHandle = currentWindowHandle;
-        return  new NewTabSample(getDriver());
+    public void fillCostumeridInput(String cosId){
+        inputCostumerId.sendKeys(cosId);
     }
 
-    public String getMainPageHandle() {
-        return mainPageHandle;
+    /**
+     * Click on Submit Button
+     * @return
+     */
+    public void clickOnSubmitButton(){
+        clickOnElement(submitButton);
     }
 
-    public void setMainPageHandle(String mainPageHandle) {
-        this.mainPageHandle = mainPageHandle;
+    /**
+     * Change to Alert
+     * @return
+     */
+    public Alert changeAlertFocus(){
+        return getDriver().switchTo().alert();
     }
+
+    /**
+     * Click on CostumerId input
+     * @return
+     */
+    public boolean verifyHomePage(){
+        if (homeLabel.getText().contains("Guru99 Bank")){
+            return true;
+        }else return false;
+
+    }
+
 }

@@ -6,11 +6,11 @@
 	</listeners>
 	
 	<parameter name="browser" value="firefox"></parameter>
-	<parameter name="url" value="https://courses.letskodeit.com/practice"></parameter>
+	<parameter name="url" value="http://demo.guru99.com/test/delete_customer.php"></parameter>
 
 	<test name="myTest">
 		<classes>
-			<class name="com.web.automation.test.openNewTabTest"></class>
+			<class name="com.web.automation.test.TestAlert"></class>
 		</classes>
 	</test>
 </suite>

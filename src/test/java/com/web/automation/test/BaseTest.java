@@ -11,6 +11,7 @@ import org.testng.annotations.Parameters;
 /**
  * Parent of the other classes of test.
  * @author camilo.mogollon
+ * @modified by alejandro.giraldo
  */
 public class BaseTest {
 
@@ -40,5 +41,14 @@ public class BaseTest {
 	public HomePage getHomePage() {
 		return Home;
 	}
+
+	/**
+	 * Get the home page driver.
+	 * @return {@link Driver}
+	 */
+	public Driver getHomeDriver() {
+		return driver;
+	}
+
 
 }
