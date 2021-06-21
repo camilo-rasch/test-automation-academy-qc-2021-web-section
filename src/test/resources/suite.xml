@@ -1,13 +1,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="example test suite" verbose="1">
+<suite name="You Tube Iframe Test" verbose="1">
 	<listeners>
 		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
-	
-	<test name="myTest">
+
+	<parameter name = "browser" value = "chrome"/>
+	<parameter name = "url" value = "https://mdbootstrap.com/docs/b4/jquery/plugins/iframe/"/>
+
+	<test name="IFrameTest">
 		<classes>
-			<class name=""></class>
+			<class name="com.web.automation.test.IFrameTest"></class>
 		</classes>
 	</test>
 </suite>

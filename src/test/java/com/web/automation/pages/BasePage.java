@@ -70,4 +70,12 @@ public class BasePage {
 		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
 	}
 
+	/**
+	 * Click on Element
+	 * @param element to click
+	 */
+	public void clickOnElement(WebElement element) {
+		getWait().until(ExpectedConditions.elementToBeClickable(element));
+		element.click();
+	}
 }
