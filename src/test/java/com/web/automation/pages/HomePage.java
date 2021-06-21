@@ -31,12 +31,19 @@ public class HomePage extends BasePage {
         this.myDropDown = new Select(getDriver().findElement(By.id("select-demo")));
     }
 
-
+    /**
+     * Select "Friday" value in the dropdown
+     * @return
+     */
     public void selectOptionFromDropDown(){
 
         this.myDropDown.selectByValue("Friday");
     }
 
+    /**
+     * Verify if "selectDay" webelement is displayed
+     * @return boolean
+     */
     public boolean isSelectedDayDisplayed(){
         waitElementVisibility(selectedDay);
         return selectedDay.isDisplayed();
