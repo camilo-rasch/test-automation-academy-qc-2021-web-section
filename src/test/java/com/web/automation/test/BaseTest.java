@@ -2,7 +2,7 @@ package com.web.automation.test;
 
 
 import com.web.automation.driver.Driver;
-import com.web.automation.pages.HomePage;
+import com.web.automation.pages.DropdownPage;
 import org.apache.log4j.Logger;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -16,7 +16,7 @@ public class BaseTest {
 
 	private Driver driver;
 	
-	private HomePage Home;
+	private DropdownPage Home;
 	public Logger log = Logger.getLogger(BaseTest.class);
 	
 	
@@ -25,19 +25,19 @@ public class BaseTest {
 	public void beforeTest(String browser, String url) {
 		driver = new Driver(browser);
 		driver.getDriver().manage().window().maximize();
-		Home= new HomePage(driver.getDriver(), url);
+		Home= new DropdownPage(driver.getDriver(), url);
 	}
 
-	@AfterTest(alwaysRun=true)
+	/*@AfterTest(alwaysRun=true)
 	public void afterTest() {
 		Home.dispose();
-	}
+	}*/
 	
 	/**
 	 * Get the home page.
-	 * @return {@link HomePage}
+	 * @return {@link DropdownPage}
 	 */
-	public HomePage getHomePage() {
+	public DropdownPage getHomePage() {
 		return Home;
 	}
 

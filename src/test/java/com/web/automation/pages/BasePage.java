@@ -70,4 +70,11 @@ public class BasePage {
 		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
 	}
 
+	/**
+	 * Reload page
+	 * @param url
+	 */
+	public void reload(String url){
+		this.driver.get(url);
+	}
 }

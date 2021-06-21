@@ -1,10 +1,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="example test suite" verbose="1">
+<suite name="Dropdown test suite" verbose="1">
 	<listeners>
 		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
-	
+
+	<parameter name = "browser" value = "chrome"/>
+	<parameter name = "url" value = "https://www.seleniumeasy.com/test/basic-select-dropdown-demo.html"/>
+
 	<test name="DropdownTests">
 		<classes>
 			<class name="com.web.automation.test.DropdownTest"></class>
