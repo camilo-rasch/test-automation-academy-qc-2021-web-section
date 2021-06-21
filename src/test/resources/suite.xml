@@ -5,9 +5,9 @@
 		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
 	
-	<test name="myTest">
+	<test name="DropdownTests">
 		<classes>
-			<class name=""></class>
+			<class name="com.web.automation.test.DropdownTest"></class>
 		</classes>
 	</test>
 </suite>
