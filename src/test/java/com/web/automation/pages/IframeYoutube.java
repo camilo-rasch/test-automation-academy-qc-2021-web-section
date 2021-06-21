@@ -6,17 +6,16 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class Iframe extends BasePage{
+public class IframeYoutube extends BasePage{
 
-    @FindBy(id = "zen_cs_desc_with_promo_dynamic")
-    private WebElement timeDurationVideo;
+
 
     /**
      * Constructor.
      *
      * @param pDriver WebDriver
      */
-    public Iframe(WebDriver pDriver) {
+    public IframeYoutube(WebDriver pDriver) {
         super(pDriver);
     }
 
@@ -24,11 +23,6 @@ public class Iframe extends BasePage{
      * Method to verify if the video is been playing
      * @return boolean
      */
-
-    public boolean videoPlayingVerification() {
-        waitElementsVisibility((List<WebElement>) this.timeDurationVideo);
-        return this.timeDurationVideo.isDisplayed();
-    }
 
 
 }

@@ -1,18 +1,30 @@
 package com.web.automation.test;
 
 import com.web.automation.pages.HomePage;
-import com.web.automation.pages.Iframe;
 import org.testng.annotations.Test;
 
 public class TestSuite extends BaseTest {
     private HomePage homePage;
 
     @Test(description = "Reproduce videos on the website iframes")
-    public void test1() {
+    public void playVideoYouTube() {
         log.info("Open the home on the website");
         homePage = getHomePage();
-        log.info("Clicking the button to reproduce the youtube video");
-        Iframe iframe = homePage.playVideoYoutube();
-        iframe.videoPlayingVerification();
+        log.info("Clicking the button to play the youtube video");
+        homePage.playVideoYoutube();
+        log.info("return to the main context of the website");
+        homePage.labelTimeVideoDisplayed();
+        homePage.backToDefaultContent();
+    }
+
+    @Test(description = "Reproduce videos on the website iframes")
+    public void playVideoZVimeo() {
+        homePage.backToDefaultContent();
+        log.info("Open the home on the website");
+        homePage = getHomePage();
+        log.info("Clicking the button to play the vimeo video");
+        homePage.playVideoVimeo();
+        log.info("return to the main context of the website");
+        homePage.backToDefaultContent();
     }
 }

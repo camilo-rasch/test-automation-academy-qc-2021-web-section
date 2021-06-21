@@ -14,9 +14,9 @@ import java.util.List;
  * @author camilo.mogollon
  */
 public class BasePage {
-	
+
+	private static WebDriverWait wait;
 	private WebDriver driver;
-	private WebDriverWait wait;
 	public Logger log = Logger.getLogger(BasePage.class);
 	
 	/**
@@ -33,7 +33,7 @@ public class BasePage {
 	 * Get the web driver wait.
 	 * @return {@link WebDriverWait}
 	 */
-	protected WebDriverWait getWait() {
+	protected static WebDriverWait getWait() {
 		return wait;
 	}
 
