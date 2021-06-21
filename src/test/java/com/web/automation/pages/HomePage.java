@@ -1,9 +1,11 @@
 package com.web.automation.pages;
 
+import com.web.automation.data.Data;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +25,7 @@ public class HomePage extends BasePage {
     @FindBy (name = "submit")
     private WebElement submitButton;
 
-    Alert alert;
+
 
 
     /**
@@ -34,18 +36,42 @@ public class HomePage extends BasePage {
     public HomePage(WebDriver driver, String url) {
         super(driver);
         driver.get(url);
-        this.alert = getDriver().switchTo().alert();
-    }
-
-    public void insertData(){
-
 
     }
 
+    /**
+     * Input a customer ID and get the first alert text
+     * @return alert.getText()
+     */
     public String getConfirmationAlert(){
-        this.alert.getText();
+        waitElementVisibility(customerIdTextBox);
+        customerIdTextBox.sendKeys("12345");
+        submitButton.click();
+        Alert alert = getDriver().switchTo().alert();
+        getDriver().switchTo().alert();
+        wait.until(ExpectedConditions.alertIsPresent());
+        alert.getText();
+        return alert.getText();
+    }
+
+    /**
+     * Click on OK get the second alert text
+     * @return alert.getText()
+     */
+    public String getDeletionAlert(){
+        Alert alert = getDriver().switchTo().alert();
+        getDriver().switchTo().alert();
+        wait.until(ExpectedConditions.alertIsPresent());
+        alert.getText();
         alert.accept();
-        return this.alert.getText();
+        return alert.getText();
+    }
+
+    public boolean returnToMainPage(){
+        Alert alert = getDriver().switchTo().alert();
+        getDriver().switchTo().alert();
+        alert.accept();
+        return customerIdTextBox.isDisplayed();
     }
 
 }
