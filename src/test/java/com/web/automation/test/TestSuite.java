@@ -19,9 +19,9 @@ public class TestSuite extends BaseTest {
 
     @Test(description = "Reproduce videos on the website iframes")
     public void playVideoZVimeo() {
-        homePage.backToDefaultContent();
         log.info("Open the home on the website");
         homePage = getHomePage();
+        homePage.scrollToTable();
         log.info("Clicking the button to play the vimeo video");
         homePage.playVideoVimeo();
         log.info("return to the main context of the website");
