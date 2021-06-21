@@ -28,11 +28,11 @@ public class BaseTest {
 		Home= new DropdownPage(driver.getDriver(), url);
 	}
 
-	/*@AfterTest(alwaysRun=true)
+	@AfterTest(alwaysRun=true)
 	public void afterTest() {
 		Home.dispose();
-	}*/
-	
+	}
+
 	/**
 	 * Get the home page.
 	 * @return {@link DropdownPage}

@@ -69,7 +69,7 @@ public class DropdownPage extends BasePage {
      * Method to select from a dropdown by visible text (not recommended)
      */
     public String selectOptionByVisibleText(){
-        this.dropdown.selectByVisibleText("wednesday");
+        this.dropdown.selectByVisibleText("Wednesday");
         return this.dropdown.getFirstSelectedOption().getText();
     }
 
