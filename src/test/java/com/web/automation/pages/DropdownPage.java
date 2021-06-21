@@ -35,6 +35,7 @@ public class DropdownPage extends BasePage {
     public DropdownPage(WebDriver driver, String url) {
         super(driver);
         driver.get(url);
+        this.dropdown = new Select(getDriver().findElement(By.id("select-demo")));
     }
 
     /**
@@ -43,31 +44,42 @@ public class DropdownPage extends BasePage {
      */
     public DropdownPage(WebDriver pDriver) {
         super(pDriver);
-        this.dropdown = new Select(pDriver.findElement(By.id("select-demo")));
+
     }
 
     /**
      * Method to select from a dropdown by index
      */
-    public WebElement selectOptionByIndex(){
-        this.dropdown.selectByIndex(1);
-        return daySelected;
+    public String selectOptionByIndex(){
+        this.dropdown.selectByIndex(2);
+        return this.dropdown.getFirstSelectedOption().getText();
     }
+
 
     /**
      * Method to select from a dropdown by value
      */
-    public WebElement selectOptionByValue(){
+    public String selectOptionByValue(){
         this.dropdown.selectByValue("Saturday");
-        return daySelected;
+        return this.dropdown.getFirstSelectedOption().getText();
     }
+
 
     /**
      * Method to select from a dropdown by visible text (not recommended)
      */
-    public WebElement selectOptionByVisibleText(){
+    public String selectOptionByVisibleText(){
         this.dropdown.selectByVisibleText("wednesday");
-        return daySelected;
+        return this.dropdown.getFirstSelectedOption().getText();
     }
 
+
+    /**
+     * Method to validate the day selected from the dropdown
+     * @return
+     */
+    public String validateDaySelected(){
+        waitElementVisibility(daySelected);
+        return daySelected.getText();
+    }
 }
