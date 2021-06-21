@@ -27,16 +27,28 @@ public class HomePage extends BasePage {
         driver.get(url);
     }
 
+    /**
+     * Click on the link Vimeo iframe.
+     * @return
+     */
     public void clickLinkVimeo(){
         waitElementVisibility(linkVimeoIframe);
         linkVimeoIframe.click();
     }
 
+    /**
+     * Doing switch to YouTube iframe.
+     * @return new YouTubeiframePage
+     */
     public YouTubeIframePage switchToYouTubeIframePage() {
         getDriver().switchTo().frame(0);
         return new YouTubeIframePage(getDriver());
     }
 
+    /**
+     * Doing switch to Video iframe.
+     * @return new VimeoIframePage
+     */
     public VimeoIframePage switchToVimeoframePage(){
         getDriver().switchTo().frame(1);
         return new VimeoIframePage(getDriver());

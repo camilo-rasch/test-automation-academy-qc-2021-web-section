@@ -22,19 +22,31 @@ public class YouTubeIframePage extends BasePage {
      */
     public YouTubeIframePage(WebDriver driver) {
         super(driver);
-
     }
 
+    /**
+     * Click on the YouTube play button.
+     * @return
+     */
     public void playYouTubeVideo() {
         waitElementVisibility(playYouTubeButton);
         playYouTubeButton.click();
     }
 
+    /**
+     * Verify if the spherical control element is displayed.
+     * @return boolean
+     */
     public boolean isSphericalControlDisplayed(){
        waitElementVisibility(sphericalControl);
        return sphericalControl.isDisplayed();
     }
 
+
+    /**
+     * Doing switch to default content.
+     * @return
+     */
     public void switchDefaultContent(){
         getDriver().switchTo().defaultContent();
     }

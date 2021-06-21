@@ -18,15 +18,27 @@ public class VimeoIframePage extends BasePage{
 
     }
 
+    /**
+     * Click on the Vimeo play button.
+     * @return
+     */
     public void playVimeoVideo(){
         waitElementVisibility(playVimeoButton);
         this.playVimeoButton.click();
     }
 
+    /**
+     * Verify if the play button is displayed.
+     * @return boolean
+     */
     public boolean isPlayButtonDisplayed(){
         return playVimeoButton.isDisplayed();
     }
 
+    /**
+     * Doing switch to default content.
+     * @return
+     */
     public void switchDefaultContent(){
         getDriver().switchTo().defaultContent();
     }
