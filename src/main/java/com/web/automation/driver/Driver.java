@@ -5,24 +5,24 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
  * Driver class
- * @author camilo.mogollon
+ * @author Jonathan.Triana
  */
 public class Driver {
 
 	private WebDriver driver;
-
 	/**
 	 * Constructor.
 	 * @param browser String
 	 */
 	public Driver(String browser) {
+
 		switch (browser) {
+
 			case "remoteFirefox":
 				try {
 					driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.firefox());
@@ -38,18 +38,17 @@ public class Driver {
 				}
 				break;
 			case "firefox":
-				System.setProperty("webdriver.gecko.driver", "./src/main/resources/geckodriverMac");
+				System.setProperty("webdriver.gecko.driver", "./src/main/resources/geckodriver.exe");
 				driver = new FirefoxDriver();
 				break;
 			case "chrome":
-				System.setProperty("webdriver.chrome.driver", "./src/main/resources/chromedriverMac91");
+				System.setProperty("webdriver.chrome.driver", "./src/main/resources/chromedriver91.exe");
 				driver = new ChromeDriver();
 				break;
 			default:
 				break;
 		}
 	}
-
 	/**
 	 * Get the driver.
 	 * @return {@link WebDriver}
@@ -57,5 +56,4 @@ public class Driver {
 	public WebDriver getDriver() {
 		return this.driver;
 	}
-
 }

@@ -6,19 +6,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.List;
 
 /**
  * Parent of the other classes of pages.
- * @author camilo.mogollon
+ * @author Jonathan.Triana
  */
 public class BasePage {
-	
+
 	private WebDriver driver;
 	private WebDriverWait wait;
 	public Logger log = Logger.getLogger(BasePage.class);
-	
+
 	/**
 	 * Constructor.
 	 * @param pDriver WebDriver
@@ -44,15 +43,16 @@ public class BasePage {
 	protected WebDriver getDriver() {
 		return driver;
 	}
-	
+
 	/**
 	 * Close the web driver.
 	 */
-	public void dispose() {
-		if (driver != null) {
-			driver.quit();
-		}
-	}
+   /*public void dispose() {
+      if (driver != null) {
+         driver.quit();
+      }
+   }
+    */
 
 	/**
 	 * Wait element to be visible.
@@ -69,5 +69,12 @@ public class BasePage {
 	public void waitElementsVisibility(List<WebElement> elements) {
 		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
 	}
-
+	/**
+	 * Click on Element
+	 * @param element to click
+	 */
+	public void clickOnElement(WebElement element) {
+		getWait().until(ExpectedConditions.elementToBeClickable(element));
+		element.click();
+	}
 }
