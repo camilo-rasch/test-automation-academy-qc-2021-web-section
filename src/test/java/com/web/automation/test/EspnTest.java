@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import static java.lang.Thread.sleep;
 
 public class EspnTest extends BaseTest {
-
+/*
     @Test(description = "Open Espn page")
     public void espn_test() throws InterruptedException {
         log.info("Click on user option to log in");
@@ -31,7 +31,7 @@ public class EspnTest extends BaseTest {
         log.info("Click on log out option");
         getLogInIframePage().clickOnLogOut();
     }
-
+*/
     @Test(description = "Open Espn page")
     public void crate_user() throws InterruptedException {
         log.info("Click on user option to log in");
@@ -41,7 +41,7 @@ public class EspnTest extends BaseTest {
         log.info("Switch to Log in - Iframe");
         getLogInIframePage().switchToIframeLogIn();
         log.info("");
-        sleep(5000);
+        sleep(3000);
         log.info("Click on sign up button");
         getCreateUserPage().clickOnSignUp();
         log.info("Click on first name (Create Account)");
@@ -62,6 +62,19 @@ public class EspnTest extends BaseTest {
         getCreateUserPage().inputOnPasswordField();
         log.info("Click on sign up button (Create Account)");
         getCreateUserPage().clickOnSignUpButton();
-        sleep(5000);
+        sleep(7000);
+        //--------------------------------------------------
+        log.info("Click on user option to log in");
+        getHomePage().clickOnUserIcon();
+        log.info("Click on ESPN profile option");
+        getCancelAccountPage().clickOnEspnProfile();
+        log.info("Switch to Log in - Iframe");
+        getLogInIframePage().switchToIframeLogIn();
+        sleep(3000);
+        //getCancelAccountPage().scrollToElementBottom();
+        log.info("Click on ESPN Delete Account option");
+        getCancelAccountPage().clickOnCancelAccount();
+        log.info("Click on confirm button to delete the account");
+        getCancelAccountPage().clickOnConfirmButton();
     }
 }

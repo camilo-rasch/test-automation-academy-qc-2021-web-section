@@ -1,6 +1,7 @@
 package com.web.automation.test;
 
 import com.web.automation.driver.Driver;
+import com.web.automation.pages.CancelAccountPage;
 import com.web.automation.pages.CreateUserPage;
 import com.web.automation.pages.HomePage;
 import com.web.automation.pages.LogInIframePage;
@@ -19,6 +20,7 @@ public class BaseTest {
 	private HomePage Home;
 	private LogInIframePage Login;
 	private CreateUserPage Signup;
+	private CancelAccountPage Profile;
 
 
 	@BeforeTest(alwaysRun=true)
@@ -30,6 +32,7 @@ public class BaseTest {
 		Home= new HomePage(driver.getDriver(), url);
 		Login= new LogInIframePage(driver.getDriver(), url);
 		Signup= new CreateUserPage(driver.getDriver(), url);
+		Profile= new CancelAccountPage(driver.getDriver(), url);
 
 
 	}
@@ -59,6 +62,13 @@ public class BaseTest {
 	 */
 	public CreateUserPage getCreateUserPage() {
 		return Signup;
+	}
+	/**
+	 * Get the Sign Up page.
+	 * @return {@link LogInIframePage}
+	 */
+	public CancelAccountPage getCancelAccountPage() {
+		return Profile;
 	}
 
 }

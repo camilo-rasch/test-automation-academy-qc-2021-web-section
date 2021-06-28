@@ -6,7 +6,7 @@
 	</listeners>
 
 	<parameter name="browser" value="chrome"/>
-	<parameter name="url" value="https://www.espn.com/?src=com"/>
+	<parameter name="url" value="https://www.espnqa.com/?src=com&amp;_adblock=true&amp;espn=cloud"/>
 
 	<test name="myTest">
 		<classes>
