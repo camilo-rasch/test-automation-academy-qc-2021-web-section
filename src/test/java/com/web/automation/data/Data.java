@@ -8,8 +8,15 @@ import org.testng.annotations.DataProvider;
  */
 public class Data {
 
-    @DataProvider(name = "countries")
-    public Object[][] inputData() {
-        return new Object[][] {{"Colombia"}, {"Brazil"}, {"Peru"}};
+    @DataProvider(name = "Credentials")
+    public Object[][] credentials() {
+
+        Object[][] credentials = new Object[1][1];
+
+        credentials[0][0] = "testingtryfinal1@studying.com";
+        credentials[0][1] = "13a1fghGRB";
+        return credentials;
     }
 }
+
+//rows and columns

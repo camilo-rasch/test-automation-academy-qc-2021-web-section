@@ -42,7 +42,7 @@ public class Driver {
 				driver = new FirefoxDriver();
 				break;
 			case "chrome":
-				System.setProperty("webdriver.chrome.driver", "./src/main/resources/chromedriverMac91");
+				System.setProperty("webdriver.chrome.driver", "./src/main/resources/chromedriver.exe");
 				driver = new ChromeDriver();
 				break;
 			default:
@@ -57,5 +57,4 @@ public class Driver {
 	public WebDriver getDriver() {
 		return this.driver;
 	}
-
 }

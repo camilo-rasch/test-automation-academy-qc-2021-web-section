@@ -1,13 +1,22 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="example test suite" verbose="1">
+<suite name="Automation Final Exam" verbose="1">
 	<listeners>
 		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
-	
-	<test name="myTest">
+
+	<parameter name="browser" value="chrome"/>
+	<parameter name="url" value="https://www.espn.com/?src=com&amp;_adblock=true"/>
+
+	<test name="Test Cases">
+		<groups>
+			<run>
+				<include name="Log In Test"></include>
+			</run>
+		</groups>
+
 		<classes>
-			<class name=""></class>
+			<class name="com.web.automation.test.AccountManagement"></class>
 		</classes>
 	</test>
 </suite>

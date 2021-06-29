@@ -25,7 +25,7 @@ public class BasePage {
 	 */
 	public BasePage(WebDriver pDriver) {
 		PageFactory.initElements(pDriver, this);
-		wait = new WebDriverWait(pDriver, 20);
+		wait = new WebDriverWait(pDriver, 30);
 		driver = pDriver;
 	}
 
@@ -62,6 +62,16 @@ public class BasePage {
 		getWait().until(ExpectedConditions.visibilityOf(element));
 	}
 
+
+	/**
+	 * Wait element to be visible.
+	 * @param element WebElement
+	 */
+	public void waitElementInvisibility(WebElement element) {
+		getWait().until(ExpectedConditions.invisibilityOf(element));
+	}
+
+
 	/**
 	 * Wait element to be visible.
 	 * @param elements list WebElement
@@ -70,4 +80,17 @@ public class BasePage {
 		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
 	}
 
+	/**
+	 * Click on a web element
+	 * @param element
+	 */
+	public void clickOnElement(WebElement element){
+		waitElementVisibility(element);
+		element.click();
+	}
+
+	public void dataKeys(WebElement element, String data){
+		waitElementVisibility(element);
+		element.sendKeys(data);
+	}
 }
