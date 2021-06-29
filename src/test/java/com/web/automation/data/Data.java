@@ -3,13 +3,13 @@ package com.web.automation.data;
 import org.testng.annotations.DataProvider;
 
 /**
- * Data provider class.
- * @author camilo.mogollon
+ * Data provider class
+ * @author juancarlos.ortiz
  */
 public class Data {
 
-    @DataProvider(name = "customerID")
-    public Object[][] inputData() {
-        return new Object[][] {{"CustomerJuan"}};
+    @DataProvider(name = "user")
+    public Object[][] inputDataUser() {
+        return new Object[][] {{new User()}};
     }
 }

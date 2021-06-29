@@ -1,16 +1,26 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Delete Customer Suite" verbose="1">
+<suite name="ESPN Log In testing" verbose="1">
 	<listeners>
 		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
 
 	<parameter name="browser" value="chrome"/>
-	<parameter name="url" value="http://demo.guru99.com/test/delete_customer.php/"/>
+	<parameter name="url" value="https://www.espnqa.com/?src=com&amp;_adblock=true&amp;espn=cloud"/>
 
-	<test name="Delete Customer">
+	<test name="Log In ESPN">
 		<classes>
-			<class name="com.web.automation.test.DeleteCustomerTest"></class>
+			<class name="com.web.automation.test.LogInTest"></class>
+		</classes>
+	</test>
+	<test name="Log Out Account">
+		<classes>
+			<class name="com.web.automation.test.LogOutAccountTest"></class>
+		</classes>
+	</test>
+	<test name="Cancel Account">
+		<classes>
+			<class name="com.web.automation.test.DeleteAccountTest"></class>
 		</classes>
 	</test>
 </suite>

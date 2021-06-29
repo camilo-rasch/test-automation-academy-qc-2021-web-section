@@ -16,22 +16,79 @@ import java.util.List;
  */
 public class HomePage extends BasePage {
 
-    @FindBy(css = "input[name='cusid']")
-    private WebElement customerIdField;
+    @FindBy (id = "global-user-trigger")
+    private WebElement globalUserButton;
 
-    @FindBy(css = "input[name='submit']")
-    private WebElement submitButton;
+    @FindBy (css = "a[tref=\"/members/v3_1/login\"]")
+    private WebElement logInButton;
 
-    public WebElement getCustomerIdField() {
-        return this.customerIdField;
+    @FindBy (css = "input[ng-model=\"vm.username\"]")
+    private WebElement usernameField;
+
+    @FindBy (css = "input[ng-model=\"vm.password\"]")
+    private WebElement passwordField;
+
+    @FindBy (css = "button[ng-click=\"vm.submitLogin()\"]")
+    private WebElement logInButton;
+
+    @FindBy (css = "a[ng-click=\"vm.createAccount()\"]")
+    private WebElement signUpButton;
+
+    @FindBy (css = "input[name=\"firstName\"]")
+    private WebElement firstNameField;
+
+    @FindBy (css = "input[name=\"lastName\"]")
+    private WebElement lastNameField;
+
+    @FindBy (css = "input[name=\"email\"]")
+    private WebElement emailField;
+
+    @FindBy (css = "input[name=\"newPassword\"]")
+    private WebElement newPasswordField;
+
+    @FindBy (css = "button[did-translate=\"create.SIGN_UP\"]")
+    private WebElement newSignUpButton;
+
+
+    public WebElement getGlobalUserButton() {
+        return globalUserButton;
     }
 
-    public WebElement getSubmitButton() {
-        return this.submitButton;
+    public WebElement getLogInButton() {
+        return logInButton;
     }
 
+    public WebElement getSignUpButton() {
+        return signUpButton;
+    }
 
+    public WebElement getFirstNameField() {
+        return firstNameField;
+    }
 
+    public WebElement getLastNameField() {
+        return lastNameField;
+    }
+
+    public WebElement getEmailField() {
+        return emailField;
+    }
+
+    public WebElement getNewPasswordField() {
+        return newPasswordField;
+    }
+
+    public WebElement getNewSignUpButton() {
+        return newSignUpButton;
+    }
+
+    public WebElement getUsernameField() {
+        return usernameField;
+    }
+
+    public WebElement getPasswordField() {
+        return passwordField;
+    }
 
     /**
      * Constructor.
@@ -43,13 +100,8 @@ public class HomePage extends BasePage {
         driver.get(url);
     }
 
-    /**
-     * Method to switch to alert
-     * @return the switch to the alert
-     */
-    public Alert switchToAlert() {
-        return getDriver().switchTo().alert();
-    }
+
+
 
 
 
