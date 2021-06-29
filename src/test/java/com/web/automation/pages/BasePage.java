@@ -70,4 +70,52 @@ public class BasePage {
 		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
 	}
 
+	/**
+	 * Click on a web element
+	 * @param element
+	 */
+	public void clickOnElement(WebElement element){
+		waitElementVisibility(element);
+		element.click();
+	}
+
+	/**
+	 * Wait for an element visible
+	 * @param element
+	 */
+	public void waitForVisibilityOf(WebElement element){
+		wait.until(ExpectedConditions.visibilityOf(element));
+		element.isDisplayed();
+	}
+
+	/**
+	 * Switch to the login frame
+	 */
+	public void switchToFrame(){
+		//fill the form and click on the Login button
+		getDriver().switchTo().frame(1);
+	}
+
+	/**
+	 * Reload page
+	 * @param url
+	 */
+	public void reload(String url){
+		this.driver.get(url);
+	}
+
+	/**
+	 * Close page
+	 */
+	public void closePage(){
+		this.driver.close();
+	}
+
+
+	/**
+	 * Method to switch to the Default Content
+	 */
+	public void switchToDefaultContent(){
+		getDriver().switchTo().defaultContent();
+	}
 }
