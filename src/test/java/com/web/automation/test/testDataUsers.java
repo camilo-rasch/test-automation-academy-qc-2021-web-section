@@ -1,7 +1,6 @@
 package com.web.automation.test;
 
 import com.web.automation.data.Data;
-import com.web.automation.data.User;
 import org.apache.log4j.Logger;
 import org.testng.annotations.Test;
 
