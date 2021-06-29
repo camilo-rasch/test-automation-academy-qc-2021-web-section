@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static java.lang.Thread.sleep;
+
 /**
  * Class for interact with the home page.
  * @author Jonathan.Triana
@@ -22,6 +24,10 @@ public class CancelAccountPage extends BasePage{
     //Locator to find confirm button
     @FindBy(css = "[ng-click='vm.confirm()']")
     private WebElement confirm;
+
+    //Locator to find the confirmation
+    @FindBy(css = ".title.title-primary.ng-isolate-scope")
+    private WebElement confirmText;
 
     /**
      * Constructor.
@@ -60,5 +66,14 @@ public class CancelAccountPage extends BasePage{
     public CancelAccountPage clickOnConfirmButton() {
         clickOnElement(confirm);
         return new CancelAccountPage(getDriver());
+    }
+    /**
+     * Method to confirm if the account was deleted
+     */
+    public String deleteConfirmation() throws InterruptedException {
+        waitElementVisibility(confirmText);
+        sleep(1000);
+        String label_text = confirmText.getText();
+        return label_text;
     }
 }

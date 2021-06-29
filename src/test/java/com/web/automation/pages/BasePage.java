@@ -47,12 +47,11 @@ public class BasePage {
 	/**
 	 * Close the web driver.
 	 */
-   /*public void dispose() {
+   public void dispose() {
       if (driver != null) {
          driver.quit();
       }
    }
-    */
 
 	/**
 	 * Wait element to be visible.

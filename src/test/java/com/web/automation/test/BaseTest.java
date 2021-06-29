@@ -6,9 +6,9 @@ import com.web.automation.pages.CreateUserPage;
 import com.web.automation.pages.HomePage;
 import com.web.automation.pages.LogInIframePage;
 import org.apache.log4j.Logger;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
+
+import static java.lang.Thread.sleep;
 
 /**
  * Parent of the other classes of test.
@@ -23,10 +23,10 @@ public class BaseTest {
 	private CancelAccountPage Profile;
 
 
-	@BeforeTest(alwaysRun=true)
+	@BeforeMethod(alwaysRun=true)
 
 	@Parameters({"browser", "url"})
-	public void beforeTest(String browser, String url) {
+	public void beforeMethod(String browser, String url) throws InterruptedException {
 		driver = new Driver(browser);
 		driver.getDriver().manage().window().maximize();
 		Home= new HomePage(driver.getDriver(), url);
@@ -34,12 +34,40 @@ public class BaseTest {
 		Signup= new CreateUserPage(driver.getDriver(), url);
 		Profile= new CancelAccountPage(driver.getDriver(), url);
 
-
+		log.info("Click on user option to log in");
+		getHomePage().clickOnUserIcon();
+		log.info("Click on Log in option");
+		getHomePage().clickOnLogIn();
+		log.info("Switch to Log in - Iframe");
+		getLogInIframePage().switchToIframeLogIn();
+		log.info("");
+		sleep(1000);
+		log.info("Click on sign up button");
+		getCreateUserPage().clickOnSignUp();
+		log.info("Click on first name (Create Account)");
+		getCreateUserPage().clickOnFirstNameField();
+		log.info("Input the first name (Create Account) ");
+		getCreateUserPage().inputOnFirstNameField();
+		log.info("Click on last name (Create Account)");
+		getCreateUserPage().clickOnLastNameField();
+		log.info("Input the last name (Create Account) ");
+		getCreateUserPage().inputOnLastNameField();
+		log.info("Click on email (Create Account)");
+		getCreateUserPage().clickOnEmailField();
+		log.info("Input the email (Create Account) ");
+		getCreateUserPage().inputOnEmailField();
+		log.info("Click on password (Create Account)");
+		getCreateUserPage().clickOnPasswordField();
+		log.info("Input the password (Create Account) ");
+		getCreateUserPage().inputOnPasswordField();
+		log.info("Click on sign up button (Create Account)");
+		getCreateUserPage().clickOnSignUpButton();
+		sleep(5000);
 	}
 
-	@AfterTest(alwaysRun=true)
-	public void afterTest() {
-		//Home.dispose();
+	@AfterMethod(alwaysRun=true)
+	public void afterMethod() {
+		Home.dispose();
 	}
 
 	/**

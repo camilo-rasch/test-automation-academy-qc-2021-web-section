@@ -1,13 +1,23 @@
 package com.web.automation.test;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static java.lang.Thread.sleep;
 
 public class EspnTest extends BaseTest {
-/*
-    @Test(description = "Open Espn page")
-    public void espn_test() throws InterruptedException {
+
+    @Test(description = "Log in and log out an user")
+    public void login_user() throws InterruptedException {
+        //As the exercise say that we need to implement a before method to create a user
+        //I had to log out the user created before to be able to do the log in
+        log.info("Click on user option to log out");
+        getHomePage().clickOnUserIcon();
+        log.info("Click on log out option");
+        getLogInIframePage().clickOnLogOut();
+        sleep(3000);
+
+        //Log In user
         log.info("Click on user option to log in");
         getHomePage().clickOnUserIcon();
         log.info("Click on Log in option");
@@ -24,57 +34,56 @@ public class EspnTest extends BaseTest {
         getLogInIframePage().inputPassword();
         log.info("Click on Log in button");
         getLogInIframePage().clickSubmitButton();
-        log.info("");
         sleep(5000);
+        log.info("Click on user option to checkout");
+        getHomePage().clickOnUserIcon();
+        log.info("Assert to verify that you are log in");
+        Assert.assertEquals(getHomePage().messageConfirmation(),"WelcomeJohn!");
+
+        //Log out user
         log.info("Click on user option to log out");
         getHomePage().clickOnUserIcon();
         log.info("Click on log out option");
         getLogInIframePage().clickOnLogOut();
-    }
-*/
-    @Test(description = "Open Espn page")
-    public void crate_user() throws InterruptedException {
-        log.info("Click on user option to log in");
+        sleep(2000);
+        log.info("Click on user option");
         getHomePage().clickOnUserIcon();
-        log.info("Click on Log in option");
-        getHomePage().clickOnLogIn();
-        log.info("Switch to Log in - Iframe");
-        getLogInIframePage().switchToIframeLogIn();
-        log.info("");
-        sleep(3000);
-        log.info("Click on sign up button");
-        getCreateUserPage().clickOnSignUp();
-        log.info("Click on first name (Create Account)");
-        getCreateUserPage().clickOnFirstNameField();
-        log.info("Input the first name (Create Account) ");
-        getCreateUserPage().inputOnFirstNameField();
-        log.info("Click on last name (Create Account)");
-        getCreateUserPage().clickOnLastNameField();
-        log.info("Input the last name (Create Account) ");
-        getCreateUserPage().inputOnLastNameField();
-        log.info("Click on email (Create Account)");
-        getCreateUserPage().clickOnEmailField();
-        log.info("Input the email (Create Account) ");
-        getCreateUserPage().inputOnEmailField();
-        log.info("Click on password (Create Account)");
-        getCreateUserPage().clickOnPasswordField();
-        log.info("Input the password (Create Account) ");
-        getCreateUserPage().inputOnPasswordField();
-        log.info("Click on sign up button (Create Account)");
-        getCreateUserPage().clickOnSignUpButton();
-        sleep(7000);
-        //--------------------------------------------------
+        log.info("Assert to verify that you are log out");
+        Assert.assertEquals(getHomePage().messageConfirmation(),"Welcome!");
+    }
+
+    @Test(description = "Log out the user created")
+    public void logout_user() throws InterruptedException {
+        log.info("Click on user option to log out");
+        getHomePage().clickOnUserIcon();
+        log.info("Assert to verify that I am log in");
+        Assert.assertEquals(getHomePage().messageConfirmation(),"WelcomeJonathan!");
+        log.info("Click on log out option");
+        getLogInIframePage().clickOnLogOut();
+        sleep(2000);
+        log.info("Click on user option to log out");
+        getHomePage().clickOnUserIcon();
+        log.info("Assert to verify that I am log out");
+        Assert.assertEquals(getHomePage().messageConfirmation(),"Welcome!");
+    }
+
+    @Test(description = "Delete an account created")
+    public void delete_account() throws InterruptedException {
         log.info("Click on user option to log in");
         getHomePage().clickOnUserIcon();
         log.info("Click on ESPN profile option");
         getCancelAccountPage().clickOnEspnProfile();
         log.info("Switch to Log in - Iframe");
         getLogInIframePage().switchToIframeLogIn();
-        sleep(3000);
-        //getCancelAccountPage().scrollToElementBottom();
+        log.info("Assert to verify that we are on the page to update your account");
+        Assert.assertEquals(getCancelAccountPage().deleteConfirmation(),"Update Your Account");
         log.info("Click on ESPN Delete Account option");
         getCancelAccountPage().clickOnCancelAccount();
+        log.info("Assert to verify that we are on the confirmation popup");
+        Assert.assertEquals(getCancelAccountPage().deleteConfirmation(),"Are you sure?");
         log.info("Click on confirm button to delete the account");
         getCancelAccountPage().clickOnConfirmButton();
+        log.info("Assert to verify that the account was deleted");
+        Assert.assertEquals(getCancelAccountPage().deleteConfirmation(),"Your account has been deleted.");
     }
 }
