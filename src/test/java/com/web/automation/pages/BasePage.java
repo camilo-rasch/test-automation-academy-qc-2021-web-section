@@ -99,15 +99,19 @@ public class BasePage {
 
 	}
 	
+	/**
+	 * Send keys method for elements
+	 */
 	public void sendKeysField(WebElement element,String keysToSend) {
 		
 		element.sendKeys(keysToSend);
 	}
 	
-	public void scrollDownPages() {
+	
+	public void scrollDownPages(WebElement element) {
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0,1500)");
+		js.executeScript("arguments[0].scrollIntoView();", element);
 	}
 	
 }

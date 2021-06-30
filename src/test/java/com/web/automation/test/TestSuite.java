@@ -124,7 +124,7 @@ public class TestSuite extends BaseTest{
         homePage.clickGlobalUserButton();
         log.info("Switch to User option pop-ups ");
         userPopUp = homePage.switchToUserPopUpOptions();
-        log.info("Validate the created user");
+        log.info("Validate the created user - name is displayed!");
         String userName = userPopUp.getUserProfileName();
         Assert.assertEquals((userName), firstName+"!"); 
         log.info("Click on Log Out option");
@@ -141,7 +141,7 @@ public class TestSuite extends BaseTest{
         homePage.clickGlobalUserButton();
         log.info("Switch to User option pop-ups ");
         userPopUp = homePage.switchToUserPopUpOptions();
-        log.info("Validate if Log In option is displayed");
+        log.info("Validate if Log In option is displayed after log out");
         Assert.assertTrue(userPopUp.displayLogInButton()); 	
 		
 	}
@@ -184,7 +184,14 @@ public class TestSuite extends BaseTest{
         userPopUp.clickEspnProfileOption();
         log.info("Switch to account management iframe");
         AccountManagementIframe accountManagementIframe = homePage.switchToAccountManagementIframe();
-        accountManagementIframe.scrollDownPages();
+        log.info("Scroll To Bottom iframe");
+        accountManagementIframe.scrollToBottomIframe();
+      //Sleep added just to obtain the bottom page
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         log.info("Click on Delete account");
         accountManagementIframe.clickOnDeleteAccountOption();
         log.info("Return Driver to default content");

@@ -10,8 +10,8 @@ public class AccountManagementIframe extends BasePage {
 	@FindBy(id = "cancel-account")
 	private WebElement deleteAccount;
 	
-	@FindBy(css = "body")
-	private WebElement fullPage;
+	@FindBy(css = ".field-group > section[class *= \"cancel-account\"]")
+	private WebElement sectionCancelAccountIframe;
 	
 	/**
 	 * Constructor
@@ -37,6 +37,11 @@ public class AccountManagementIframe extends BasePage {
     	getDriver().switchTo().defaultContent();
     	
     }	
+    
+    public void scrollToBottomIframe() {
+    	
+    	scrollDownPages(sectionCancelAccountIframe);
+    }
     
       
 }
