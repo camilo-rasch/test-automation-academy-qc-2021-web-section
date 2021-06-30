@@ -28,16 +28,61 @@ public class AccountPage extends BasePage {
     @FindBy (css = "button[ng-click=\"vm.confirm()\"]")
     private WebElement deleteConfirmationButton;
 
+    @FindBy (css = "li.display-user")
+    private WebElement displayNameText;
 
+    @FindBy (css = "a[onclick*=\"logout\"]")
+    private WebElement logOutButton;
+
+    public WebElement getLogOutButton() {
+        return logOutButton;
+    }
+
+    public WebElement getDisplayNameText() {
+        return displayNameText;
+    }
+
+    /**
+     * Get GlobalUserButton.
+     * @return WebElement
+     */
+    public WebElement getGlobalUserButton() {
+        return globalUserButton;
+    }
+
+
+    /**
+     * Get EspnProfileButton.
+     * @return WebElement
+     */
+    public WebElement getEspnProfileButton() {
+        return espnProfileButton;
+    }
+
+    public WebElement getEmailText() {
+        return emailText;
+    }
+
+    public WebElement getDoneButton() {
+        return doneButton;
+    }
+
+    public WebElement getDeleteAccountButton() {
+        return deleteAccountButton;
+    }
+
+    public WebElement getDeleteConfirmationButton() {
+        return deleteConfirmationButton;
+    }
 
     /**
      * Constructor.
      * @param driver WebDriver
-     * @param url String
+     *
      */
-    public AccountPage(WebDriver driver, String url) {
+    public AccountPage(WebDriver driver) {
         super(driver);
-        driver.get(url);
+
     }
 
     /**
@@ -45,15 +90,23 @@ public class AccountPage extends BasePage {
      * @return the switch to the alert
      */
 
-    public void playYouTube(){
-        getDriver().switchTo().frame(0);
-        clickOnElement();
+    public ProfilePage clickOnProfileButton(){
+
+
+        clickOnElement(getEspnProfileButton());
+        getDriver().switchTo().frame("disneyid-iframe");
+        return new ProfilePage(getDriver());
     }
 
-    public void playVimeo(){
-        getDriver().switchTo().frame(1);
-       
+    public void logOutUser(){
+        waitElementVisibility(getGlobalUserButton());
+        clickOnElement(getGlobalUserButton());
+        clickOnElement(getLogOutButton());
+
     }
+
+
+
 
 
 

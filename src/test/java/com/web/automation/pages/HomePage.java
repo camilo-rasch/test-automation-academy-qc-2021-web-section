@@ -1,5 +1,6 @@
 package com.web.automation.pages;
 
+import com.web.automation.data.User;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,7 +9,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Class for interact with the home page.
@@ -28,8 +31,12 @@ public class HomePage extends BasePage {
     @FindBy (css = "input[ng-model=\"vm.password\"]")
     private WebElement passwordField;
 
+    public WebElement getNewlogInButton() {
+        return newlogInButton;
+    }
+
     @FindBy (css = "button[ng-click=\"vm.submitLogin()\"]")
-    private WebElement logInButton;
+    private WebElement newlogInButton;
 
     @FindBy (css = "a[ng-click=\"vm.createAccount()\"]")
     private WebElement signUpButton;
@@ -49,6 +56,12 @@ public class HomePage extends BasePage {
     @FindBy (css = "button[did-translate=\"create.SIGN_UP\"]")
     private WebElement newSignUpButton;
 
+    @FindBy (css = "li.display-user")
+    private WebElement displayNameText;
+
+    public WebElement getDisplayNameText() {
+        return displayNameText;
+    }
 
     public WebElement getGlobalUserButton() {
         return globalUserButton;
@@ -90,6 +103,8 @@ public class HomePage extends BasePage {
         return passwordField;
     }
 
+
+
     /**
      * Constructor.
      * @param driver WebDriver
@@ -99,6 +114,23 @@ public class HomePage extends BasePage {
         super(driver);
         driver.get(url);
     }
+
+
+
+
+    public LogInPage clickOnLoginButton(){
+
+
+        clickOnElement(getLogInButton());
+        getDriver().switchTo().frame("disneyid-iframe");
+        return new LogInPage(getDriver());
+    }
+
+    public boolean assertLogOut(){
+        waitElementVisibility(getLogInButton());
+        return getLogInButton().isDisplayed();
+    }
+
 
 
 

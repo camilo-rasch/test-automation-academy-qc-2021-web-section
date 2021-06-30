@@ -2,8 +2,9 @@ package com.web.automation.test;
 
 
 import com.web.automation.data.Data;
+import com.web.automation.data.User;
 import com.web.automation.driver.Driver;
-import com.web.automation.pages.HomePage;
+import com.web.automation.pages.*;
 import org.openqa.selenium.Alert;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -18,31 +19,43 @@ public class CancelAccountTest extends BaseTest{
 
 	HomePage homepage;
 
-
-
-	@Test(description = "Delete customerid", dataProviderClass = Data.class, dataProvider = "customerID")
-
-	public void executeTest(String data){
-		log.info("Open homePage");
+	@Test(description = "Cancel user", dataProvider = "user",dataProviderClass = Data.class)
+	public void LogOut(Object[] data) {
 		homepage = getHomePage();
+		User user = (User) data[0];
+		homepage.clickOnElement(getHomePage().getGlobalUserButton());
+		log.info("Click on global User Button");
+		LogInPage logInPage = homepage.clickOnLoginButton();
 
-		homepage.clickOnElement(homepage.getCustomerIdField());
-		homepage.getCustomerIdField().sendKeys(data);
-		log.info("entering customerId: "+data);
-		homepage.clickOnElement(homepage.getSubmitButton());
-		log.info("click on submit button");
-		Alert alert= homepage.switchToAlert();
-		log.info("switch to alert");
-		log.info("printing in console the alert text");
-		log.info(alert.getText());
-		alert.accept();
-		log.info("Accept in alert button");
-		log.info("print alert response");
-		log.info(alert.getText());
-		alert.accept();
-		log.info("Accept on the alert");
-		Assert.assertTrue(homepage.getCustomerIdField().isDisplayed(),"The home page loaded as expected");
+		log.info("Click on Log In Button");
+		SignUpPage signUpPage = logInPage.clickOnSignUpButton();
 
+		log.info("Click on SignUp Button");
+
+		signUpPage.createUser(user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword());
+		log.info("Fields filled out");
+		AccountPage accountPage = signUpPage.clickOnNewSignInButton();
+		log.info("Click on SignUp Button");
+		accountPage.clickOnElement(accountPage.getGlobalUserButton());
+
+
+		Assert.assertEquals(accountPage.getDisplayNameText().getText(), "Welcome" + user.getFirstName() + "!");
+		log.info("Account Created successfully");
+
+		ProfilePage profilePage = accountPage.clickOnProfileButton();
+		profilePage.waitElementVisibility(profilePage.getEmailText());
+		Assert.assertEquals(profilePage.getEmailText().getText(), user.getEmail());
+		profilePage.deleteAccount();
+		log.info("Click on Delete Account Confirmation Button");
+
+
+		homepage.clickOnElement(getHomePage().getGlobalUserButton());
+		log.info("Click on global User Button");
+		logInPage = homepage.clickOnLoginButton();
+		log.info("Click on LogIn Button");
+		logInPage.checkDeactivatedAccount(user.getEmail(),user.getPassword());
+		Assert.assertTrue(logInPage.assertDeactivatedAccount(), "Account Deactivated");
+		log.info("Account cancelled succesfully");
 
 	}
 

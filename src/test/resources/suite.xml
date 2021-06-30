@@ -13,14 +13,5 @@
 			<class name="com.web.automation.test.LogInTest"></class>
 		</classes>
 	</test>
-	<test name="Log Out Account">
-		<classes>
-			<class name="com.web.automation.test.LogOutAccountTest"></class>
-		</classes>
-	</test>
-	<test name="Cancel Account">
-		<classes>
-			<class name="com.web.automation.test.DeleteAccountTest"></class>
-		</classes>
-	</test>
+
 </suite>
