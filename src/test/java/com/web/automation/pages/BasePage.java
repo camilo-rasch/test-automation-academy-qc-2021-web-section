@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * Parent of the other classes of pages.
- * @author camilo.mogollon
+ * @author jessica.cardona
  */
 public class BasePage {
 	
@@ -107,7 +107,9 @@ public class BasePage {
 		element.sendKeys(keysToSend);
 	}
 	
-	
+	/**
+	 * Scroll Down Page to get elements that are not visible
+	 */
 	public void scrollDownPages(WebElement element) {
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;

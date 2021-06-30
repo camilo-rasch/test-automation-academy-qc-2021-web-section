@@ -17,6 +17,9 @@ public class ConfirmDeleteAccountIframe extends BasePage {
 		super(pDriver);
 	}
 	
+	/**
+	 * Click on confirm delete account button
+	 */
 	public void clickOnConfirmDeleteAccount() {
 		
 		waitElementClickable(confirmDeleteAccount);
