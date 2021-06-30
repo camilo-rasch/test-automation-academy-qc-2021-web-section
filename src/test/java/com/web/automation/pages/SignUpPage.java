@@ -113,6 +113,7 @@ public class SignUpPage extends BasePage {
      * @return AccountPage object
      */
     public AccountPage clickOnNewSignInButton(){
+        waitElementVisibility(getNewSignUpButton());
         clickOnElement(getNewSignUpButton());
 
         return new AccountPage(getDriver());

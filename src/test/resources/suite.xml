@@ -8,20 +8,23 @@
 	<parameter name="browser" value="chrome"/>
 	<parameter name="url" value="https://www.espnqa.com/?src=com&amp;_adblock=true&amp;espn=cloud"/>
 
-	<test name="Log In ESPN">
+	<test name="Log in ESPN">
 		<classes>
-			<class name="com.web.automation.test.LogInTest"></class>
+			<class name="com.web.automation.test.LoginTest"></class>
 		</classes>
 	</test>
+
 	<test name="Log out ESPN">
 		<classes>
 			<class name="com.web.automation.test.LogOutTest"></class>
 		</classes>
 	</test>
+
 	<test name="Cancel ESPN Account">
 		<classes>
 			<class name="com.web.automation.test.CancelAccountTest"></class>
 		</classes>
 	</test>
+
 
 </suite>

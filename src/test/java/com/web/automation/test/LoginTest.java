@@ -5,22 +5,26 @@ import com.web.automation.data.Data;
 import com.web.automation.data.User;
 import com.web.automation.driver.Driver;
 import com.web.automation.pages.*;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 /**
  * Parent of the other classes of test.
  * @author juancarlos.ortiz
  */
-public class LogOutTest extends BaseTest{
-
+public class LoginTest extends BaseTest{
+	
 	Driver driver = getDriver();
 
 	HomePage homepage;
 
-	@Test(description = "LogOut User in ESPN Page", dataProvider = "user",dataProviderClass = Data.class)
-	public void LogOut(Object[] data) {
+
+
+	@Test(description = "LogIn User in ESPN Page", dataProvider = "user",dataProviderClass = Data.class)
+	public void logInAccount(Object[] data) {
 		homepage = getHomePage();
 		homepage.clickOnElement(getHomePage().getGlobalUserButton());
 		log.info("Click on global User Button");
@@ -39,8 +43,6 @@ public class LogOutTest extends BaseTest{
 
 
 		Assert.assertTrue(getHomePage().assertLogOut(),"Log out successful");
-
-
 	}
 
 }

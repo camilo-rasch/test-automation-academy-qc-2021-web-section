@@ -32,6 +32,9 @@ public class LogInPage extends BasePage {
     @FindBy (css = "h2.title")
     private WebElement AccountDeactivatedText;
 
+    @FindBy (id = "close")
+    private WebElement closeIFrame;
+
     /**
      * Constructor.
      * @param driver WebDriver
@@ -83,6 +86,13 @@ public class LogInPage extends BasePage {
         return passwordField;
     }
 
+    /**
+     * Getter for Close Iframe button
+     * @return WebElement
+     */
+    public WebElement getCloseIFrame() {
+        return closeIFrame;
+    }
 
     /**
      * Method to switch to the SignUp Page
@@ -125,6 +135,10 @@ public class LogInPage extends BasePage {
         getPasswordField().sendKeys(password);
         clickOnElement(getNewLogInButton());
 
+    }
+
+    public void backToHomePage(){
+        clickOnElement(getCloseIFrame());
     }
 
     /**

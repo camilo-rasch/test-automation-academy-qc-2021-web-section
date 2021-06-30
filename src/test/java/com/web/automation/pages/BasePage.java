@@ -18,6 +18,7 @@ public class BasePage {
 	private WebDriver driver;
 	private WebDriverWait wait;
 	public Logger log = Logger.getLogger(BasePage.class);
+
 	
 	/**
 	 * Constructor.
@@ -74,5 +75,7 @@ public class BasePage {
 		waitElementVisibility(element);
 		element.click();
 	}
+
+
 
 }
