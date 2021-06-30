@@ -12,4 +12,9 @@ public class Data {
     public Object[][] inputData() {
         return new Object[][] {{"Colombia"}, {"Brazil"}, {"Peru"}};
     }
+
+    @DataProvider(name = "User")
+    public Object[][] inputDataUser() {
+        return new Object[][] {{new User()}};
+    }
 }

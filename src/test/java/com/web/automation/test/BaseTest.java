@@ -3,22 +3,31 @@ package com.web.automation.test;
 
 import com.web.automation.driver.Driver;
 import com.web.automation.pages.HomePage;
+import com.web.automation.pages.LoginIframePage;
+import com.web.automation.pages.SignUpPage;
 import org.apache.log4j.Logger;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
 /**
  * Parent of the other classes of test.
- * @author camilo.mogollon
+ * @author norma.losada
  */
 public class BaseTest {
 
 	private Driver driver;
 	
 	private HomePage Home;
+	private LoginIframePage login;
+	private SignUpPage signUpPage;
 	public Logger log = Logger.getLogger(BaseTest.class);
-	
+
+	@BeforeSuite()
+	public void beforeSuite() {
+		log.info("Have an ESPN account");
+	}
 	
 	@BeforeTest(alwaysRun=true)
 	@Parameters({"browser", "url"})
@@ -30,7 +39,7 @@ public class BaseTest {
 
 	@AfterTest(alwaysRun=true)
 	public void afterTest() {
-		Home.dispose();
+	Home.dispose();
 	}
 	
 	/**
