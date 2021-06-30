@@ -39,33 +39,6 @@ public class SignUpPage extends BasePage {
     @FindBy (css = "button[did-translate=\"create.SIGN_UP\"]")
     private WebElement newSignUpButton;
 
-
-
-
-    public WebElement getFirstNameField() {
-        return firstNameField;
-    }
-
-    public WebElement getLastNameField() {
-        return lastNameField;
-    }
-
-    public WebElement getEmailField() {
-        return emailField;
-    }
-
-    public WebElement getNewPasswordField() {
-        return newPasswordField;
-    }
-
-    public WebElement getNewSignUpButton() {
-        return newSignUpButton;
-    }
-
-
-
-
-
     /**
      * Constructor.
      * @param driver WebDriver
@@ -76,6 +49,53 @@ public class SignUpPage extends BasePage {
 
     }
 
+    /**
+     * Getter for First Name Field
+     * @return WebElement
+     */
+    public WebElement getFirstNameField() {
+        return firstNameField;
+    }
+
+    /**
+     * Getter for Last Name field
+     * @return WebElement
+     */
+    public WebElement getLastNameField() {
+        return lastNameField;
+    }
+
+    /**
+     * Getter for Email field
+     * @return WebElement
+     */
+    public WebElement getEmailField() {
+        return emailField;
+    }
+
+    /**
+     * Getter for New Password Field
+     * @return WebElement
+     */
+    public WebElement getNewPasswordField() {
+        return newPasswordField;
+    }
+
+    /**
+     * Getter new Sign Up Button
+     * @return WebElement
+     */
+    public WebElement getNewSignUpButton() {
+        return newSignUpButton;
+    }
+
+    /**
+     * Method to fill out the account creation form
+      * @param firstName String
+     * @param lastname String
+     * @param newEmail String
+     * @param newPassword String
+     */
     public void createUser(String firstName,String lastname, String newEmail, String newPassword){
 
         waitElementVisibility(getFirstNameField());
@@ -88,8 +108,13 @@ public class SignUpPage extends BasePage {
 
     }
 
+    /**
+     * Method to switch to the AccountPage by clickin in the SignUp Button
+     * @return AccountPage object
+     */
     public AccountPage clickOnNewSignInButton(){
         clickOnElement(getNewSignUpButton());
+
         return new AccountPage(getDriver());
     }
 

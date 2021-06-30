@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 /**
- * Class for interact with the home page.
+ * Class for interact with the Account page.
  * @author juancarlos.ortiz
  */
 public class AccountPage extends BasePage {
@@ -34,10 +34,33 @@ public class AccountPage extends BasePage {
     @FindBy (css = "a[onclick*=\"logout\"]")
     private WebElement logOutButton;
 
+    @FindBy (css = "button[tref=\"/members/v3_1/login\"]")
+    private WebElement externalLogInButton;
+
+
+
+    /**
+     * Constructor.
+     * @param driver WebDriver
+     *
+     */
+    public AccountPage(WebDriver driver) {
+        super(driver);
+
+    }
+
+    /**
+     * Getter for logOutButton
+     * @return WebElement
+     */
     public WebElement getLogOutButton() {
         return logOutButton;
     }
 
+    /**
+     * Getter for displayNameText
+     * @return WebElement
+     */
     public WebElement getDisplayNameText() {
         return displayNameText;
     }
@@ -59,37 +82,44 @@ public class AccountPage extends BasePage {
         return espnProfileButton;
     }
 
+    /**
+     * Getter for EmailText
+     * @return WebElement
+     */
     public WebElement getEmailText() {
         return emailText;
     }
 
+    /**
+     * Getter for DoneButton
+     * @return WebElement
+     */
     public WebElement getDoneButton() {
         return doneButton;
     }
 
+    /**
+     * Getter for DeleteAccountButton
+     * @return WebElement
+     */
     public WebElement getDeleteAccountButton() {
         return deleteAccountButton;
     }
 
+    /**
+     * Getter for DeleteConfirmationButton
+     * @return
+     */
     public WebElement getDeleteConfirmationButton() {
         return deleteConfirmationButton;
     }
 
-    /**
-     * Constructor.
-     * @param driver WebDriver
-     *
-     */
-    public AccountPage(WebDriver driver) {
-        super(driver);
 
-    }
 
     /**
-     * Method to switch to alert
-     * @return the switch to the alert
+     * Method to switch to the ProfilePage
+     * @return ProfilePage Object
      */
-
     public ProfilePage clickOnProfileButton(){
 
 
@@ -98,12 +128,17 @@ public class AccountPage extends BasePage {
         return new ProfilePage(getDriver());
     }
 
+    /**
+     * Method to log out user
+     */
     public void logOutUser(){
         waitElementVisibility(getGlobalUserButton());
         clickOnElement(getGlobalUserButton());
         clickOnElement(getLogOutButton());
 
     }
+
+
 
 
 

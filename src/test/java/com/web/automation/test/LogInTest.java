@@ -25,7 +25,7 @@ public class LogInTest extends BaseTest{
 	HomePage homepage;
 
 	@Test(description = "LogIn User in ESPN Page", dataProvider = "user",dataProviderClass = Data.class)
-	public void createAccount(Object[] data) {
+	public void logInAccount(Object[] data) {
 		homepage = getHomePage();
 		User  user = (User) data[0];
 		homepage.clickOnElement(getHomePage().getGlobalUserButton());
@@ -40,14 +40,15 @@ public class LogInTest extends BaseTest{
 		log.info("Fields filled out");
 		AccountPage accountPage = signUpPage.clickOnNewSignInButton();
 		log.info("Click on SignUp Button");
+
 		accountPage.clickOnElement(accountPage.getGlobalUserButton());
 		Assert.assertEquals(accountPage.getDisplayNameText().getText(),"Welcome"+user.getFirstName()+"!");
 
 		accountPage.logOutUser();
 		log.info("Click on LogOut Button");
+		getHomePage().clickOnglobalButton();
 
-		homepage.clickOnElement(getHomePage().getGlobalUserButton());
-		Assert.assertTrue(getHomePage().assertLogOut(),"Log out correctly");
+		Assert.assertTrue(getHomePage().assertLogOut(),"Log successful");
 
 
 		log.info("Click on global User Button");
@@ -61,8 +62,10 @@ public class LogInTest extends BaseTest{
 		Assert.assertEquals(accountPage.getDisplayNameText().getText(),"Welcome"+user.getFirstName()+"!");
 		log.info("User logged in correctly");
 		accountPage.logOutUser();
-		homepage.clickOnElement(getHomePage().getGlobalUserButton());
-		Assert.assertTrue(getHomePage().assertLogOut(),"The user logged out correctly");
+		getHomePage().clickOnglobalButton();
+
+
+		Assert.assertTrue(getHomePage().assertLogOut(),"Log successful");
 	}
 
 

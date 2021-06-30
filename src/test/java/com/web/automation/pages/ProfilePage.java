@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 /**
- * Class for interact with the home page.
+ * Class for interact with the Profile page.
  * @author juancarlos.ortiz
  */
 public class ProfilePage extends BasePage {
@@ -16,36 +16,8 @@ public class ProfilePage extends BasePage {
     @FindBy (id = "cancel-account")
     private WebElement deleteAccountButton;
 
-
-
     @FindBy (css = "button[ng-click=\"vm.confirm()\"]")
     private WebElement deleteConfirmationButton;
-
-
-
-
-    public WebElement getEmailText() {
-        return emailText;
-    }
-
-    public WebElement getDeleteAccountButton() {
-        return deleteAccountButton;
-    }
-
-    public WebElement getDeleteConfirmationButton() {
-        return deleteConfirmationButton;
-    }
-
-
-
-
-    public void deleteAccount(){
-        clickOnElement(getDeleteAccountButton());
-        clickOnElement(getDeleteConfirmationButton());
-    }
-
-
-
 
     /**
      * Constructor.
@@ -56,6 +28,44 @@ public class ProfilePage extends BasePage {
         super(driver);
 
     }
+
+    /**
+     * Getter for Email text
+     * @return WebElement
+     */
+    public WebElement getEmailText() {
+        return emailText;
+    }
+
+    /**
+     * Getter for delete Account Button
+     * @return WebElement
+     */
+    public WebElement getDeleteAccountButton() {
+        return deleteAccountButton;
+    }
+
+    /**
+     * Getter for Delete Confirmation Button
+     * @return WebElement
+     */
+    public WebElement getDeleteConfirmationButton() {
+        return deleteConfirmationButton;
+    }
+
+
+    /**
+     * Method to Delete Account
+     */
+    public void deleteAccount(){
+        clickOnElement(getDeleteAccountButton());
+        clickOnElement(getDeleteConfirmationButton());
+    }
+
+
+
+
+
 
 
 

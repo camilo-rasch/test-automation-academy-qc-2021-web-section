@@ -20,12 +20,14 @@ public class CancelAccountTest extends BaseTest{
 	HomePage homepage;
 
 	@Test(description = "Cancel user", dataProvider = "user",dataProviderClass = Data.class)
-	public void LogOut(Object[] data) {
+	public void cancelAccount(Object[] data) {
 		homepage = getHomePage();
 		User user = (User) data[0];
 		homepage.clickOnElement(getHomePage().getGlobalUserButton());
 		log.info("Click on global User Button");
 		LogInPage logInPage = homepage.clickOnLoginButton();
+
+
 
 		log.info("Click on Log In Button");
 		SignUpPage signUpPage = logInPage.clickOnSignUpButton();
@@ -55,7 +57,7 @@ public class CancelAccountTest extends BaseTest{
 		log.info("Click on LogIn Button");
 		logInPage.checkDeactivatedAccount(user.getEmail(),user.getPassword());
 		Assert.assertTrue(logInPage.assertDeactivatedAccount(), "Account Deactivated");
-		log.info("Account cancelled succesfully");
+		log.info("Account cancelled successfully");
 
 	}
 

@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="ESPN Log In testing" verbose="1">
+<suite name="Final Exam Suite" verbose="1">
 	<listeners>
 		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
@@ -11,6 +11,16 @@
 	<test name="Log In ESPN">
 		<classes>
 			<class name="com.web.automation.test.LogInTest"></class>
+		</classes>
+	</test>
+	<test name="Log out ESPN">
+		<classes>
+			<class name="com.web.automation.test.LogOutTest"></class>
+		</classes>
+	</test>
+	<test name="Cancel ESPN Account">
+		<classes>
+			<class name="com.web.automation.test.CancelAccountTest"></class>
 		</classes>
 	</test>
 

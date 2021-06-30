@@ -10,6 +10,7 @@ import com.web.automation.pages.LogInPage;
 import com.web.automation.pages.SignUpPage;
 import org.openqa.selenium.Alert;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 /**
@@ -22,6 +23,7 @@ public class LogOutTest extends BaseTest{
 
 	HomePage homepage;
 
+
 	@Test(description = "LogOut User in ESPN Page", dataProvider = "user",dataProviderClass = Data.class)
 	public void LogOut(Object[] data) {
 		homepage = getHomePage();
@@ -32,7 +34,6 @@ public class LogOutTest extends BaseTest{
 
 		log.info("Click on Log In Button");
 		SignUpPage signUpPage = logInPage.clickOnSignUpButton();
-
 		log.info("Click on SignUp Button");
 
 		signUpPage.createUser(user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword());
@@ -46,7 +47,8 @@ public class LogOutTest extends BaseTest{
 		log.info("Account Created successfully");
 		accountPage.logOutUser();
 		log.info("Click on LogOut Button");
-		homepage.clickOnElement(getHomePage().getGlobalUserButton());
+		getHomePage().clickOnglobalButton();
+
 		Assert.assertTrue(getHomePage().assertLogOut(),"The user logged out correctly");
 		log.info("User logged out successfully");
 
