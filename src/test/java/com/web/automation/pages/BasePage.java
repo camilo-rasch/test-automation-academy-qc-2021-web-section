@@ -1,6 +1,7 @@
 package com.web.automation.pages;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -27,6 +28,7 @@ public class BasePage {
 		PageFactory.initElements(pDriver, this);
 		wait = new WebDriverWait(pDriver, 20);
 		driver = pDriver;
+
 	}
 
 	/**
@@ -69,5 +71,43 @@ public class BasePage {
 	public void waitElementsVisibility(List<WebElement> elements) {
 		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
 	}
+	
+	/**
+	 * Wait for element visibility and click on element
+	 * @param element
+	 */
+	public void clickOnElement(WebElement element){
+		waitElementVisibility(element);
+		element.click();
+	}
+	
+	/**
+	 * Wait for element to be clickable 
+	 * @param element
+	 */
+	public void waitElementClickable(WebElement element) {
+		getWait().until(ExpectedConditions.elementToBeClickable(element));
+	}
+	
+	/**
+	 * Get Main window handle
+	 * @return
+	 */
+	public String getMainWindow() {
+		
+		return getDriver().getWindowHandle();
 
+	}
+	
+	public void sendKeysField(WebElement element,String keysToSend) {
+		
+		element.sendKeys(keysToSend);
+	}
+	
+	public void scrollDownPages() {
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,1500)");
+	}
+	
 }
