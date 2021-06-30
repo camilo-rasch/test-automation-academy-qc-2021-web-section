@@ -4,66 +4,68 @@ import com.web.automation.driver.Driver;
 import com.web.automation.pages.CancelAccountPage;
 import com.web.automation.pages.CreateUserPage;
 import com.web.automation.pages.HomePage;
-import com.web.automation.pages.LogInIframePage;
+import com.web.automation.pages.LogInPage;
 import org.apache.log4j.Logger;
 import org.testng.annotations.*;
 
 import static java.lang.Thread.sleep;
 
 /**
- * Parent of the other classes of test.
+ * Base test class.
  * @author Jonathan.Triana
  */
 public class BaseTest {
 	public Logger log = Logger.getLogger(BaseTest.class);
 	private Driver driver;
 	private HomePage Home;
-	private LogInIframePage Login;
-	private CreateUserPage Signup;
+	private LogInPage Login;
+	private CreateUserPage Create;
 	private CancelAccountPage Profile;
 
 
 	@BeforeMethod(alwaysRun=true)
-
 	@Parameters({"browser", "url"})
+
 	public void beforeMethod(String browser, String url) throws InterruptedException {
 		driver = new Driver(browser);
 		driver.getDriver().manage().window().maximize();
 		Home= new HomePage(driver.getDriver(), url);
-		Login= new LogInIframePage(driver.getDriver(), url);
-		Signup= new CreateUserPage(driver.getDriver(), url);
+		Login= new LogInPage(driver.getDriver(), url);
+		Create= new CreateUserPage(driver.getDriver(), url);
 		Profile= new CancelAccountPage(driver.getDriver(), url);
+		createAccount();
 
-		log.info("Click on user option to log in");
+	}
+	public void createAccount() throws InterruptedException {
+		log.info("Click on the user option to log in");
 		getHomePage().clickOnUserIcon();
-		log.info("Click on Log in option");
+		log.info("Click on the Log in option");
 		getHomePage().clickOnLogIn();
 		log.info("Switch to Log in - Iframe");
-		getLogInIframePage().switchToIframeLogIn();
-		log.info("");
-		sleep(1000);
-		log.info("Click on sign up button");
+		getHomePage().switchToIframeLogIn();
+		log.info("Click on the sign up button");
 		getCreateUserPage().clickOnSignUp();
-		log.info("Click on first name (Create Account)");
+		log.info("Click on the first name (Create Account)");
 		getCreateUserPage().clickOnFirstNameField();
 		log.info("Input the first name (Create Account) ");
 		getCreateUserPage().inputOnFirstNameField();
-		log.info("Click on last name (Create Account)");
+		log.info("Click on the last name (Create Account)");
 		getCreateUserPage().clickOnLastNameField();
 		log.info("Input the last name (Create Account) ");
 		getCreateUserPage().inputOnLastNameField();
-		log.info("Click on email (Create Account)");
+		log.info("Click on the email (Create Account)");
 		getCreateUserPage().clickOnEmailField();
 		log.info("Input the email (Create Account) ");
 		getCreateUserPage().inputOnEmailField();
-		log.info("Click on password (Create Account)");
+		log.info("Click on the password (Create Account)");
 		getCreateUserPage().clickOnPasswordField();
 		log.info("Input the password (Create Account) ");
 		getCreateUserPage().inputOnPasswordField();
-		log.info("Click on sign up button (Create Account)");
+		log.info("Click on the sign up button (Create Account)");
 		getCreateUserPage().clickOnSignUpButton();
 		sleep(5000);
 	}
+
 
 	@AfterMethod(alwaysRun=true)
 	public void afterMethod() {
@@ -78,22 +80,22 @@ public class BaseTest {
 		return Home;
 	}
 	/**
-	 * Get the Log in page.
-	 * @return {@link LogInIframePage}
+	 * Get the log in page.
+	 * @return {@link LogInPage}
 	 */
-	public LogInIframePage getLogInIframePage() {
+	public LogInPage getLogInPage() {
 		return Login;
 	}
 	/**
-	 * Get the Sign Up page.
-	 * @return {@link LogInIframePage}
+	 * Get the create user page
+	 * @return {@link CreateUserPage}
 	 */
 	public CreateUserPage getCreateUserPage() {
-		return Signup;
+		return Create;
 	}
 	/**
-	 * Get the Sign Up page.
-	 * @return {@link LogInIframePage}
+	 * Get the cancel account page
+	 * @return {@link CancelAccountPage}
 	 */
 	public CancelAccountPage getCancelAccountPage() {
 		return Profile;

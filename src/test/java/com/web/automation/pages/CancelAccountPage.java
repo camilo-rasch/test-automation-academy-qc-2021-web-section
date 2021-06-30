@@ -1,6 +1,5 @@
 package com.web.automation.pages;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import static java.lang.Thread.sleep;
 
 /**
- * Class for interact with the home page.
+ * Class with the locator and methods to cancel an account.
  * @author Jonathan.Triana
  */
 public class CancelAccountPage extends BasePage{
@@ -17,7 +16,7 @@ public class CancelAccountPage extends BasePage{
     @FindBy(css = "div.global-user:nth-child(2) div.global-user-container ul.account-management li:nth-child(5) > a:nth-child(1)")
     private WebElement profile;
 
-    //Locator to find Espn Profile option
+    //Locator to find delete account option
     @FindBy(id = "cancel-account")
     private WebElement cancelAccount;
 
@@ -72,7 +71,7 @@ public class CancelAccountPage extends BasePage{
      */
     public String deleteConfirmation() throws InterruptedException {
         waitElementVisibility(confirmText);
-        sleep(1000);
+        sleep(2000);
         String label_text = confirmText.getText();
         return label_text;
     }

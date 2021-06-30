@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 /**
- * Class for interact with the home page.
+ * Class with the locator and methods to create an account.
  * @author Jonathan.Triana
  */
 public class CreateUserPage extends BasePage {
@@ -22,7 +22,7 @@ public class CreateUserPage extends BasePage {
     @FindBy(name = "firstName")
     private WebElement firstName;
 
-    //Locator to find the first name field
+    //Locator to find the last name field
     @FindBy(name = "lastName")
     private WebElement lastName;
 
@@ -30,13 +30,14 @@ public class CreateUserPage extends BasePage {
     @FindBy(name = "email")
     private WebElement email;
 
-    //Locator to find the email field
+    //Locator to find the password field
     @FindBy(css = "[type='password']")
     private WebElement password;
 
     //Locator to save the new user
     @FindBy(css = "button.btn.btn-primary.ng-scope.ng-isolate-scope")
     private WebElement signup;
+
     /**
      * Constructor.
      * @param driver WebDriver
@@ -55,14 +56,14 @@ public class CreateUserPage extends BasePage {
     }
 
     /**
-     * Method to click on sign up option
+     * Method to click on the sign up option
      */
     public CreateUserPage clickOnSignUp() {
         clickOnElement(signUp);
         return new CreateUserPage(getDriver());
     }
     /**
-     * Method to click on first name field
+     * Method to click on the first name field
      */
     public CreateUserPage clickOnFirstNameField() {
         clickOnElement(firstName);
@@ -76,7 +77,7 @@ public class CreateUserPage extends BasePage {
         return new CreateUserPage(getDriver());
     }
     /**
-     * Method to click on last name field
+     * Method to click on the last name field
      */
     public CreateUserPage clickOnLastNameField() {
         clickOnElement(lastName);
@@ -90,7 +91,7 @@ public class CreateUserPage extends BasePage {
         return new CreateUserPage(getDriver());
     }
     /**
-     * Method to click on email field
+     * Method to click on the email field
      */
     public CreateUserPage clickOnEmailField() {
         clickOnElement(email);
@@ -102,13 +103,12 @@ public class CreateUserPage extends BasePage {
     public CreateUserPage inputOnEmailField() {
         LocalDateTime now = LocalDateTime.now();
         String time = now.format(DateTimeFormatter.ofPattern("HHmmss", Locale.ENGLISH));
-        String randomEmail="jonathantest"+time+"email"+"@gmail.com";
+        String randomEmail="jonathantest"+time+"email"+"@mail.com";
         this.email.sendKeys(randomEmail);
-        System.out.print("----"+randomEmail);
         return new CreateUserPage(getDriver());
     }
     /**
-     * Method to click on password field
+     * Method to click on the password field
      */
     public CreateUserPage clickOnPasswordField() {
         clickOnElement(password);

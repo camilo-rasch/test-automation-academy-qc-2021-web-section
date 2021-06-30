@@ -4,11 +4,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+
 /**
- * Class for interact with the home page.
+ * Class with the locators and methods to log in a user.
  * @author Jonathan.Triana
  */
-public class LogInIframePage extends BasePage{
+public class LogInPage extends BasePage{
 
     //Locator to find the email field
     @FindBy(css = "[type='email']")
@@ -31,7 +32,7 @@ public class LogInIframePage extends BasePage{
      * @param driver WebDriver
      * @param url String
      */
-    public LogInIframePage(WebDriver driver, String url) {
+    public LogInPage(WebDriver driver, String url) {
         super(driver);
         driver.get(url);
     }
@@ -39,56 +40,50 @@ public class LogInIframePage extends BasePage{
      * Page Constructor
      * @param driver to execute
      */
-    public LogInIframePage(WebDriver driver) {
+    public LogInPage(WebDriver driver) {
         super(driver);
     }
+
     /**
-     * Method to switch to log in Iframe
+     * Method to click on the email field
      */
-    public LogInIframePage switchToIframeLogIn() {
-        getDriver().switchTo().frame("disneyid-iframe");
-        return new LogInIframePage(getDriver());
-    }
-    /**
-     * Method to click on email field
-     */
-    public LogInIframePage clickEmailField() {
+    public LogInPage clickEmailField() {
         clickOnElement(email);
-        return new LogInIframePage(getDriver());
+        return new LogInPage(getDriver());
     }
     /**
      * Method to input the email
      */
-    public LogInIframePage inputEmail() {
+    public LogInPage inputEmail() {
         this.email.sendKeys("Userespn@espnespnespn.com");
-        return new LogInIframePage(getDriver());
+        return new LogInPage(getDriver());
     }
     /**
-     * Method to click on password field
+     * Method to click on the password field
      */
-    public HomePage clickPasswordField() {
+    public LogInPage clickPasswordField() {
         clickOnElement(password);
-        return new HomePage(getDriver());
+        return new LogInPage(getDriver());
     }
     /**
      * Method to input the password
      */
-    public HomePage inputPassword() {
+    public LogInPage inputPassword() {
         this.password.sendKeys("User123");
-        return new HomePage(getDriver());
+        return new LogInPage(getDriver());
     }
     /**
-     * Method to click on Log In button
+     * Method to click on the Log In button
      */
-    public HomePage clickSubmitButton() {
+    public LogInPage clickSubmitButton() {
         clickOnElement(submit);
-        return new HomePage(getDriver());
+        return new LogInPage(getDriver());
     }
     /**
-     * Method to click on Log Out button
+     * Method to click on the Log Out button
      */
-    public HomePage clickOnLogOut() {
+    public LogInPage clickOnLogOut() {
         clickOnElement(logOut);
-        return new HomePage(getDriver());
+        return new LogInPage(getDriver());
     }
 }

@@ -3,8 +3,6 @@ package com.web.automation.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import java.util.List;
-import java.util.Optional;
 
 import static java.lang.Thread.sleep;
 
@@ -65,5 +63,13 @@ public class HomePage extends BasePage {
         sleep(2000);
         String label_text = message.getText();
         return label_text;
+    }
+    /**
+     * Method to switch to log in Iframe
+     */
+    public LogInPage switchToIframeLogIn() throws InterruptedException {
+        getDriver().switchTo().frame("disneyid-iframe");
+        sleep(1000);
+        return new LogInPage(getDriver());
     }
 }
