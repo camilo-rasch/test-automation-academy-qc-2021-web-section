@@ -4,12 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Class for interact with the home page.
- * @author camilo.mogollon
+ * @author jessica.cardona
  */
 public class HomePage extends BasePage {
 	

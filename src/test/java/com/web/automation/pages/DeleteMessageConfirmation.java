@@ -35,6 +35,5 @@ public class DeleteMessageConfirmation extends BasePage{
     	getDriver().switchTo().defaultContent();
     	
     }		
-	
 
 }

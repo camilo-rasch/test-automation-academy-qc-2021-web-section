@@ -3,8 +3,6 @@ package com.web.automation.test;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import com.web.automation.data.Data;
 import com.web.automation.data.User;
 import com.web.automation.pages.AccountManagementIframe;
 import com.web.automation.pages.ConfirmDeleteAccountIframe;
@@ -186,7 +184,7 @@ public class TestSuite extends BaseTest{
         AccountManagementIframe accountManagementIframe = homePage.switchToAccountManagementIframe();
         log.info("Scroll To Bottom iframe");
         accountManagementIframe.scrollToBottomIframe();
-      //Sleep added just to obtain the bottom page
+      //Sleep added just to obtain the delete account bottom page
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
@@ -199,6 +197,12 @@ public class TestSuite extends BaseTest{
         ConfirmDeleteAccountIframe confirmDeleteAccountIframe = homePage.switchToConfirmDeleteAccountIframe();
         log.info("Click on confirm Delete account");
         confirmDeleteAccountIframe.clickOnConfirmDeleteAccount();
+      //Sleep added just to obtain the delete account message
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         log.info("Return Driver to default content");
         confirmDeleteAccountIframe.switchToDefaultContent();
         log.info("Switch to delete message confirmation iframe");
