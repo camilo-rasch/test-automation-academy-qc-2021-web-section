@@ -85,4 +85,7 @@ public class BasePage {
         element.click();
     }
 
+    public void reload(String url){
+        this.driver.get(url);
+    }
 }

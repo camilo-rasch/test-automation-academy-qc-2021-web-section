@@ -1,7 +1,10 @@
 package com.web.automation.test;
 
 
+import com.web.automation.data.Data;
+import com.web.automation.data.User;
 import com.web.automation.driver.Driver;
+import com.web.automation.pages.CreateAccountModal;
 import com.web.automation.pages.HomePage;
 import org.apache.log4j.Logger;
 import org.testng.annotations.AfterTest;
@@ -17,6 +20,7 @@ public class BaseTest {
 
     public Logger log = Logger.getLogger(BaseTest.class);
     public HomePage homePage;
+    public CreateAccountModal createAccountModal;
     Driver driver;
 
     @BeforeTest(alwaysRun = true)
@@ -26,6 +30,8 @@ public class BaseTest {
         driver.getDriver().manage().window().maximize();
         homePage = new HomePage(driver.getDriver(),url );
     }
+
+
 
     @AfterTest(alwaysRun=true)
     public void afterTest() {
@@ -41,7 +47,4 @@ public class BaseTest {
         return homePage;
     }
 
-    public void reload_page(String url){
-        this.driver.getDriver().get(url);
-    }
 }

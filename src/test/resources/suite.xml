@@ -5,12 +5,12 @@
 		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
 
-	<parameter name="browser" value="chrome"/>
-	<parameter name="url" value="https://www.twitter.com"/>
+	<parameter name="browser" value="chrome"></parameter>
+	<parameter name="url" value="https://www.espnqa.com/?src=com&amp;_adblock=true&amp;espn=cloud"></parameter>
 
-	<test name="myFirstTest">
+	<test name="myTest">
 		<classes>
-			<class name="com.web.automation.test.TestExample"/>
+			<class name="com.web.automation.test.EspnAccountTest"></class>
 		</classes>
 	</test>
 </suite>
