@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.util.List;
 
 /**
  * Parent of the other classes of pages.
@@ -59,14 +58,6 @@ public class BasePage {
 	 */
 	public void waitElementVisibility(WebElement element) {
 		getWait().until(ExpectedConditions.visibilityOf(element));
-	}
-
-	/**
-	 * Wait element to be visible.
-	 * @param elements list WebElement
-	 */
-	public void waitElementsVisibility(List<WebElement> elements) {
-		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
 	}
 	/**
 	 * Click on Element

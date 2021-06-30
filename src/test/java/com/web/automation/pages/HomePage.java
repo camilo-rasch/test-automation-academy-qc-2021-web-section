@@ -3,7 +3,6 @@ package com.web.automation.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import static java.lang.Thread.sleep;
 
 /**
@@ -34,26 +33,17 @@ public class HomePage extends BasePage {
         driver.get(url);
     }
     /**
-     * Page Constructor
-     * @param driver to execute
-     */
-    public HomePage(WebDriver driver) {
-        super(driver);
-    }
-    /**
      * Method to click on user icon
      */
-    public HomePage clickOnUserIcon() {
+    public void clickOnUserIcon() {
         waitElementVisibility(userIcon);
         clickOnElement(userIcon);
-        return new HomePage(getDriver());
     }
     /**
      * Method to click on Log In option
      */
-    public HomePage clickOnLogIn() {
+    public void clickOnLogIn() {
         clickOnElement(logIn);
-        return new HomePage(getDriver());
     }
     /**
      * Method to confirm if the account was deleted
@@ -67,9 +57,8 @@ public class HomePage extends BasePage {
     /**
      * Method to switch to log in Iframe
      */
-    public LogInPage switchToIframeLogIn() throws InterruptedException {
+    public void switchToIframeLogIn() throws InterruptedException {
         getDriver().switchTo().frame("disneyid-iframe");
         sleep(1000);
-        return new LogInPage(getDriver());
     }
 }

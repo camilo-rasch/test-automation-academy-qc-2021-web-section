@@ -36,54 +36,41 @@ public class LogInPage extends BasePage{
         super(driver);
         driver.get(url);
     }
-    /**
-     * Page Constructor
-     * @param driver to execute
-     */
-    public LogInPage(WebDriver driver) {
-        super(driver);
-    }
 
     /**
      * Method to click on the email field
      */
-    public LogInPage clickEmailField() {
+    public void clickEmailField() {
         clickOnElement(email);
-        return new LogInPage(getDriver());
     }
     /**
      * Method to input the email
      */
-    public LogInPage inputEmail() {
-        this.email.sendKeys("Userespn@espnespnespn.com");
-        return new LogInPage(getDriver());
+    public void inputEmail(String email) {
+        this.email.sendKeys(email);
     }
     /**
      * Method to click on the password field
      */
-    public LogInPage clickPasswordField() {
+    public void clickPasswordField() {
         clickOnElement(password);
-        return new LogInPage(getDriver());
     }
     /**
      * Method to input the password
      */
-    public LogInPage inputPassword() {
-        this.password.sendKeys("User123");
-        return new LogInPage(getDriver());
+    public void inputPassword(String password) {
+        this.password.sendKeys(password);
     }
     /**
      * Method to click on the Log In button
      */
-    public LogInPage clickSubmitButton() {
+    public void clickSubmitButton() {
         clickOnElement(submit);
-        return new LogInPage(getDriver());
     }
     /**
      * Method to click on the Log Out button
      */
-    public LogInPage clickOnLogOut() {
+    public void clickOnLogOut() {
         clickOnElement(logOut);
-        return new LogInPage(getDriver());
     }
 }

@@ -4,8 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static java.lang.Thread.sleep;
-
 /**
  * Class with the locator and methods to cancel an account.
  * @author Jonathan.Triana
@@ -38,40 +36,28 @@ public class CancelAccountPage extends BasePage{
         driver.get(url);
     }
     /**
-     * Page Constructor
-     * @param driver to execute
-     */
-    public CancelAccountPage(WebDriver driver) {
-        super(driver);
-    }
-    /**
      * Method to click on ESPN profile
      */
-    public CancelAccountPage clickOnEspnProfile() {
+    public void clickOnEspnProfile() {
         clickOnElement(profile);
-        return new CancelAccountPage(getDriver());
     }
     /**
      * Method to click on first name field
      */
-    public CancelAccountPage clickOnCancelAccount() {
+    public void clickOnCancelAccount() {
         clickOnElement(cancelAccount);
-        return new CancelAccountPage(getDriver());
     }
-
     /**
      * Method to click on confirm button (delete account)
      */
-    public CancelAccountPage clickOnConfirmButton() {
+    public void clickOnConfirmButton() {
         clickOnElement(confirm);
-        return new CancelAccountPage(getDriver());
     }
     /**
      * Method to confirm if the account was deleted
      */
     public String deleteConfirmation() throws InterruptedException {
         waitElementVisibility(confirmText);
-        sleep(2000);
         String label_text = confirmText.getText();
         return label_text;
     }

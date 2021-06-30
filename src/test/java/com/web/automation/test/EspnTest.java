@@ -1,20 +1,21 @@
 package com.web.automation.test;
 
+import com.web.automation.data.Data;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import static java.lang.Thread.sleep;
 
 public class EspnTest extends BaseTest {
 
-    @Test(description = "Log in and log out an user")
-    public void login_user() throws InterruptedException {
+    @Test(description = "Log in and log out an user",dataProvider="data1",dataProviderClass= Data.class)
+    public void login_user(String email,String password) throws InterruptedException {
         //As the exercise say that we need to implement a before method to create a user
         //So I had to log out the user created earlier to be able to do the log in
         log.info("Click on user option to log out");
         getHomePage().clickOnUserIcon();
         log.info("Click on log out option");
         getLogInPage().clickOnLogOut();
+        //I should to include an sleep because the waitElementVisibility is not working well
         sleep(3000);
 
         //Log In user
@@ -27,13 +28,14 @@ public class EspnTest extends BaseTest {
         log.info("Click on the email field");
         getLogInPage().clickEmailField();
         log.info("Input the email in the email field");
-        getLogInPage().inputEmail();
+        getLogInPage().inputEmail(email);
         log.info("Click on the password field");
         getLogInPage().clickPasswordField();
         log.info("Input the password in the password field");
-        getLogInPage().inputPassword();
+        getLogInPage().inputPassword(password);
         log.info("Click on the Log in button");
         getLogInPage().clickSubmitButton();
+        //I should to include an sleep because the waitElementVisibility is not working well
         sleep(5000);
         log.info("Click on the user option to checkout");
         getHomePage().clickOnUserIcon();
@@ -45,6 +47,7 @@ public class EspnTest extends BaseTest {
         getHomePage().clickOnUserIcon();
         log.info("Click on log out option");
         getLogInPage().clickOnLogOut();
+        //I should to include an sleep because the waitElementVisibility is not working well
         sleep(2000);
         log.info("Click on user option");
         getHomePage().clickOnUserIcon();
@@ -60,6 +63,7 @@ public class EspnTest extends BaseTest {
         Assert.assertEquals(getHomePage().messageConfirmation(),"WelcomeJonathan!");
         log.info("Click on the log out option");
         getLogInPage().clickOnLogOut();
+        //I should to include an sleep because the waitElementVisibility is not working well
         sleep(2000);
         log.info("Click on the user option to log out");
         getHomePage().clickOnUserIcon();
@@ -79,11 +83,14 @@ public class EspnTest extends BaseTest {
         Assert.assertEquals(getCancelAccountPage().deleteConfirmation(),"Update Your Account");
         log.info("Click on the ESPN delete account option");
         getCancelAccountPage().clickOnCancelAccount();
-        sleep(3000);
+        //I should to include an sleep because the waitElementVisibility(confirmText); is not working well
+        sleep(1000);
         log.info("Assert to verify that we are on the confirmation popup");
         Assert.assertEquals(getCancelAccountPage().deleteConfirmation(),"Are you sure?");
         log.info("Click on the confirm button to delete the account");
         getCancelAccountPage().clickOnConfirmButton();
+        //I should to include an sleep because the waitElementVisibility(confirmText); is not working well
+        sleep(2000);
         log.info("Assert to verify that the account was deleted");
         Assert.assertEquals(getCancelAccountPage().deleteConfirmation(),"Your account has been deleted.");
     }
