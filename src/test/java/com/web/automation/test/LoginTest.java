@@ -26,7 +26,7 @@ public class LoginTest extends BaseTest{
         loginDriver= homePage.changeToIframe();
         loginpage = new LoginPage(loginDriver);
         log.info("Type User Name");
-        loginpage.userNameSendKeys(user.getEmail());
+        loginpage.userNameSendKeys();
         log.info("Type User Password");
         loginpage.userPassSendKeys();
         log.info("Click on Login Button");

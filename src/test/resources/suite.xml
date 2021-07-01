@@ -12,7 +12,7 @@
 		<classes>
 			<class name="com.web.automation.test.LogOutTest"></class>
 			<class name="com.web.automation.test.LoginTest"></class>
-
+			<class name="com.web.automation.test.CancelAccountTest"></class>
 		</classes>
 	</test>
 </suite>
