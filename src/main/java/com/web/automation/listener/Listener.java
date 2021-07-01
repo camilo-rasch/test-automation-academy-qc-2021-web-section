@@ -7,7 +7,7 @@ import org.testng.ITestResult;
 
 /**
  * Class listeners.
- * @author camilo.mogollon
+ * @author juandaniel.castano
  */
 public class Listener implements ITestListener {
 	

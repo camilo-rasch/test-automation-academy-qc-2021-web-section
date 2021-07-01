@@ -11,7 +11,7 @@ import java.net.URL;
 
 /**
  * Driver class
- * @author camilo.mogollon
+ * @author juandaniel.castaño
  */
 public class Driver {
 
@@ -42,7 +42,7 @@ public class Driver {
 				driver = new FirefoxDriver();
 				break;
 			case "chrome":
-				System.setProperty("webdriver.chrome.driver", "./src/main/resources/chromedriverMac91");
+				System.setProperty("webdriver.chrome.driver", "./src/main/resources/chromedriver.exe");
 				driver = new ChromeDriver();
 				break;
 			default:

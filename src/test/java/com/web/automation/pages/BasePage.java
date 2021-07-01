@@ -11,13 +11,14 @@ import java.util.List;
 
 /**
  * Parent of the other classes of pages.
- * @author camilo.mogollon
+ * @author juandaniel.castano
  */
+
 public class BasePage {
 	
 	private WebDriver driver;
 	private WebDriverWait wait;
-	public Logger log = Logger.getLogger(BasePage.class);
+	private Logger log = Logger.getLogger(BasePage.class);
 	
 	/**
 	 * Constructor.
@@ -66,8 +67,28 @@ public class BasePage {
 	 * Wait element to be visible.
 	 * @param elements list WebElement
 	 */
-	public void waitElementsVisibility(List<WebElement> elements) {
+	/*public void waitElementsVisibility(List<WebElement> elements) {
 		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
+	}*/
+
+	/**
+	 * Method to click on desired element
+	 * @param element To received the WebElement
+	 */
+
+	public void clickOnElement(WebElement element){
+		waitElementVisibility(element);
+		element.click();
+	}
+
+	/**
+	 * Method to send data on desired element based on specific data
+	 * @param element To received the WebElement
+	 */
+
+	public void sendDataOnElement(WebElement element, String data){
+		waitElementVisibility(element);
+		element.sendKeys(data);
 	}
 
 }

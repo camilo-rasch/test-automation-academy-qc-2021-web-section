@@ -12,3 +12,6 @@ Create new branch
     git add .
     git commit -m "mensaje"
     git push origin "name-branch"
+
+****RECOMENDATIONS****
+It is required run the tests at least twice because of the tests run as they are expected.
