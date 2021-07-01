@@ -11,11 +11,16 @@ public class DeleteAccount extends BasePage{
     /**
      * Locators of Delete Account window
      */
-    @FindBy(css = "cancel-account")
+    @FindBy(css = "#cancel-account")
     private WebElement deleteAccountLink;
 
-    @FindBy(css = ".main [type='submit']")
-    private WebElement deleteAccountButton;
+    @FindBy(css = "button.btn-primary")
+    private WebElement deleteAccountConfirmationButton;
+    //".main [type='submit']"
+
+    @FindBy(css = "h2.title")
+    private WebElement deleteAccountMessage;
+
 
     /**
      * Constructor
@@ -27,7 +32,27 @@ public class DeleteAccount extends BasePage{
 
     public void deleteAccount(){
         switchToFrame();
-        clickOnElement(this.deleteAccountLink);
-        deleteAccountButton.click();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        this.deleteAccountLink.click();
+        clickOnElement(this.deleteAccountConfirmationButton);
+    }
+
+    /**
+     * Method to assert the user cancelled the account
+     * @return Message of "Account deleted" is displayed
+     */
+    public String validateDeletedAccount(){
+        //switchToFrame();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        waitElementVisibility(this.deleteAccountMessage);
+        return this.deleteAccountMessage.getText();
     }
 }

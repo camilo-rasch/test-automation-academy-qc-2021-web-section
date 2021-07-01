@@ -4,8 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Class for interact with the home page.
@@ -32,7 +30,7 @@ public class HomePage extends BasePage {
     private WebElement leftLoginButton;
 
     @FindBy(css= "a[tref='/members/v3_1/modifyAccount']")
-    private WebElement espnProfile;
+    private WebElement espnProfileButton;
 
 
     /**
@@ -60,7 +58,8 @@ public class HomePage extends BasePage {
      * @return driver to delete account
      */
     public DeleteAccount deleteAccount(){
-        clickOnElement(this.espnProfile);
+        clickOnElement(this.userIcon);
+        espnProfileButton.click();
         return new DeleteAccount(getDriver());
     }
 
@@ -70,7 +69,7 @@ public class HomePage extends BasePage {
      */
     public boolean validateUserLogin(){
         try {
-            Thread.sleep(6000);
+            Thread.sleep(10000);
             this.userIcon.click();
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -91,8 +90,12 @@ public class HomePage extends BasePage {
      * @return login button is displayed
      */
     public boolean validateUserLogout(){
-        //wait.until(ExpectedConditions.visibilityOf(this.userIcon));
-        waitForVisibilityOf(this.leftLoginButton);
+        try {
+            Thread.sleep(8000);
+            this.userIcon.click();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return this.leftLoginButton.isDisplayed();
     }
 

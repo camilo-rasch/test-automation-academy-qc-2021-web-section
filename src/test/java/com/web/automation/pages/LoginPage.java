@@ -1,5 +1,6 @@
 package com.web.automation.pages;
 
+import com.web.automation.data.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,10 +22,11 @@ public class LoginPage extends BasePage {
     @FindBy(css  = "button[type=\"submit\"]")
     private WebElement loginsubmitButton;
 
-    @FindBy(css = "a.btn-secondary")
+    @FindBy(css = "a.btn")
     private WebElement signupButton;
 
-    private String mainPageHandle = "";
+    //a.btn-secondary
+    //private String mainPageHandle = "";
 
     /**
      * Constructor
@@ -38,13 +40,13 @@ public class LoginPage extends BasePage {
     /**
      * Method to log in
      */
-    public void loginUser(){
+    public void loginUser(User user){
         //fill the form and click on the Log In button
         switchToFrame();
         //wait while the new frame is displayed
         waitForVisibilityOf(this.emailTextBox);
-        this.emailTextBox.sendKeys("josue@correo.com");
-        this.passwordTextBox.sendKeys("portugalcr7");
+        this.emailTextBox.sendKeys(user.getEmail());
+        this.passwordTextBox.sendKeys(user.getPassword());
         this.loginsubmitButton.click();
     }
 

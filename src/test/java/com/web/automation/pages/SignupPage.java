@@ -51,11 +51,11 @@ public class SignupPage extends BasePage {
             //wait while the new frame is displayed
             //switchToFrame();
             try {
-                Thread.sleep(5000);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            waitForVisibilityOf(this.createAccountSection);
+            //waitForVisibilityOf(this.createAccountSection);
             this.firstNameTextBox.sendKeys(user.getFirstName());
             this.lastNameTextBox.sendKeys(user.getLastName());
             this.emailTextBox.sendKeys(user.getEmail());

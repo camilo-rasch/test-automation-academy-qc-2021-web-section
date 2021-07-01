@@ -16,7 +16,7 @@ import java.util.List;
 public class BasePage {
 	
 	private WebDriver driver;
-	private WebDriverWait wait;
+	protected WebDriverWait wait;
 	public Logger log = Logger.getLogger(BasePage.class);
 	
 	/**
@@ -93,7 +93,7 @@ public class BasePage {
 	 */
 	public void switchToFrame(){
 		//fill the form and click on the Login button
-		getDriver().switchTo().frame(1);
+		wait.until(WebDriver::switchTo).frame("disneyid-iframe");
 	}
 
 	/**

@@ -1,13 +1,15 @@
 package com.web.automation.test;
 
-
 import com.web.automation.data.Data;
 import com.web.automation.data.User;
+import com.web.automation.pages.DeleteAccount;
 import com.web.automation.pages.HomePage;
 import com.web.automation.pages.LoginPage;
 import com.web.automation.pages.SignupPage;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 /**
@@ -16,14 +18,38 @@ import org.testng.annotations.Test;
  */
 public class EspnAccountTest extends BaseTest {
     HomePage homePage;
+    String username;
+    String deleteConfirmation = "Your account has been deleted.";
 
+    /**
+     * Method to create the accounts with data provider
+     * @param data
+     */
     @BeforeMethod(alwaysRun = true)
     public void createAccount(Object[] data){
+        //Object[] input = (Object[]) data[0];
         User user = (User) data[0];
-
+        homePage = getHomePage();
+        log.info("Opening homePage");
+        LoginPage loginPage = homePage.loginUser();
+        log.info("Click on login button and then on signup button");
+        SignupPage signupPage = loginPage.signupUser();
+        log.info("The user is on the form to create the account");
+        signupPage.signupUser(user);
+        username = user.getFirstName();
+        log.info("The user input the data to create the account");
+        Assert.assertTrue(homePage.validateUserLogin(), "The account is created and the user is logged in to the home page");
+        log.info("The user " +  username + " was created");
+        homePage.logoutUser();
+        Assert.assertTrue(homePage.validateUserLogout(),"User logout");
+        log.info("User logout");
     }
 
-    /*@AfterMethod()
+    /**
+     * Method to reload the page after each method
+     * @param url
+     */
+    @AfterMethod()
     @Parameters({"url"})
     public void reloadPage(String url){
 
@@ -34,67 +60,43 @@ public class EspnAccountTest extends BaseTest {
             e.printStackTrace();
         }
         homePage.reload(url);
-    }*/
-/*
-    @Test(description = "Log in (after the test finish you have to log out)")
-    public void loginUser() {
-        homePage = getHomePage();
-        log.info("Opening homePage");
-        LoginPage loginPage = homePage.loginUser();
-        log.info("Click on login button");
-        loginPage.loginUser();
-        log.info("Input the data and log in the user");
-        loginPage.switchToDefaultContent();
-        log.info("The user is redirected to the home page");
-        Assert.assertTrue(homePage.validateUserLogin(),"Validating the user login successful");
-        //Assert.assertEquals(homePage.validateUserLogin(),username, "Validating the user login successful");
-        homePage.logoutUser();
-        log.info("The user logout is successful");
-        Assert.assertTrue(homePage.validateUserLogout(),"Validating the user logout successful");
-        log.info("Test completed");
-    }*/
-
-    /* @Test(description = "Sign up user to create account")
-     public void logoutUser(){
-         homePage = getHomePage();
-         log.info("Opening homePage");
-         LoginPage loginPage = homePage.loginUser();
-         log.info("Click on login button");
-         //loginPage.signupUser();
-         SignupPage signupPage = loginPage.signupUser();
-         signupPage.signupUser();
-         log.info("The user clicks on the Sign Up button and creates the account");
-         signupPage.switchToDefaultContent();
-         log.info("The user is redirected to the home page");
-         Assert.assertTrue(homePage.validateUserLogin(), "Validating the account is successfully created");
-
-     }*/
-    @Test(dataProviderClass = Data.class, dataProvider = "user")
-    public void testInputUsers(Object[] data){
-        //log.info(user.toString());
-        homePage = getHomePage();
-        log.info("Opening homePage");
-        LoginPage loginPage = homePage.loginUser();
-        log.info("Click on login button");
-        //loginPage.signupUser();
-        SignupPage signupPage = loginPage.signupUser();
-        //signupPage.signupUser(user);
-        Assert.assertTrue(homePage.validateUserLogin(), "Validating the account is successfully created");
-        log.info("The user is created");
-
     }
 
-    /*@Test(description = "Cancel account")
-    Crear el test con el metodo creado en su clase
 
-    y los data provider
-
-    public void logoutUser() {
-        log.info("Opening homePage");
+    @Test(description = "Log in (after the test finish you have to log out)", dataProviderClass = Data.class, dataProvider = "user", priority = 0)
+    public void loginUser(User user) {
         homePage = getHomePage();
-        Assert.assertTrue(newTabSample.is_zen_container_present(), "Verify Zen container is present");
-    }*/
+        log.info("Opening homePage");
+        LoginPage loginPage = homePage.loginUser();
+        log.info("Click on login button");
+        loginPage.loginUser(user);
+        log.info("The user input the data to log in");
+        loginPage.switchToDefaultContent();
+        log.info("The user " +  username + " was redirected to the home page");
+        Assert.assertTrue(homePage.validateUserLogin(),"The user login successfully");
+        log.info("Log in account successfully");
+        //Assert.assertEquals(homePage.validateUserLogin(),username, "The user login successfully");
+        homePage.logoutUser();
+        log.info("Log out account successfully");
+        Assert.assertTrue(homePage.validateUserLogout(),"The user log out the page successfully");
+        log.info("User login/logout test completed");
+    }
+
+
+    @Test(description = "Cancel account", dataProviderClass = Data.class, dataProvider = "user", priority = 1)
+    public void deleteAccount(User user) {
+        homePage = getHomePage();
+        log.info("Opening homePage");
+        LoginPage loginPage = homePage.loginUser();
+        log.info("Click on login button");
+        loginPage.loginUser(user);
+        log.info("The user input the data to log in");
+        DeleteAccount deleteAccount = homePage.deleteAccount();
+        log.info("Click on ESPN profile button");
+        deleteAccount.deleteAccount();
+        log.info("The user goes to the popup to delete the account");
+        Assert.assertEquals(deleteAccount.validateDeletedAccount(), deleteConfirmation,  "The account is deleted successfully");
+        log.info("Account deleted");
+        loginPage.switchToDefaultContent();
+    }
 }
-
-
-

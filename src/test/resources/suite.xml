@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="example test suite" verbose="1">
+<suite name="ESPN test suite" verbose="1">
 	<listeners>
 		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
