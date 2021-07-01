@@ -6,11 +6,13 @@
 	</listeners>
 	
 	<parameter name="browser" value="firefox"></parameter>
-	<parameter name="url" value="https://courses.letskodeit.com/practice"></parameter>
+	<parameter name="url" value="https://www.espn.com/?src=com&amp;_adblock=true"></parameter>
 
 	<test name="myTest">
 		<classes>
-			<class name="com.web.automation.test.openNewTabTest"></class>
+			<class name="com.web.automation.test.LogOutTest"></class>
+			<class name="com.web.automation.test.LoginTest"></class>
+
 		</classes>
 	</test>
 </suite>

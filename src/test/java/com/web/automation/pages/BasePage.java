@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Parent of the other classes of pages.
@@ -60,6 +61,10 @@ public class BasePage {
 	 */
 	public void waitElementVisibility(WebElement element) {
 		getWait().until(ExpectedConditions.visibilityOf(element));
+	}
+
+	public void waitImplicit(int time) {
+		driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
 	}
 
 	/**
