@@ -18,7 +18,11 @@ public class BasePage {
 	private WebDriver driver;
 	private WebDriverWait wait;
 	public Logger log = Logger.getLogger(BasePage.class);
-	
+
+	public void setDriver(WebDriver driver) {
+		this.driver = driver;
+	}
+
 	/**
 	 * Constructor.
 	 * @param pDriver WebDriver

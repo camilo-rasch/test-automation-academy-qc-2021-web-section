@@ -1,12 +1,12 @@
 package com.web.automation.test;
 
 
+import com.web.automation.data.Data;
+import com.web.automation.data.User;
 import com.web.automation.driver.Driver;
 import com.web.automation.pages.HomePage;
 import org.apache.log4j.Logger;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
 /**
  * Parent of the other classes of test.
@@ -32,7 +32,7 @@ public class BaseTest {
 	public void afterTest() {
 		Home.dispose();
 	}
-	
+
 	/**
 	 * Get the home page.
 	 * @return {@link HomePage}

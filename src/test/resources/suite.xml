@@ -4,10 +4,13 @@
 	<listeners>
 		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
+
+	<parameter name="browser" value="chrome"></parameter>
+	<parameter name="url" value="https://www.espn.com/?src=com&amp;_adblock=true"></parameter>
 	
 	<test name="myTest">
 		<classes>
-			<class name=""></class>
+			<class name="com.web.automation.test.EspnUserAccountTest"></class>
 		</classes>
 	</test>
 </suite>
