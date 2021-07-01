@@ -1,86 +1,53 @@
 package com.web.automation.test;
 
+import com.web.automation.Workflow.Workflow;
+import com.web.automation.data.Data;
+import com.web.automation.data.UserInfo;
 import com.web.automation.pages.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * Test.
+ * Tests class.
  * @author fabio.alarcon
  */
 
 public class AccountManagement extends BaseTest{
 
     private HomePage homePage;
+    private Workflow workflow = new Workflow();
 
 
-//    @Test(description = "Sign up")
-//    public void testFirstSingUp(){
-//        log.info("Opening homePage");
-//        homePage = getHomePage();
-//        log.info("Click to Sign Up button");
-//        NewAccount newAccount = homePage.clickToSignUp();
-//        log.info("Insert data to registration");
-//        newAccount.signUpData();
-//        log.info("Check if the drive is in the right iframe");
-//        Assert.assertTrue(newAccount.isCreateAccountTitleVisible(), "Checking the iframe title");
-//        log.info("Click to create the new account");
-//        newAccount.clickToFinishRegistration();
-//        log.info("Confirmation of the account created");
-//        Assert.assertTrue(homePage.confirmationOfTheAccount(),"Checking the account profile");
-//    }
-
-
-    @Test(description = "Log In the session", groups = {"Log In Test", "Log Out Test", "Cancel Account"})
-    public void testLogIn(){
+    @BeforeMethod(description = "Create a new account and logout", alwaysRun = true)
+        public void creatingAnAccount(Object[] credentialsInfo){
+        UserInfo userInfo = (UserInfo) credentialsInfo[0];
         log.info("Opening homePage");
         homePage = getHomePage();
-        log.info("Click to general banner");
-        homePage.clickOnGeneralBanner();
-        log.info("Click to Log In button");
-        LogIn login = homePage.clickToLogInbutton();
-        log.info("Check if the drive is in the right iframe");
-        Assert.assertTrue(login.isTheDriverInTheRightIframe(),"Checking the 'need help' button");
-        log.info("Insert log in data");
-        login.logInData();
-        log.info("Click to Log in");
-        login.clickToLogInWithCredentials();
-        log.info("Confirmation of the log in account");
-        Assert.assertTrue(homePage.confirmationOfTheAccount(),"Checking the account profile");
+        workflow.creatingOneAccount(homePage, userInfo);
+        workflow.logOutMethod(homePage);
+        }
+
+    @Test(description = "Log In the session", dataProvider = "Credentials", dataProviderClass = Data.class)
+    public void testLogIn(UserInfo userInfo){
+        log.info("Opening homePage");
+        homePage = getHomePage();
+        workflow.logInMethod(homePage, userInfo);
+        workflow.logOutMethod(homePage);
     }
 
-
-    @Test(description = "Log Out the session", groups = {"Log In Test", "Log Out Test"})
-    public void testLogOut(){
+    @Test(description = "Log Out the session", dataProvider = "Credentials", dataProviderClass = Data.class)
+    public void testLogOut(UserInfo userInfo){
         log.info("Opening homePage");
         homePage = getHomePage();
-        log.info("Click on the banner");
-        homePage.clickOnGeneralBanner();
-        log.info("Click to log out");
-        homePage.clickToSignOut();
-        log.info("Confirmation of the log out");
-        Assert.assertTrue(homePage.confirmationOfTheLogOut(),"Checking the sign up button");
+        workflow.logInMethod(homePage, userInfo);
+        workflow.logOutMethod(homePage);
     }
 
-
-    @Test(description = "Cancel Account", groups = {"Cancel Account"})
-    public void testZzCancelAccount(){
+    @Test(description = "Cancel Account", dataProvider = "Credentials", dataProviderClass = Data.class)
+    public void testZzCancelAccount(UserInfo userInfo) {
         log.info("Opening homePage");
         homePage = getHomePage();
-        log.info("Click on the banner");
-        homePage.clickOnGeneralBanner();
-        log.info("Go to profile and delete account");
-        CancelAccount cancelAccount = homePage.clickToProfile();
-        log.info("First cancel");
-        cancelAccount.cancelAccount1();
-        log.info("Confirm that was canceled");
-        cancelAccount.confirmCancelAccount();
-        log.info("Last confirmation of the account cancel");
-        cancelAccount.lastCancelConfirmation();
-        log.info("Check the deactivated");
-        Assert.assertTrue(cancelAccount.confirmationOfTheAccountDeactivated(),"Check that the account is deactivated");
+        workflow.logInMethod(homePage, userInfo);
+        workflow.cancelAccountMethod(homePage);
     }
 }

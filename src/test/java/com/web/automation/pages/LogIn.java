@@ -4,6 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+/**
+ * Login methods
+ * @author fabio.alarcon
+ */
+
 public class LogIn extends BasePage{
     /**
      * Constructor.
@@ -26,20 +31,32 @@ public class LogIn extends BasePage{
     @FindBy(css = "a[did-translate=\"login.NEED_HELP\"]")
     private WebElement buttonToConfirmTheIframe;
 
+    @FindBy(css = "#disneyid-iframe")
+    private WebElement iframe;
 
-    public void logInData(){
-        dataKeys(this.logInEmail,"testing4581@aol.com");
-        dataKeys(this.logInPassword,"13a1efhGRB");
+    /**
+     * Method to send keys (credentials) in order to login
+     * @param logInEmail email of the account created
+     * @param logInPassword password of the account created
+     */
+    public void logInData(String logInEmail, String logInPassword){
+        dataKeys(this.logInEmail,logInEmail);
+        dataKeys(this.logInPassword,logInPassword);
     }
 
+    /**
+     * Method to click on the button to login
+     */
     public void clickToLogInWithCredentials(){
         clickOnElement(this.clickToLogIn);
     }
 
+    /**
+     * Check that the driver is in the right place
+     * @return the location of the driver
+     */
     public boolean isTheDriverInTheRightIframe (){
         waitElementVisibility(this.buttonToConfirmTheIframe);
         return this.buttonToConfirmTheIframe.isDisplayed();
     }
-
-
 }

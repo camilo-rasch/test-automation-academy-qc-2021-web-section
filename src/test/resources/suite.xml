@@ -9,12 +9,6 @@
 	<parameter name="url" value="https://www.espn.com/?src=com&amp;_adblock=true"/>
 
 	<test name="Test Cases">
-		<groups>
-			<run>
-				<include name="Log In Test"></include>
-			</run>
-		</groups>
-
 		<classes>
 			<class name="com.web.automation.test.AccountManagement"></class>
 		</classes>

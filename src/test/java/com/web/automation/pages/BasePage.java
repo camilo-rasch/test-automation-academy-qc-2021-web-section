@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * Parent of the other classes of pages.
- * @author camilo.mogollon
+ * @author fabio.alarcon
  */
 public class BasePage {
 	
@@ -25,7 +25,7 @@ public class BasePage {
 	 */
 	public BasePage(WebDriver pDriver) {
 		PageFactory.initElements(pDriver, this);
-		wait = new WebDriverWait(pDriver, 30);
+		wait = new WebDriverWait(pDriver, 20);
 		driver = pDriver;
 	}
 
@@ -62,7 +62,6 @@ public class BasePage {
 		getWait().until(ExpectedConditions.visibilityOf(element));
 	}
 
-
 	/**
 	 * Wait element to be visible.
 	 * @param element WebElement
@@ -70,7 +69,6 @@ public class BasePage {
 	public void waitElementInvisibility(WebElement element) {
 		getWait().until(ExpectedConditions.invisibilityOf(element));
 	}
-
 
 	/**
 	 * Wait element to be visible.
@@ -89,6 +87,11 @@ public class BasePage {
 		element.click();
 	}
 
+	/**
+	 * Method to send keys
+	 * @param element web element
+	 * @param data String
+	 */
 	public void dataKeys(WebElement element, String data){
 		waitElementVisibility(element);
 		element.sendKeys(data);

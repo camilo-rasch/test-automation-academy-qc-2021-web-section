@@ -1,16 +1,17 @@
 package com.web.automation.pages;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
+
+/**
+ * Cancel Account methods.
+ * @author fabio.alarcon
+ */
 
 public class CancelAccount extends BasePage{
-
-    HomePage homePage;
-    LogIn logIn;
 
     /**
      * Constructor.
@@ -24,37 +25,51 @@ public class CancelAccount extends BasePage{
     @FindBy(css = "a[id=\"cancel-account\"]")
     private WebElement deleteAccountButton;
 
+    @FindBy(css = "button[ng-click=\"vm.cancel()\"]")
+    private WebElement confirmfirstcancel;
+
     @FindBy(css = "button[ng-click=\"vm.confirm()\"]")
     private WebElement confirmDeleteAccount;
-
-    @FindBy(css = "iframe[name=disneyid-iframe]")
-    private WebElement iframeDelete;
 
     @FindBy(css = "button[ng-click=\"vm.close()\"]")
     private WebElement lastConfirmation;
 
-//    @FindBy(css = "h2[class=\"title title-primary ng-isolate-scope\"]")
-//    private WebElement accountDeleted;
-
-
+    /**
+     * Method to click on delete account the first time
+     */
     public void cancelAccount1(){
-        try {
-            clickOnElement(this.deleteAccountButton);
-        }catch (org.openqa.selenium.StaleElementReferenceException ex){
-            clickOnElement(this.deleteAccountButton);
-        }
+        waitElementVisibility(this.deleteAccountButton);
+        clickOnElement(this.deleteAccountButton);
     }
 
+    /**
+     * Method to check if the click in the first cancel button was success
+     * @return Display the second confirmation
+     */
+    public boolean assertfirstcancel(){
+        waitElementVisibility(this.confirmfirstcancel);
+        return this.confirmfirstcancel.isDisplayed();
+    }
+
+    /**
+     * Method to click on delete account the second time
+     */
     public void confirmCancelAccount(){
         clickOnElement(this.confirmDeleteAccount);
     }
 
+    /**
+     * Method to confirm the deleted of the account by third time
+     */
     public void lastCancelConfirmation(){
         clickOnElement(this.lastConfirmation);
     }
 
-    public boolean confirmationOfTheAccountDeactivated (){
-        waitElementVisibility(this.iframeDelete);
-        return this.iframeDelete.isDisplayed();
+    /**
+     * Method to confirm that the account is deleted, the driver is out of the account
+     * @return Header of the webpage
+     */
+    public String cancelDeactivated(){
+        return getDriver().getTitle();
     }
 }

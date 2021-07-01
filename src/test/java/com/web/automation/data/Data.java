@@ -2,21 +2,32 @@ package com.web.automation.data;
 
 import org.testng.annotations.DataProvider;
 
+import java.util.Random;
+
 /**
  * Data provider class.
- * @author camilo.mogollon
+ * @author fabio.alarcon
  */
 public class Data {
 
     @DataProvider(name = "Credentials")
-    public Object[][] credentials() {
+    public Object[][] credentialsOriginal() {
 
-        Object[][] credentials = new Object[1][1];
+        UserInfo userInfo = new UserInfo("Fabio",
+                "Alarcon",
+                "test" + randomNumber() + "@aol.com",
+                "1231abc32");
+        return new Object[][] {{userInfo}};
+    }
 
-        credentials[0][0] = "testingtryfinal1@studying.com";
-        credentials[0][1] = "13a1fghGRB";
-        return credentials;
+    /**
+     * Method to create random numbers
+     * @return
+     * Used to create the email
+     */
+    public int randomNumber (){
+        Random random = new Random();
+        int number = random.nextInt(5000);
+        return number;
     }
 }
-
-//rows and columns
