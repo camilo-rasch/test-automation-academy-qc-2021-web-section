@@ -4,10 +4,13 @@
 	<listeners>
 		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
+
+	<parameter name="browser" value="chrome"></parameter>
+	<parameter name="url" value="https://www.travelocity.com/"></parameter>
 	
 	<test name="myTest">
 		<classes>
-			<class name=""></class>
+			<class name="com.web.automation.test.FlightPageTest"></class>
 		</classes>
 	</test>
 </suite>

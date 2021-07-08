@@ -70,4 +70,18 @@ public class BasePage {
 		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
 	}
 
+	/**
+	 * Click On clickable Element
+	 * @param element WebElement
+	 */
+	public void clickOnElement(WebElement element){
+		waitElementVisibility(element);
+		element.click();
+	}
+
+	public void sendKeysOnElement(WebElement element, String keys){
+		waitElementVisibility(element);
+		element.sendKeys(keys);
+	}
+
 }

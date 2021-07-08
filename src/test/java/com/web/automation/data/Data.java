@@ -1,5 +1,6 @@
 package com.web.automation.data;
 
+import com.web.automation.pojo.Flight;
 import org.testng.annotations.DataProvider;
 
 /**
@@ -8,8 +9,13 @@ import org.testng.annotations.DataProvider;
  */
 public class Data {
 
-    @DataProvider(name = "countries")
+    @DataProvider(name = "flights")
     public Object[][] inputData() {
-        return new Object[][] {{"Colombia"}, {"Brazil"}, {"Peru"}};
+        Flight flight = new Flight("LAS",
+                "LAX",
+                "00:00 hrs",
+                "800",
+                "USA AirLine");
+        return new Object[][] {{flight}};
     }
 }
