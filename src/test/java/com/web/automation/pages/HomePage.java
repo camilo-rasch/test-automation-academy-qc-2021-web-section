@@ -35,11 +35,14 @@ public class HomePage extends BasePage {
     @FindBy(css = "section #location-field-leg1-destination")
     private WebElement destinationInputField;
 
-    @FindBy(css = "li[data-stid=\"location-field-leg1-origin-result-item\"]")
+    @FindBy(css = "li[data-stid=\"location-field-leg1-destination-result-item\"]")
     private List<WebElement> destinationsResultList;
 
     @FindBy(id = "d1-btn")
     private WebElement departingCalendarButton;
+
+    @FindBy(css = "button[data-stid=\"date-picker-paging\"]:last-child")
+    private WebElement forwardMonthButton;
 
     @FindBy(css = "td button.uitk-date-picker-day")
     private List<WebElement> calendarDaysList;
@@ -79,7 +82,7 @@ public class HomePage extends BasePage {
         sendKeysOnElement(departureInputField, flight.getDeparture());
         for (WebElement element: this.departuresResultList) {
             if(element.getText().contains(flight.getDeparture())){
-                clickOnElement(element);
+                element.click();
             }
         }
     }
@@ -90,22 +93,24 @@ public class HomePage extends BasePage {
         sendKeysOnElement(destinationInputField, flight.getDestination());
         for (WebElement element : this.destinationsResultList) {
             if(element.getText().contains(flight.getDestination())){
-                clickOnElement(element);
+                element.click();
             }
         }
     }
 
     public void pickOnDateOfDepartingCalendar(){
         clickOnElement(this.departingCalendarButton);
+        clickOnElement(this.forwardMonthButton);
+        log.info(calendarDaysList.size());
         for (WebElement element : this.calendarDaysList) {
-            if (element.getAttribute("data-day").contains("25")) {
+            if (element.getAttribute("data-day").contains("31")) {
                 clickOnElement(element);
             }
         }
         clickOnElement(this.calendarDoneButton);
     }
 
-    public void pickOnDateOfDestinationCalendar(){
+    /*public void pickOnDateOfDestinationCalendar(){
         clickOnElement(this.returningCalendarButton);
         for (WebElement element : this.calendarDaysList) {
             if (element.getAttribute("data-day").contains("29")) {
@@ -113,10 +118,11 @@ public class HomePage extends BasePage {
             }
         }
         clickOnElement(this.calendarDoneButton);
-    }
+    }*/
 
-    public void clickOnSearchButton(){
+    public DepartingFlightPage clickOnSearchButton(){
         clickOnElement(this.searchButton);
+        return new DepartingFlightPage(getDriver());
     }
 
 }

@@ -11,4 +11,6 @@ public class BookingFlightPage extends BasePage{
     public BookingFlightPage(WebDriver pDriver) {
         super(pDriver);
     }
+
+
 }
