@@ -17,9 +17,20 @@ public class ReviewTripPage extends BasePage{
     @FindBy(css = "button[data-test-id=\"goto-checkout-button\"]")
     private WebElement goToCheckOutButton;
 
-    public BookingFlightPage clickOnGoToCheckOutButton(){
+    @FindBy(css = "[data-test-id=\"price-summary\"]")
+    private WebElement priceSummarySection;
+
+    public BookingFlightPage clickOnGoToCheckOutButton() throws InterruptedException {
+        Thread.sleep(9000);
+        waitClickableElement(goToCheckOutButton);
         clickOnElement(goToCheckOutButton);
         return new BookingFlightPage(getDriver());
     }
+
+    public boolean priceSummarySectionIsDisplayed(){
+        return priceSummarySection.isDisplayed();
+    }
+
+
 
 }

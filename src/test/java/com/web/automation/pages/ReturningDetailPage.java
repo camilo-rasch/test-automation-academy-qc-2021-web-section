@@ -20,6 +20,33 @@ public class ReturningDetailPage extends BasePage{
     @FindBy(css = "button[data-test-id=\"select-button\"]")
     private WebElement continueButton;
 
+    @FindBy(css = "footer span.uitk-lockup-price")
+    private WebElement totalPrice;
+
+    @FindBy(css = "div[data-test-id=\"show-details-link\"] > button")
+    private WebElement showDetailButton;
+
+    @FindBy(css = "[data-test-id=\"journey-section-0\"]")
+    private WebElement flightDetailsInfoSection;
+
+    @FindBy(css = "footer .uitk-price-subtext:last-child")
+    private WebElement priceGuaranteeText;
+
+    public void clickOnShowDetailsButton(){
+        clickOnElement(showDetailButton);
+    }
+
+    public boolean flightDetailsInfoSectionIsDisplayed(){
+        return flightDetailsInfoSection.isDisplayed();
+    }
+
+    public boolean totalPriceIsDisplayed(){
+        return totalPrice.isDisplayed();
+    }
+
+    public boolean priceGuaranteeTextIsDisplayed(){
+        return priceGuaranteeText.isDisplayed();
+    }
 
     public ReviewTripPage clickOnContinueButton(){
         clickOnElement(continueButton);
@@ -36,5 +63,7 @@ public class ReturningDetailPage extends BasePage{
         }
         return new ReviewTripPage(getDriver());
     }
+
+
 
 }

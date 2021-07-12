@@ -101,7 +101,6 @@ public class HomePage extends BasePage {
     public void pickOnDateOfDepartingCalendar(){
         clickOnElement(this.departingCalendarButton);
         clickOnElement(this.forwardMonthButton);
-        log.info(calendarDaysList.size());
         for (WebElement element : this.calendarDaysList) {
             if (element.getAttribute("data-day").contains("31")) {
                 clickOnElement(element);

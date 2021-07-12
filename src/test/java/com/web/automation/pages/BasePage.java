@@ -1,6 +1,8 @@
 package com.web.automation.pages;
 
+import jdk.jfr.events.ExceptionThrownEvent;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -62,6 +64,14 @@ public class BasePage {
 	public void waitElementVisibility(WebElement element) {
 		getWait().until(ExpectedConditions.visibilityOf(element));
 	}
+
+	/**
+	 * Wait element to be invisible
+	 * @param element WebElement
+	 */
+	public void waitElementIsNotVisible(WebElement element){ getWait().until(ExpectedConditions.invisibilityOf(element));}
+
+	public void waitClickableElement(WebElement element){getWait().until(ExpectedConditions.elementToBeClickable(element));}
 
 	/**
 	 * Wait element to be visible.
