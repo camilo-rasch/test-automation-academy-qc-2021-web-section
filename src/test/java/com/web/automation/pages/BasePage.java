@@ -14,11 +14,11 @@ import java.util.List;
  * @author camilo.mogollon
  */
 public class BasePage {
-	
+
 	private WebDriver driver;
 	private WebDriverWait wait;
 	public Logger log = Logger.getLogger(BasePage.class);
-	
+
 	/**
 	 * Constructor.
 	 * @param pDriver WebDriver
@@ -44,7 +44,7 @@ public class BasePage {
 	protected WebDriver getDriver() {
 		return driver;
 	}
-	
+
 	/**
 	 * Close the web driver.
 	 */
@@ -68,6 +68,11 @@ public class BasePage {
 	 */
 	public void waitElementsVisibility(List<WebElement> elements) {
 		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
+	}
+
+	public void clickOnElement(WebElement element){
+		waitElementVisibility(element);
+		element.click();
 	}
 
 }
