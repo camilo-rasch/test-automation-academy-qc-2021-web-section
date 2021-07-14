@@ -8,7 +8,6 @@ public class Flight {
     private String flightPrice;
     private String airLine_company;
 
-    public Flight(){}
 
     public Flight(String departure, String destination, String flightDuration, String flightPrice, String airLine_company) {
         this.departure = departure;

@@ -72,7 +72,7 @@ public class HomePage extends BasePage {
         clickOnElement(flightsButton);
     }
 
-    public void clickONRoundTripButton(){
+    public void clickOnRoundTripButton(){
         clickOnElement(roundTripButton);
     }
 

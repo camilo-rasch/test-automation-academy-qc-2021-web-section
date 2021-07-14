@@ -10,7 +10,7 @@ import org.testng.annotations.Parameters;
 
 /**
  * Parent of the other classes of test.
- * @author camilo.mogollon
+ * @author camilo.mogollon, juandaniel.castano@globant.com
  */
 public class BaseTest {
 
@@ -18,8 +18,13 @@ public class BaseTest {
 	
 	private HomePage Home;
 	public Logger log = Logger.getLogger(BaseTest.class);
-	
-	
+
+	/**
+	 * Open given browser and url
+	 * @param browser Browser
+	 * @param url WebPage direction
+	 */
+
 	@BeforeTest(alwaysRun=true)
 	@Parameters({"browser", "url"})
 	public void beforeTest(String browser, String url) {
@@ -27,6 +32,10 @@ public class BaseTest {
 		driver.getDriver().manage().window().maximize();
 		Home= new HomePage(driver.getDriver(), url);
 	}
+
+	/**
+	 * Close the browser
+	 */
 
 	@AfterTest(alwaysRun=true)
 	public void afterTest() {

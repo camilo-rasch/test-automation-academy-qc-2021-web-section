@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.Iterator;
 import java.util.Set;
 
 public class ReturningDetailPage extends BasePage{
@@ -36,15 +35,18 @@ public class ReturningDetailPage extends BasePage{
         clickOnElement(showDetailButton);
     }
 
-    public boolean flightDetailsInfoSectionIsDisplayed(){
+    public boolean flightDetailsInfoSectionIsDisplayed() {
+        waitElementVisibility(flightDetailsInfoSection);
         return flightDetailsInfoSection.isDisplayed();
     }
 
     public boolean totalPriceIsDisplayed(){
+        waitElementVisibility(totalPrice);
         return totalPrice.isDisplayed();
     }
 
     public boolean priceGuaranteeTextIsDisplayed(){
+        waitElementVisibility(priceGuaranteeText);
         return priceGuaranteeText.isDisplayed();
     }
 
@@ -53,11 +55,9 @@ public class ReturningDetailPage extends BasePage{
         String currentWindowHandle = getDriver().getWindowHandle();
 
         Set<String> windowHandles = getDriver().getWindowHandles();
-        Iterator<String> i1 = windowHandles.iterator();
 
-        while (i1.hasNext()){
-            String childWindowHandle = i1.next();
-            if(!currentWindowHandle.equalsIgnoreCase(childWindowHandle)){
+        for (String childWindowHandle : windowHandles) {
+            if (!currentWindowHandle.equalsIgnoreCase(childWindowHandle)) {
                 getDriver().switchTo().window(childWindowHandle);
             }
         }

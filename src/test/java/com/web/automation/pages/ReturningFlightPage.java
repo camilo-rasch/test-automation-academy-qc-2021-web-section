@@ -28,13 +28,17 @@ public class ReturningFlightPage extends BasePage{
 
 
     public void sortByPriceDropDown(){
-        selectOptionOnDropDown(sortByPriceDropDown, 4);
+
+        try{
+            selectOptionOnDropDown(sortByPriceDropDown, 2);
+        }catch (Exception e){
+            selectOptionOnDropDown(sortByPriceDropDown, 2);
+        }
     }
 
     public ReturningDetailPage clickOnReturningFlight() throws InterruptedException {
-        //waitElementIsNotVisible(loadingStatusBar);
         Thread.sleep(10000);
-        clickOnElement(returningFlightResultList.get(1));
+        clickOnElement(returningFlightResultList.get(2));
         return new ReturningDetailPage(getDriver());
     }
 }
