@@ -15,6 +15,10 @@ import org.testng.annotations.Parameters;
 
 public class BaseTest {
 
+	/**
+	 * Class' variables are defined
+	 */
+
 	private Driver driver;
 	
 	private HomePage Home;

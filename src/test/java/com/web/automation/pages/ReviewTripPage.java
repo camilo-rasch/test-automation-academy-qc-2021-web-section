@@ -15,9 +15,14 @@ public class ReviewTripPage extends BasePage{
      *
      * @param pDriver WebDriver
      */
+
     public ReviewTripPage(WebDriver pDriver) {
         super(pDriver);
     }
+
+    /**
+     * WebElements are defined
+     */
 
     @FindBy(css = "button[data-test-id=\"goto-checkout-button\"]")
     private WebElement goToCheckOutButton;
@@ -32,42 +37,70 @@ public class ReviewTripPage extends BasePage{
     private WebElement departureReviewSection;
 
     @FindBy(css = "[data-test-id=\"flight-review-0\"] div[data-test-id=\"fare-summary\"] h3")
-    private WebElement departureFlightFareText;
+    private WebElement departingFlightFareText;
 
     @FindBy(css = "[data-test-id=\"flight-review-1\"]")
     private WebElement returnReviewSection;
 
-    @FindBy(css = "[data-test-id=\"flight-review-1\"] div[data-test-id=\"fare-summary\"] h3")
-    private WebElement returnFlightFareText;
+    /**
+     * Validate if WebElement is displayed
+     * @return boolean
+     */
 
     public boolean departureReviewSectionIsDisplayed(){
         waitElementVisibility(departureReviewSection);
         return departureReviewSection.isDisplayed();
     }
 
+    /**
+     * Validate if text of WebElement is displayed
+     * @return boolean
+     */
+
+    public boolean departingFlightFareIsSelected(){
+        waitElementVisibility(departingFlightFareText);
+        return departingFlightFareText.getText().contains("Economy");
+    }
+
+    /**
+     * Validate if WebElement is displayed
+     * @return boolean
+     */
+
     public boolean returnReviewSectionIsDisplayed(){
         waitElementVisibility(returnReviewSection);
         return returnReviewSection.isDisplayed();
     }
+
+    /**
+     * Validate if WebElement is displayed
+     * @return boolean
+     */
 
     public boolean priceSummarySectionIsDisplayed() {
         waitElementVisibility(priceSummarySection);
         return priceSummarySection.isDisplayed();
     }
 
+    /**
+     * Validate if WebElement is displayed
+     * @return boolean
+     */
+
     public boolean tripTotalPriceTextIsDisplayed() {
         waitElementVisibility(tripTotalPriceText);
         return tripTotalPriceText.isDisplayed();
     }
+
+    /**
+     * Validate if WebElement is displayed
+     * @return boolean
+     */
 
     public BookingFlightPage clickOnGoToCheckOutButton() {
         waitClickableElement(goToCheckOutButton);
         clickOnElement(goToCheckOutButton);
         return new BookingFlightPage(getDriver());
     }
-
-
-
-
 
 }

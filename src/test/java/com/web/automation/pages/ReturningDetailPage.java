@@ -21,6 +21,10 @@ public class ReturningDetailPage extends BasePage{
         super(pDriver);
     }
 
+    /**
+     * WebElements are defined
+     */
+
     @FindBy(css = "button[data-test-id=\"select-button\"]")
     private WebElement continueButton;
 
@@ -39,6 +43,11 @@ public class ReturningDetailPage extends BasePage{
     @FindBy(css = "[data-test-id=\"flight-summary\"] h3 span")
     private WebElement returnTimeText;
 
+    /**
+     * Get the text from specific WebElement
+     * @return String
+     */
+
     public String returnEstimatedTime(){
         try {
             waitElementVisibility(returnTimeText);
@@ -48,6 +57,10 @@ public class ReturningDetailPage extends BasePage{
         return returnTimeText.getText();
     }
 
+    /**
+     *
+     * @return ReviewTripPage object
+     */
 
     public ReviewTripPage clickOnContinueButton(){
         clickOnElement(continueButton);

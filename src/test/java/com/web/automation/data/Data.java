@@ -10,6 +10,11 @@ import org.testng.annotations.DataProvider;
 
 public class Data {
 
+    /**
+     * Return flight object[] data
+     * @return Object[][]
+     */
+
     @DataProvider(name = "flights")
     public Object[][] inputData() {
         Flight flight = new Flight("LAS",

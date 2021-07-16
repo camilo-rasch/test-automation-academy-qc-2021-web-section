@@ -19,11 +19,20 @@ public class DepartureDetailPage extends BasePage{
         super(pDriver);
     }
 
+    /**
+     * WebElements are defined
+     */
+
     @FindBy(css = "button[data-test-id=\"select-button\"]")
     private WebElement continueButton;
 
     @FindBy(css = "[data-test-id=\"flight-summary\"] h3 span")
     private WebElement departureTimeText;
+
+    /**
+     * Get the text from specific WebElement
+     * @return String
+     */
 
     public String departureEstimatedTime(){
         try {
@@ -34,6 +43,10 @@ public class DepartureDetailPage extends BasePage{
         return departureTimeText.getText();
     }
 
+    /**
+     *
+     * @return ReturningFlightPage object
+     */
 
     public ReturningFlightPage clickOnContinueButton(){
         clickOnElement(continueButton);

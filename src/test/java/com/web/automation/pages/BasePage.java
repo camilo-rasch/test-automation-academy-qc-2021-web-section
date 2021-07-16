@@ -1,8 +1,6 @@
 package com.web.automation.pages;
 
-import jdk.jfr.events.ExceptionThrownEvent;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -72,11 +70,16 @@ public class BasePage {
 	 */
 	public void waitElementIsNotVisible(WebElement element){ getWait().until(ExpectedConditions.invisibilityOf(element));}
 
+	/**
+	 * Wait element list to be clickable
+	 * @param element WebElement list
+	 */
+
 	public void waitClickableElement(WebElement element){getWait().until(ExpectedConditions.elementToBeClickable(element));}
 
 	/**
-	 * Wait element to be visible.
-	 * @param elements list WebElement
+	 * Wait element list to be visible
+	 * @param elements WebElement list
 	 */
 	public void waitClickableElements(List<WebElement> elements) {
 		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
@@ -86,15 +89,28 @@ public class BasePage {
 	 * Click On clickable Element
 	 * @param element WebElement
 	 */
+
 	public void clickOnElement(WebElement element){
 		waitElementVisibility(element);
 		element.click();
 	}
 
+	/**
+	 * Send keys to spotted WebElement
+	 * @param element WebElement
+	 * @param keys String
+	 */
+
 	public void sendKeysOnElement(WebElement element, String keys){
 		waitElementVisibility(element);
 		element.sendKeys(keys);
 	}
+
+	/**
+	 * Select an option from DropDown field by index
+	 * @param element WebElement
+	 * @param index int
+	 */
 
 	public void selectOptionOnDropDown(WebElement element, int index){
 		waitElementVisibility(element);

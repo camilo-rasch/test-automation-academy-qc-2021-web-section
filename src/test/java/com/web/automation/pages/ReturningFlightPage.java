@@ -1,6 +1,5 @@
 package com.web.automation.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,6 +21,9 @@ public class ReturningFlightPage extends BasePage{
         super(pDriver);
     }
 
+    /**
+     * WebElements are defined
+     */
 
     @FindBy(css = "li button.uitk-card-link")
     private List<WebElement> returningFlightResultList;
@@ -32,6 +34,10 @@ public class ReturningFlightPage extends BasePage{
     @FindBy(css = "[data-test-id=\"departure-time\"]")
     private List<WebElement> departureTimeList;
 
+    /**
+     *
+     * @return ReturningDetailPage object
+     */
 
     public ReturningDetailPage clickOnReturningFlight() {
        try {
@@ -43,6 +49,11 @@ public class ReturningFlightPage extends BasePage{
        }
         return new ReturningDetailPage(getDriver());
     }
+
+    /**
+     * Get the text from specific WebElement
+     * @return String
+     */
 
     public String returnEstimatedTime(){
         waitClickableElements(departureTimeList);

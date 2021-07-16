@@ -23,6 +23,10 @@ public class DepartingFlightPage extends BasePage{
         super(pDriver);
     }
 
+    /**
+     * WebElements are defined
+     */
+
     @FindBy(css = "select[data-test-id=\"sortDropdown\"]")
     private WebElement sortByDropDown;
 
@@ -47,6 +51,10 @@ public class DepartingFlightPage extends BasePage{
     @FindBy(css = "[data-test-id=\"departure-time\"]")
     private List<WebElement> departureTimeList;
 
+    /**
+     * Sort By dropdown field is displayed
+     * @return boolean
+     */
 
     public boolean sortByDropDownFieldIsDisplayed(){
         try {
@@ -59,6 +67,10 @@ public class DepartingFlightPage extends BasePage{
         }
     }
 
+    /**
+     * Select an option from DropDown field by index
+     */
+
     public void sortByDropDown() {
         try {
             selectOptionOnDropDown(sortByDropDown, 2);
@@ -67,6 +79,10 @@ public class DepartingFlightPage extends BasePage{
         }
     }
 
+    /**
+     *
+     * @return DepartureDetailPage object
+     */
 
     public DepartureDetailPage clickOnDepartureFlight() {
         try {
@@ -78,9 +94,19 @@ public class DepartingFlightPage extends BasePage{
         return new DepartureDetailPage(getDriver());
     }
 
+    /**
+     * Get the text from specific WebElement
+     * @return String
+     */
+
     public String departureEstimatedTime(){
         return departureTimeList.get(0).getText();
     }
+
+    /**
+     * Validate if WebElement attribute is displayed
+     * @return boolean
+     */
 
     public boolean selectButtonIsDisplayed() {
         waitClickableElements(departureFlightResultList);
@@ -93,6 +119,11 @@ public class DepartingFlightPage extends BasePage{
         return existingTag;
     }
 
+    /**
+     * Validate if WebElement attribute is displayed
+     * @return boolean
+     */
+
     public boolean flightPriceIsDisplayed() {
         boolean existingPrice = true;
         for (WebElement element: flightPriceList) {
@@ -102,6 +133,11 @@ public class DepartingFlightPage extends BasePage{
         }
         return existingPrice;
     }
+
+    /**
+     * Validate if WebElement attribute is displayed
+     * @return boolean
+     */
 
     public boolean journeyDurationIsDisplayed() {
         boolean existingText = true;
@@ -113,6 +149,11 @@ public class DepartingFlightPage extends BasePage{
         return existingText;
     }
 
+    /**
+     * Validate if WebElement attribute is displayed
+     * @return boolean
+     */
+
     public boolean routeAndAirLineFlightIsDisplayed() {
         boolean existingRoute = true;
         for (int i = 0; i < departureFlightResultList.size(); i++) {
@@ -123,7 +164,10 @@ public class DepartingFlightPage extends BasePage{
         return existingRoute;
     }
 
-
+    /**
+     * Validate if data of WebElement list is sorted
+     * @return boolean
+     */
 
     public boolean listCorrectlySortedValidation(){
         boolean sortedList = true;

@@ -15,6 +15,10 @@ import java.util.Optional;
 
 public class HomePage extends BasePage {
 
+    /**
+     * WebElements are defined
+     */
+
     @FindBy(css = "#uitk-tabs-button-container a[href*=\"flight\"]")
     private WebElement flightsButton;
 
@@ -66,8 +70,6 @@ public class HomePage extends BasePage {
     @FindBy(css = "button[data-testid=\"submit-button\"]")
     private WebElement searchButton;
 
-
-
     /**
      * Constructor.
      * @param driver WebDriver
@@ -78,19 +80,35 @@ public class HomePage extends BasePage {
         driver.get(url);
     }
 
+    /**
+     * Click On action in specific WebElement
+     */
+
     public void clickOnFlightButton(){
         clickOnElement(flightsButton);
     }
 
+    /**
+     * Click On action in specific WebElement
+     */
+
     public void clickOnRoundTripButton(){
         clickOnElement(roundTripButton);
     }
+
+    /**
+     * Click On action in specific WebElement
+     */
 
     public void clickOnTravelerNumberButton(){
         clickOnElement(travelersButton);
         clickOnElement(increaseTravelerNumberButton);
         clickOnElement(guestDoneButton);
     }
+
+    /**
+     * Send keys and click on specific WebElement
+     */
 
     public void selectDepartureAirport(Flight flight){
         clickOnElement(inputDepartureSelector);
@@ -103,6 +121,10 @@ public class HomePage extends BasePage {
         }
     }
 
+    /**
+     * Send keys and click on specific WebElement
+     */
+
     public void selectDestinationAirport(Flight flight){
         clickOnElement(inputDestinationSelector);
         clickOnElement(destinationInputField);
@@ -113,6 +135,10 @@ public class HomePage extends BasePage {
             }
         }
     }
+
+    /**
+     * Click On action in specific WebElement
+     */
 
     public void pickOnDateOfDepartingCalendar(){
         clickOnElement(this.departingCalendarButton);
@@ -129,6 +155,10 @@ public class HomePage extends BasePage {
         clickOnElement(this.calendarDoneButton);
     }
 
+    /**
+     * Click On action in specific WebElement
+     */
+
     public void pickOnDateOfDestinationCalendar(){
         clickOnElement(this.returningCalendarButton);
         clickOnElement(this.forwardMonthButton);
@@ -139,6 +169,11 @@ public class HomePage extends BasePage {
         }
         clickOnElement(this.calendarDoneButton);
     }
+
+    /**
+     *
+     * @return DepartingFlightPage object
+     */
 
     public DepartingFlightPage clickOnSearchButton(){
         clickOnElement(this.searchButton);

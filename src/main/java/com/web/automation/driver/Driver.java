@@ -11,7 +11,7 @@ import java.net.URL;
 
 /**
  * Driver class
- * @author camilo.mogollon
+ * @author camilo.mogollon, juandaniel.castano@globant.com
  */
 
 public class Driver {
