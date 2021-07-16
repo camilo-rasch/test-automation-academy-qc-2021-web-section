@@ -33,9 +33,8 @@ public class FlightByTravelocity extends BaseTest{
         Assert.assertTrue(resultsSearchFlight.confirmationOfFlightRoute(),"Checking the list is not empty");
         log.info("Sort by short duration");
         SelectingFlights selectingFlights = resultsSearchFlight.selectSortBy("Duration (Shortest)");
-        //Assert.assertNotEquals(resultsSearchFlight.selectSortBy("Duration (Shortest)"),resultsSearchFlight.afterSort());
-        //log.info("Assert the order");
-        //Assert.assertTrue(resultsSearchFlight.checkTheFlightsTimeOrder(resultsSearchFlight.getWebElementsList()));
+        log.info("Assert the order");
+        Assert.assertTrue(selectingFlights.afterSort());
         log.info("Select departure to LAX");
         selectingFlights.clickToSelectAFlight(1);
         log.info("Return trip to LAS");
@@ -43,7 +42,7 @@ public class FlightByTravelocity extends BaseTest{
         log.info("Price present");
         Assert.assertTrue(selectingFlights.totalPrice(),"Checking the total price");
         log.info("Departure and Return information of the previous selection");
-        Assert.assertTrue(selectingFlights.departureReturnInfo(),"Checking two");
+        Assert.assertTrue(selectingFlights.departureReturnInfo(),"Checking two travelers");
         log.info("Checking the price text");
         Assert.assertTrue(selectingFlights.priceText());
         log.info("Assert fare Economy");
@@ -68,7 +67,6 @@ public class FlightByTravelocity extends BaseTest{
         secureBooking.firstTravelerBirthDay("10");
         log.info("First Traveler birth year");
         secureBooking.firstTravelerBirthYear("1995");
-
         log.info("Input second traveler name");
         secureBooking.secondTravelerName("Fabio");
         log.info("Input second traveler middle name");
@@ -77,20 +75,17 @@ public class FlightByTravelocity extends BaseTest{
         secureBooking.secondTravelerLastName("Alarcon");
         log.info("Input second traveler gender");
         secureBooking.secondTravelGender();
-
         log.info("Second Traveler birth month");
         secureBooking.secondTravelerBirthMonth("01 - Jan");
         log.info("Second Traveler birth day");
         secureBooking.secondTravelerBirthDay("05");
         log.info("Second Traveler birth year");
         secureBooking.secondTravelerBirthYear("1989");
-
-
-
         log.info("Checking 'who'");
         Assert.assertTrue(secureBooking.whosTraveling());
-        log.info("Getting text");
+        log.info("Getting text: type of flight");
         Assert.assertEquals(secureBooking.typeOfTravel(),"Roundtrip flight");
+        log.info("Getting text: how many tickets");
         Assert.assertEquals(secureBooking.quantityOfTickets(),"2 tickets: 2 adults");
         log.info("Complete booking button");
         Assert.assertTrue(secureBooking.bookingButton());
