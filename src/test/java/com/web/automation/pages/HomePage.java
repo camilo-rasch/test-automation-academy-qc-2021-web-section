@@ -7,7 +7,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import java.text.DateFormat;
+import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
+
+import static java.lang.Thread.sleep;
 
 /**
  * Class for interact with the home page.
@@ -20,6 +27,15 @@ public class HomePage extends BasePage {
 
     @FindBy(css = "#uitk-tabs-button-container a[href*=\"roundtrip\"]")
     private WebElement roundTripButton;
+
+    @FindBy(css = "[data-testid*='travelers']")
+    private WebElement numberOfTravelers;
+
+    @FindBy(css = "[aria-labelledby*='increase-adults']")
+    private WebElement increaseAdultTraveler;
+
+    @FindBy(css = "[data-testid*='done-button']")
+    private WebElement doneButton;
 
     @FindBy(css = "section #location-field-leg1-origin")
     private WebElement departureInput;
@@ -36,6 +52,10 @@ public class HomePage extends BasePage {
     @FindBy(id = "d1-btn")
     private WebElement calendarButton;
 
+    @FindBy(css = ".uitk-calendar>div>button~button")
+    private WebElement nextMonth;
+
+
     @FindBy(css = "td button.uitk-date-picker-day:not(.is-disabled)")
     private List<WebElement> calendarDayLists;
 
@@ -50,6 +70,10 @@ public class HomePage extends BasePage {
 
     @FindBy(css = "div[data-testid='location-field-leg1-destination-container']")
     private WebElement inputDestinationWrapper;
+
+    @FindBy(css = "[data-day='29'][aria-label='Oct 29, 2021']")
+    private WebElement day;
+
 
     private String focusDayCalendar = "edge";
 
@@ -70,10 +94,10 @@ public class HomePage extends BasePage {
      * @param daysFromToday days from today to choose
      * @return
      */
-    public ResultsSearchFlight searchFlight(String origin, String destination, int daysFromToday){
+    public ResultsSearchFlight searchFlight(String origin, String destination, int daysFromToday) throws InterruptedException {
         clickOnElement(this.flightsButton);
         clickOnElement(this.roundTripButton);
-
+        increaseTravelers();
         waitElementVisibility(this.inputDepatureWrapper);
         clickOnElement(this.inputDepatureWrapper);
         this.departureInput.click();
@@ -96,21 +120,32 @@ public class HomePage extends BasePage {
         }
 
         clickOnElement(this.calendarButton);
+        clickOnElement(this.nextMonth);
+        clickOnElement(this.nextMonth);
         int daysCalendarSize = this.calendarDayLists.size();
         int cont = 0;
         boolean selectedDayFlag = false;
 
-        while (cont < daysCalendarSize-1 && !selectedDayFlag){
+        /*while (cont < daysCalendarSize-1 && !selectedDayFlag){
             if(this.calendarDayLists.get(cont).getAttribute("class").contains(this.focusDayCalendar)){
-                this.calendarDayLists.get(cont+daysFromToday).click();
+                this.calendarDayLists.get(daysFromToday).click();
                 selectedDayFlag = true;
             }
             cont++;
-        }
+
+        }*/
+        LocalDate currentDate = LocalDate.now();
+        String dayOfWeekPlus = currentDate.getMonth().name();
+        log.info("----"+dayOfWeekPlus);
+        clickOnElement(this.day);
         clickOnElement(this.calendarDoneButton);
         clickOnElement(this.submitButton);
 
         return new ResultsSearchFlight(getDriver());
     }
-
+    public void increaseTravelers(){
+        clickOnElement(this.numberOfTravelers);
+        clickOnElement(this.increaseAdultTraveler);
+        clickOnElement(this.doneButton);
+    }
 }

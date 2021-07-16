@@ -1,6 +1,8 @@
 package com.web.automation.pages;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -73,6 +75,17 @@ public class BasePage {
 	public void clickOnElement(WebElement element){
 		waitElementVisibility(element);
 		element.click();
+	}
+	public boolean existsElement(WebElement element) {
+		try {
+			//with this wait I can wait until teh element is visibility
+			waitElementVisibility(element);
+			return element.isDisplayed();
+		} catch (NoSuchElementException |TimeoutException e) {
+			//I use the e.printStackTrace(); for more information about the error
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }

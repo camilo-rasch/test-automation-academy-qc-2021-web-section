@@ -1,6 +1,7 @@
 package com.web.automation.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,8 +36,12 @@ public class ResultsSearchFlight extends BasePage{
     @FindBy(css = "a[data-test-id='forcedChoiceNoThanks']")
     private WebElement noThanksLink;
 
-    @FindBy(id = "listings-sort")
+    @FindBy(css = "#listings-sort")
     private WebElement sortBy;
+
+    @FindBy(css = "[data-test-id*='header-bar']")
+    private WebElement headerBar;
+
 
     private String airlineInfoSelector = "div[data-test-id='airline-info']";
     private String departureTimeSelector = "span[data-test-id='departure-time']";
@@ -98,9 +103,11 @@ public class ResultsSearchFlight extends BasePage{
         clickOnElement(this.continueButton);
     }
 
-    public FlightConfirmationPage clickOnNoThanksLink(){
-        clickOnElement(this.noThanksLink);
 
+    public FlightConfirmationPage clickOnNoThanksLink(){
+        boolean validation=existsElement(noThanksLink);
+        if(validation==true){
+        clickOnElement(this.noThanksLink);}
         Set<String> windowsHandlesAfterClick = getDriver().getWindowHandles();
         Iterator<String> iterator2 = windowsHandlesAfterClick.iterator();
 
@@ -114,9 +121,9 @@ public class ResultsSearchFlight extends BasePage{
     }
 
     public boolean isSortByPresent(){
-        waitElementVisibility(this.sortBy);
-        return this.sortBy.isDisplayed();
+        return existsElement(sortBy);
     }
+
     Select myDropDown;
     public ResultsSearchFlight selectDropdownValue(String value) {
         this.myDropDown = new Select(getDriver().findElement(By.id("listings-sort")));
@@ -124,4 +131,13 @@ public class ResultsSearchFlight extends BasePage{
         return new ResultsSearchFlight(getDriver());
 
     }
+
+    public boolean pageFinishToLoad(){
+        waitElementVisibility(headerBar);
+        boolean pageIsReady= headerBar.isDisplayed();
+        return pageIsReady;
+    }
+
+
+
 }

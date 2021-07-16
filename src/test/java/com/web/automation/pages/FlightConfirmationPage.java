@@ -10,8 +10,18 @@ public class FlightConfirmationPage extends BasePage{
     @FindBy(css = "button[data-test-id='goto-checkout-button']")
     private WebElement checkOutButton;
 
-    @FindBy(css = "table[data-test-id='trip-total']")
+    @FindBy(css = ".uitk-table-foot>tr>td>span")
     private WebElement tripTotal;
+
+    @FindBy(css = "[data-test-id='flight-review-0']")
+    private WebElement departureInformation;
+
+    @FindBy(css = "[data-test-id='flight-review-1']")
+    private WebElement returnInformation;
+
+    @FindBy(css = "[data-test-id*='review-0']>div>div[data-test-id*='fare']>h3")
+    private WebElement fareEconomyText;
+
 
     /**
      * Constructor.
@@ -23,8 +33,7 @@ public class FlightConfirmationPage extends BasePage{
     }
 
     public boolean isCheckOutButtonPresent(){
-        waitElementVisibility(this.checkOutButton);
-        return this.checkOutButton.isDisplayed();
+        return existsElement(this.checkOutButton);
     }
 
     public CustomerPaymentPage clickOnCheckOutButton(){
@@ -38,7 +47,16 @@ public class FlightConfirmationPage extends BasePage{
         return new CustomerPaymentPage(getDriver());
     }
     public boolean isTripTotalPresent(){
-        waitElementVisibility(this.tripTotal);
-        return this.tripTotal.isDisplayed();
+        return existsElement(this.tripTotal);
+    }
+    public boolean isDepartureInfoPresent(){
+        return existsElement(this.departureInformation);
+    }
+    public boolean isReturnInfoPresent(){
+        return existsElement(this.returnInformation);
+    }
+    public String matchFareEconomyText(){
+        waitElementVisibility(fareEconomyText);
+        return this.fareEconomyText.getText();
     }
 }

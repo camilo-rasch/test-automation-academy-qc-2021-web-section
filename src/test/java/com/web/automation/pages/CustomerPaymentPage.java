@@ -37,29 +37,26 @@ public class CustomerPaymentPage extends BasePage{
         log.info("Selected option: " + this.customerCountry.getFirstSelectedOption().getText());
     }
 
-    public boolean isWhoIsTravelingPresent(){
+    public String matchWhoIsTravelingText(){
         waitElementVisibility(this.whoIsTravelingText);
-        return this.whoIsTravelingText.isDisplayed();
+        return this.whoIsTravelingText.getText();
     }
 
     public boolean isCountryPresent(){
-        waitElementVisibility(this.country);
-        return this.country.isDisplayed();
+        return existsElement(this.country);
     }
 
-    public boolean isRoundTripPresent(){
+    public String matchRoundTripText(){
         waitElementVisibility(this.roundTripText);
-        return this.roundTripText.isDisplayed();
+        return roundTripText.getText();
     }
 
     public boolean isNameOnCardPresent(){
-        waitElementVisibility(this.nameOnCard);
-        return this.nameOnCard.isDisplayed();
+        return existsElement(this.nameOnCard);
     }
 
     public boolean isPhoneNumberPresent(){
-        waitElementVisibility(this.phoneNumber);
-        return this.phoneNumber.isDisplayed();
+        return existsElement(this.phoneNumber);
     }
 
 }
