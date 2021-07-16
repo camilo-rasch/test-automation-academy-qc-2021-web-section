@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class BasePage {
 	 */
 	public BasePage(WebDriver pDriver) {
 		PageFactory.initElements(pDriver, this);
-		wait = new WebDriverWait(pDriver, 20);
+		wait = new WebDriverWait(pDriver, 30);
 		driver = pDriver;
 	}
 
@@ -73,6 +74,18 @@ public class BasePage {
 	public void clickOnElement(WebElement element){
 		waitElementVisibility(element);
 		element.click();
+	}
+
+	public void dropDown(WebElement webElement, String option){
+		waitElementVisibility(webElement);
+		Select dropDown = new Select(webElement);
+		dropDown.selectByVisibleText(option);
+	}
+
+	public void travelerBasicInformation(List<WebElement> webElement, int index, String infoText){
+		WebElement travelerInformation = webElement.get(index);
+		travelerInformation.click();
+		travelerInformation.sendKeys(infoText);
 	}
 
 }

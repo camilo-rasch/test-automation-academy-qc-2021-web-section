@@ -1,43 +1,37 @@
 package com.web.automation.pages;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import org.openqa.selenium.support.ui.Select;
+import java.util.*;
 
 public class ResultsSearchFlight extends BasePage{
 
-    @FindBy(id = "stops-0")
-    private WebElement nonStopCheckbox;
+    @FindBy(css = "select[data-test-id=\"sortDropdown\"]")
+    private WebElement boxToOrder;
 
-    @FindBy(id = "stops-1")
-    private WebElement oneStopCheckbox;
-    private String oneStopCheckboxSelector = "stops-1";
+    @FindBy(css = "span[class=\"uitk-lockup-price\"]")
+    private List<WebElement> flightPrice;
 
-    @FindBy(css = "div[data-test-id=\"intersection-observer\"]")
-    private List<WebElement> flightsOfferingsList;
-    private String flightsOfferingsListSelector = "div[data-test-id=\"intersection-observer\"]";
+    @FindBy(css = "div[data-test-id=\"journey-duration\"]")
+    private List<WebElement> flightDuration;
 
-    @FindBy(css = "div[data-test-id=\"flight-summary\"] h3>span")
-    private WebElement flightSummaryDepartureTime;
+    @FindBy(css = "div[data-test-id=\"flight-operated\"]")
+    private List<WebElement> flightAirline;
 
-    @FindBy(css = "button[data-test-id=\"select-button\"]")
-    private WebElement continueButton;
+    @FindBy(css = "div[data-test-id=\"arrival-departure\"]")
+    private List<WebElement> flightRoute;
+
+    @FindBy(css = "button[aria-label*=\"Show details\"]")
+    private WebElement flightDetail;
+
 
     //Hotel search Pop UP selectors
     @FindBy(css = "a[data-test-id='forcedChoiceNoThanks']")
     private WebElement noThanksLink;
 
-    private String airlineInfoSelector = "div[data-test-id='airline-info']";
-    private String departureTimeSelector = "span[data-test-id='departure-time']";
-    private String flightTime = "";
-    private String searchFlightsPageHandle ="";
 
     /**
      * Constructor.
@@ -48,64 +42,68 @@ public class ResultsSearchFlight extends BasePage{
         super(pDriver);
     }
 
-    public void clickOnOneStopCheckBox(){
-        getWait().until(ExpectedConditions.presenceOfElementLocated(By.id(this.oneStopCheckboxSelector)));
-        this.oneStopCheckbox.click();
+    public boolean confirmationOfOrderButton(){
+        waitElementVisibility(this.boxToOrder);
+        return this.boxToOrder.isDisplayed();
     }
 
-    public void selectAFlightByAirline(String airlineToSelect){
-
-        getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(this.flightsOfferingsListSelector)));
-
-        for(WebElement flight: this.flightsOfferingsList){
-            WebElement airline = flight.findElement(By.cssSelector(this.airlineInfoSelector));
-            String airlineText = airline.getText();
-            if(airlineText.contains(airlineToSelect)){
-                this.flightTime = flight.findElement(By.cssSelector(this.departureTimeSelector)).getText();
-                flight.click();
-                break; //MALA PRACTICA USAR WHILE
-            }
-        }
+    public boolean confirmationFlightPriceInResults(){
+        return !this.flightPrice.isEmpty();
     }
 
-    public void selectAFlightByAirlineLambda(String airlineToSelect){
-        getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(this.flightsOfferingsListSelector)));
-
-        WebElement flightResult = this.flightsOfferingsList.stream().filter(
-                flight -> flight.getText().contains(airlineToSelect)).findFirst().orElse(null);
-
-        if(flightResult != null){
-            this.flightTime = flightResult.findElement(By.cssSelector(this.departureTimeSelector)).getText();
-            log.info("Departure time from selected flight to store: " + this.flightTime);
-            flightResult.click();
-        }
-
-
-    }
-    public boolean departureTimeMatchesFromSelectedFlight(){
-        waitElementVisibility(this.flightSummaryDepartureTime);
-        String confirmationFlightTime = this.flightSummaryDepartureTime.getText();
-        log.info("Departure time from element: " + confirmationFlightTime);
-        return confirmationFlightTime.equalsIgnoreCase(this.flightTime);
+    public boolean confirmationOfFlightDuration(){
+        return !this.flightDuration.isEmpty();
     }
 
-    public void clickOnContinueButton(){
-        this.searchFlightsPageHandle = getDriver().getWindowHandle();
-        clickOnElement(this.continueButton);
+    public boolean confirmationOfFlightAirline(){
+        return !this.flightAirline.isEmpty();
+    }
+//Combino los 2 methods?
+    public boolean confirmationOfFlightRoute(){
+        return !this.flightRoute.isEmpty();
     }
 
-    public FlightConfirmationPage clickOnNoThanksLink(){
-        clickOnElement(this.noThanksLink);
 
-        Set<String> windowsHandlesAfterClick = getDriver().getWindowHandles();
-        Iterator<String> iterator2 = windowsHandlesAfterClick.iterator();
-
-        while(iterator2.hasNext()){
-            String childWindow = iterator2.next();
-            if(!this.searchFlightsPageHandle.equals(childWindow)){
-                getDriver().switchTo().window(childWindow);
-            }
-        }
-        return new FlightConfirmationPage(getDriver());
+    public SelectingFlights selectSortBy(String option){
+        dropDown(this.boxToOrder,option);
+        return new SelectingFlights(getDriver());
     }
+
+//    public boolean afterSort(){
+//        getDriver().navigate().refresh();
+//        waitElementsVisibility(this.flightDuration);
+//        List<WebElement> orderAfter = this.flightDuration;
+//
+//        String previous = "";
+//        for (WebElement current: orderAfter) {
+//            if (current.compareTo(previous) < 0)
+//                return false;
+//            previous = current;ws
+//        }
+//        return false;
+//    }
+
+//        String previous = "";
+//        for (final WebElement current: orderAfter) {
+//            if (current.compareTo(previous) < 0)
+//                return false;
+//            previous = current;
+//        }
+//        return false;
+
+
+//    public boolean checkTheFlightsTimeOrder(){
+//        String previous = ""; // empty string
+//
+//        for (final String current: product_names) {
+//            if (current.compareTo(previous) < 0)
+//                return false;
+//            previous = current;
+//        }
+//
+//        return true;
+//    }
+
+
+
 }
