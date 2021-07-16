@@ -7,6 +7,11 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
+/**
+ * Class Returning Flight Page.
+ * @author juandaniel.castano@globant.com
+ */
+
 public class ReturningFlightPage extends BasePage{
     /**
      * Constructor.
@@ -17,8 +22,6 @@ public class ReturningFlightPage extends BasePage{
         super(pDriver);
     }
 
-    @FindBy(css = "#listings-sort")
-    private WebElement sortByPriceDropDown;
 
     @FindBy(css = "li button.uitk-card-link")
     private List<WebElement> returningFlightResultList;
@@ -26,19 +29,23 @@ public class ReturningFlightPage extends BasePage{
     @FindBy(css = ".uitk-loading-bar-container")
     private WebElement loadingStatusBar;
 
+    @FindBy(css = "[data-test-id=\"departure-time\"]")
+    private List<WebElement> departureTimeList;
 
-    public void sortByPriceDropDown(){
 
-        try{
-            selectOptionOnDropDown(sortByPriceDropDown, 2);
-        }catch (Exception e){
-            selectOptionOnDropDown(sortByPriceDropDown, 2);
-        }
+    public ReturningDetailPage clickOnReturningFlight() {
+       try {
+           waitClickableElements(returningFlightResultList);
+           clickOnElement(returningFlightResultList.get(2));
+       }catch (Exception e){
+           waitClickableElements(returningFlightResultList);
+           clickOnElement(returningFlightResultList.get(2));
+       }
+        return new ReturningDetailPage(getDriver());
     }
 
-    public ReturningDetailPage clickOnReturningFlight() throws InterruptedException {
-        Thread.sleep(10000);
-        clickOnElement(returningFlightResultList.get(2));
-        return new ReturningDetailPage(getDriver());
+    public String returnEstimatedTime(){
+        waitClickableElements(departureTimeList);
+        return departureTimeList.get(2).getText();
     }
 }

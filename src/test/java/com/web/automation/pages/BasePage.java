@@ -14,8 +14,9 @@ import java.util.List;
 
 /**
  * Parent of the other classes of pages.
- * @author camilo.mogollon
+ * @author camilo.mogollon, juandaniel.castano@globant.com
  */
+
 public class BasePage {
 	
 	private WebDriver driver;
@@ -28,7 +29,7 @@ public class BasePage {
 	 */
 	public BasePage(WebDriver pDriver) {
 		PageFactory.initElements(pDriver, this);
-		wait = new WebDriverWait(pDriver, 20);
+		wait = new WebDriverWait(pDriver, 30);
 		driver = pDriver;
 	}
 
@@ -77,7 +78,7 @@ public class BasePage {
 	 * Wait element to be visible.
 	 * @param elements list WebElement
 	 */
-	public void waitElementsVisibility(List<WebElement> elements) {
+	public void waitClickableElements(List<WebElement> elements) {
 		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
 	}
 

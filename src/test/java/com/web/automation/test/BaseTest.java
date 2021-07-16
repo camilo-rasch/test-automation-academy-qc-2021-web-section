@@ -12,6 +12,7 @@ import org.testng.annotations.Parameters;
  * Parent of the other classes of test.
  * @author camilo.mogollon, juandaniel.castano@globant.com
  */
+
 public class BaseTest {
 
 	private Driver driver;

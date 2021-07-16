@@ -4,6 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+/**
+ * Class Booking Flight Page.
+ * @author juandaniel.castano@globant.com
+ */
+
 public class BookingFlightPage extends BasePage{
     /**
      * Constructor.
@@ -29,8 +34,18 @@ public class BookingFlightPage extends BasePage{
     @FindBy(css = "[id=\"complete\"]")
     private WebElement completeSection;
 
-    @FindBy(css = "[class=\"segment no-target summary-segment\"]")
+    @FindBy(css = "#summary-container")
     private WebElement summarySection;
+
+    @FindBy(css = "[id=\"firstname[0]\"]")
+    private WebElement firstNameTraveler;
+
+    @FindBy(css = "[id=\"middlename[0]\"]")
+    private WebElement middleNameTraveler;
+
+    @FindBy(css = "[id=\"lastname[0]\"]")
+    private WebElement lastNameTraveler;
+
 
     public boolean preferencesSectionIsDisplayed() {
         waitElementVisibility(preferencesSection);
@@ -61,4 +76,19 @@ public class BookingFlightPage extends BasePage{
         waitElementVisibility(summarySection);
         return summarySection.isDisplayed();
     }
+
+    public void enterFirstNameTraveler(){
+        sendKeysOnElement(firstNameTraveler, "Juan");
+    }
+
+    public void enterMiddleNameTraveler(){
+        sendKeysOnElement(middleNameTraveler, "Daniel");
+    }
+
+    public void enterLastNameTraveler(){
+        sendKeysOnElement(lastNameTraveler, "Castano");
+    }
+
+
+
 }

@@ -5,8 +5,9 @@ import org.testng.annotations.DataProvider;
 
 /**
  * Data provider class.
- * @author camilo.mogollon
+ * @author camilo.mogollon, juandaniel.castano@globant.com
  */
+
 public class Data {
 
     @DataProvider(name = "flights")

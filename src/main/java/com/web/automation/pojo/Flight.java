@@ -1,5 +1,10 @@
 package com.web.automation.pojo;
 
+/**
+ * Data provider class.
+ * @author juandaniel.castano@globant.com
+ */
+
 public class Flight {
 
     private String departure;

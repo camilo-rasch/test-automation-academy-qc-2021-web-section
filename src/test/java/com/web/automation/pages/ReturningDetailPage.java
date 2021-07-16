@@ -6,6 +6,11 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.Set;
 
+/**
+ * Class Returning Detail Page.
+ * @author juandaniel.castano@globant.com
+ */
+
 public class ReturningDetailPage extends BasePage{
     /**
      * Constructor.
@@ -31,24 +36,18 @@ public class ReturningDetailPage extends BasePage{
     @FindBy(css = "footer .uitk-price-subtext:last-child")
     private WebElement priceGuaranteeText;
 
-    public void clickOnShowDetailsButton(){
-        clickOnElement(showDetailButton);
+    @FindBy(css = "[data-test-id=\"flight-summary\"] h3 span")
+    private WebElement returnTimeText;
+
+    public String returnEstimatedTime(){
+        try {
+            waitElementVisibility(returnTimeText);
+        }catch (Exception e){
+            waitElementVisibility(returnTimeText);
+        }
+        return returnTimeText.getText();
     }
 
-    public boolean flightDetailsInfoSectionIsDisplayed() {
-        waitElementVisibility(flightDetailsInfoSection);
-        return flightDetailsInfoSection.isDisplayed();
-    }
-
-    public boolean totalPriceIsDisplayed(){
-        waitElementVisibility(totalPrice);
-        return totalPrice.isDisplayed();
-    }
-
-    public boolean priceGuaranteeTextIsDisplayed(){
-        waitElementVisibility(priceGuaranteeText);
-        return priceGuaranteeText.isDisplayed();
-    }
 
     public ReviewTripPage clickOnContinueButton(){
         clickOnElement(continueButton);

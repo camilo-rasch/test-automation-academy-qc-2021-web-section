@@ -10,8 +10,9 @@ import java.util.Optional;
 
 /**
  * Class for interact with the home page.
- * @author camilo.mogollon
+ * @author juandaniel.castano@globant.cm
  */
+
 public class HomePage extends BasePage {
 
     @FindBy(css = "#uitk-tabs-button-container a[href*=\"flight\"]")
@@ -19,6 +20,15 @@ public class HomePage extends BasePage {
 
     @FindBy(css = "#uitk-tabs-button-container a[href*=\"roundtrip\"]")
     private WebElement roundTripButton;
+
+    @FindBy(css = "[data-testid=\"travelers-field\"]")
+    private WebElement travelersButton;
+
+    @FindBy(css = "[data-testid=\"room-1\"] div:first-child button:last-child")
+    private WebElement increaseTravelerNumberButton;
+
+    @FindBy(css = "[data-testid=\"guests-done-button\"]")
+    private WebElement guestDoneButton;
 
     @FindBy(css = "div[data-testid='location-field-leg1-origin-container']")
     private WebElement inputDepartureSelector;
@@ -76,6 +86,12 @@ public class HomePage extends BasePage {
         clickOnElement(roundTripButton);
     }
 
+    public void clickOnTravelerNumberButton(){
+        clickOnElement(travelersButton);
+        clickOnElement(increaseTravelerNumberButton);
+        clickOnElement(guestDoneButton);
+    }
+
     public void selectDepartureAirport(Flight flight){
         clickOnElement(inputDepartureSelector);
         clickOnElement(departureInputField);
@@ -100,7 +116,11 @@ public class HomePage extends BasePage {
 
     public void pickOnDateOfDepartingCalendar(){
         clickOnElement(this.departingCalendarButton);
-        clickOnElement(this.forwardMonthButton);
+        int counter = 0;
+        while(counter < 2) {
+            clickOnElement(this.forwardMonthButton);
+            counter++;
+        }
         for (WebElement element : this.calendarDaysList) {
             if (element.getAttribute("data-day").contains("31")) {
                 clickOnElement(element);
@@ -109,15 +129,16 @@ public class HomePage extends BasePage {
         clickOnElement(this.calendarDoneButton);
     }
 
-    /*public void pickOnDateOfDestinationCalendar(){
+    public void pickOnDateOfDestinationCalendar(){
         clickOnElement(this.returningCalendarButton);
+        clickOnElement(this.forwardMonthButton);
         for (WebElement element : this.calendarDaysList) {
-            if (element.getAttribute("data-day").contains("29")) {
+            if (element.getAttribute("data-day").contains("31")) {
                 clickOnElement(element);
             }
         }
         clickOnElement(this.calendarDoneButton);
-    }*/
+    }
 
     public DepartingFlightPage clickOnSearchButton(){
         clickOnElement(this.searchButton);

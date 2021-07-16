@@ -13,6 +13,7 @@ import java.net.URL;
  * Driver class
  * @author camilo.mogollon
  */
+
 public class Driver {
 
 	private WebDriver driver;
