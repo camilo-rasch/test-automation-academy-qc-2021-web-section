@@ -45,14 +45,29 @@ public class BookingFlightPage extends BasePage{
     @FindBy(css = "[id=\"firstname[0]\"]")
     private WebElement firstNameTraveler;
 
-    @FindBy(css = "[id=\"middlename[0]\"]")
-    private WebElement middleNameTraveler;
-
     @FindBy(css = "[id=\"lastname[0]\"]")
     private WebElement lastNameTraveler;
 
     @FindBy(css = "[id=\"phone-number[0]\"]")
     private WebElement phoneNumberTraveler;
+
+    @FindBy(css = "[id=\"totalPriceForTrip\"]")
+    private WebElement totalTripPriceText;
+
+    @FindBy(css = "[id=\"country_code[0]\"]")
+    private WebElement selectCountryNumberDropDown;
+
+    @FindBy(css = "[id=\"gender_male[0]\"]")
+    private WebElement selectMaleGenderRadioButton;
+
+    @FindBy(css = "[id=\"date_of_birth_month0\"]")
+    private WebElement selectMonthDropDown;
+
+    @FindBy(css = "[id=\"date_of_birth_day[0]\"]")
+    private WebElement selectDayDropDown;
+
+    @FindBy(css = "[id=\"date_of_birth_year[0]\"]")
+    private WebElement selectYearDropDown;
 
     /**
      * Desired WebElement is displayed
@@ -115,19 +130,21 @@ public class BookingFlightPage extends BasePage{
     }
 
     /**
-     * Send keys to spotted WebElement by given String
+     * Get total flight price text
+     * @return String
      */
 
-    public void enterFirstNameTraveler(){
-        sendKeysOnElement(firstNameTraveler, "Juan");
+    public String getTotalFlightPrice(){
+        waitElementVisibility(totalTripPriceText);
+        return totalTripPriceText.getText().trim();
     }
 
     /**
      * Send keys to spotted WebElement by given String
      */
 
-    public void enterMiddleNameTraveler(){
-        sendKeysOnElement(middleNameTraveler, "Daniel");
+    public void enterFirstNameTraveler(){
+        sendKeysOnElement(firstNameTraveler, "Juan");
     }
 
     /**
@@ -143,7 +160,38 @@ public class BookingFlightPage extends BasePage{
      */
 
     public void enterPhoneNumberTraveler(){
-        sendKeysOnElement(lastNameTraveler, "019-007-2021");
+        sendKeysOnElement(phoneNumberTraveler, "399-019-0721");
+    }
+
+    /**
+     * Select an option from DropDown field by index
+     */
+
+    public void selectCountryNumberDropDown() {
+        try {
+            selectOptionOnDropDown(selectCountryNumberDropDown, 45);
+        }catch (Exception e){
+            selectOptionOnDropDown(selectCountryNumberDropDown, 45);
+        }
+    }
+
+    /**
+     * Click On action in specific WebElement
+     */
+
+    public void clickOnGenderOption(){
+        waitElementVisibility(selectMaleGenderRadioButton);
+        clickOnElement(selectMaleGenderRadioButton);
+    }
+
+    /**
+     * Select an option from DropDown field by index
+     */
+
+    public void selectBirthDayDateDropDown(){
+        selectOptionOnDropDown(selectMonthDropDown, 8);
+        selectOptionOnDropDown(selectDayDropDown, 25);
+        selectOptionOnDropDown(selectYearDropDown, 30);
     }
 
 

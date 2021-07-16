@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
  */
 
 public class ReviewTripPage extends BasePage{
+    String totalTripPrice;
     /**
      * Constructor.
      *
@@ -30,7 +31,7 @@ public class ReviewTripPage extends BasePage{
     @FindBy(css = "[data-test-id=\"price-summary\"]")
     private WebElement priceSummarySection;
 
-    @FindBy(css = "[data-test-id=\"trip-total\"]")
+    @FindBy(css = ".uitk-table-foot span")
     private WebElement tripTotalPriceText;
 
     @FindBy(css = "[data-test-id=\"flight-review-0\"]")
@@ -89,12 +90,22 @@ public class ReviewTripPage extends BasePage{
 
     public boolean tripTotalPriceTextIsDisplayed() {
         waitElementVisibility(tripTotalPriceText);
+        totalTripPrice = tripTotalPriceText.getText();
         return tripTotalPriceText.isDisplayed();
     }
 
     /**
-     * Validate if WebElement is displayed
-     * @return boolean
+     * Get total flight price text
+     * @return String
+     */
+
+    public String getTotalFlightPrice(){
+        return totalTripPrice;
+    }
+
+    /**
+     *
+     * @return BookingFlightPage object
      */
 
     public BookingFlightPage clickOnGoToCheckOutButton() {

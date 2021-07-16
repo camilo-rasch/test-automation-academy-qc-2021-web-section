@@ -16,7 +16,7 @@ public class FlightPageTest extends BaseTest{
 
     /**
      * Flight object data is provided and the 'Book For A Flight' Test method implemented
-     * @param flight Object
+   //  * @param flight Object
      */
 
     @Test(description = "Book A Flight", dataProviderClass = Data.class, dataProvider = "flights")
@@ -50,14 +50,14 @@ public class FlightPageTest extends BaseTest{
         Assert.assertTrue(departingFlightPage.listCorrectlySortedValidation(), "Flights are not sorted by duration");
         DepartureDetailPage departureDetailPage = departingFlightPage.clickOnDepartureFlight();
 
-        log.info("Departing Detail Flight webpage is succeeded displayed");
+        log.info("Departing Detail Flight SideBar is succeeded displayed");
         Assert.assertEquals(departingFlightPage.departureEstimatedTime(), departureDetailPage.departureEstimatedTime(), "Departing Times are not matching");
         ReturningFlightPage returningFlightPage = departureDetailPage.clickOnContinueButton();
 
         log.info("Returning Flight webpage is succeeded displayed");
         ReturningDetailPage returningDetailPage = returningFlightPage.clickOnReturningFlight();
 
-        log.info("Returning Detail Flight webpage is succeeded displayed");
+        log.info("Returning Detail Flight SideBar is succeeded displayed");
         Assert.assertEquals(returningFlightPage.returnEstimatedTime(), returningDetailPage.returnEstimatedTime(), "Returning Times are not matching");
         ReviewTripPage reviewTripPage = returningDetailPage.clickOnContinueButton();
 
@@ -68,18 +68,27 @@ public class FlightPageTest extends BaseTest{
         Assert.assertTrue(reviewTripPage.departingFlightFareIsSelected(), "Departing flight fare is not economic");
         Assert.assertTrue(reviewTripPage.returnReviewSectionIsDisplayed(), "Returning trip review section is not displayed");
         BookingFlightPage bookingFlightPage = reviewTripPage.clickOnGoToCheckOutButton();
-        
+
         log.info("Booking Flight webpage is succeeded displayed");
         bookingFlightPage.enterFirstNameTraveler();
-        bookingFlightPage.enterMiddleNameTraveler();
+        log.info("Type Traveler's first name");
         bookingFlightPage.enterLastNameTraveler();
+        log.info("Type Traveler's last name");
+        bookingFlightPage.selectCountryNumberDropDown();
+        log.info("Select Country/Territory Code");
         bookingFlightPage.enterPhoneNumberTraveler();
+        log.info("Type Traveler's phone number");
+        bookingFlightPage.clickOnGenderOption();
+        log.info("Click On Traveler's gender");
+        bookingFlightPage.selectBirthDayDateDropDown();
+        log.info("Select Traveler's birth day date");
         Assert.assertTrue(bookingFlightPage.preferencesSectionIsDisplayed(), "Traveler preferences section is not displayed");
         Assert.assertTrue(bookingFlightPage.insuranceSectionIsDisplayed(), "Insurance coverage section is not displayed");
         Assert.assertTrue(bookingFlightPage.paymentsSectionIsDisplayed(), "Payment methods section are not displayed");
         Assert.assertTrue(bookingFlightPage.emailSectionIsDisplayed(), "Email confirmation section is not displayed");
         Assert.assertTrue(bookingFlightPage.completeSectionIsDisplayed(), "Review and book section is not displayed");
         Assert.assertTrue(bookingFlightPage.summarySectionIsDisplayed(), "Summary section is not displayed");
+        Assert.assertEquals(reviewTripPage.getTotalFlightPrice(), bookingFlightPage.getTotalFlightPrice(), "Total flight prices are not matching");
 
     }
 
