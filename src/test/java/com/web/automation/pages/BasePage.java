@@ -69,5 +69,19 @@ public class BasePage {
 	public void waitElementsVisibility(List<WebElement> elements) {
 		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
 	}
+	
+	/**
+	 * Click on element when is visible
+	 * @param element
+	 */
+	public void clickOnElement(WebElement element){
+		waitElementVisibility(element);
+		element.click();
+	}
+	
+	public void cleanInputFields(WebElement element) {
+		waitElementVisibility(element);
+		element.clear();
+	}
 
 }

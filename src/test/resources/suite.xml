@@ -5,9 +5,12 @@
 		<listener class-name="com.web.automation.listener.Listener"/>
 	</listeners>
 	
-	<test name="myTest">
+	<parameter name="browser" value="chrome"/>
+	<parameter name="url" value="https://www.travelocity.com/"/>
+	
+	<test name="travelocityTest">
 		<classes>
-			<class name=""></class>
+			<class name="com.web.automation.test.TravelocityTest"></class>
 		</classes>
 	</test>
 </suite>
