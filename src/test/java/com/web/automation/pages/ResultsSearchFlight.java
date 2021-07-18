@@ -3,41 +3,53 @@ package com.web.automation.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import java.util.regex.Pattern;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+
+/**
+ * Class for interact with the result flights page.
+ * @author norma.losada
+ */
 
 public class ResultsSearchFlight extends BasePage{
 
-    @FindBy(id = "stops-0")
-    private WebElement nonStopCheckbox;
+    @FindBy(css = "select[data-test-id=\"sortDropdown\"]")
+    private WebElement sortFlightsResultBox;
 
-    @FindBy(id = "stops-1")
-    private WebElement oneStopCheckbox;
-    private String oneStopCheckboxSelector = "stops-1";
+    @FindBy(css = "option[data-test-id=\"sortDropdown-option\"][value=\"DURATION_INCREASING\"]")
+    private WebElement sortByShortestDurationOption;
 
-    @FindBy(css = "div[data-test-id=\"intersection-observer\"]")
-    private List<WebElement> flightsOfferingsList;
-    private String flightsOfferingsListSelector = "div[data-test-id=\"intersection-observer\"]";
+    @FindBy(css = "li[data-test-id=\"offer-listing\"] button")
+    private List<WebElement> flightsResultSelectButton;
 
-    @FindBy(css = "div[data-test-id=\"flight-summary\"] h3>span")
-    private WebElement flightSummaryDepartureTime;
+    @FindBy(css = "span[data-stid]")
+    private List<WebElement> flightPriceList;
+
+    @FindBy(css = "div[data-test-id=\"journey-duration\"]")
+    private List<WebElement> journeyDurationList;
+
+    @FindBy(css = "div[data-test-id=\"arrival-departure\"]")
+    private List<WebElement> departureAndDestinationList;
+
+    @FindBy(css = "div[data-test-id=\"airline-logo-queued\"]")
+    private List<WebElement> airlineIconList;
 
     @FindBy(css = "button[data-test-id=\"select-button\"]")
     private WebElement continueButton;
 
-    //Hotel search Pop UP selectors
-    @FindBy(css = "a[data-test-id='forcedChoiceNoThanks']")
-    private WebElement noThanksLink;
+    @FindBy(css = "div[data-test-id=\"intersection-observer\"]")
+    private List<WebElement> flightsOfferingsList;
 
-    private String airlineInfoSelector = "div[data-test-id='airline-info']";
-    private String departureTimeSelector = "span[data-test-id='departure-time']";
-    private String flightTime = "";
-    private String searchFlightsPageHandle ="";
+    @FindBy(css = "span[data-test-id=\"departure-time\"]")
+    private List<WebElement> estimatedDepartureAndArrivalTimeSelectedFlight;
+
+    @FindBy(css = "div[data-test-id=\"flight-summary\"] h3>span")
+    private WebElement estimatedDepartureAndArrivalTimeSideBar;
+
 
     /**
      * Constructor.
@@ -48,64 +60,174 @@ public class ResultsSearchFlight extends BasePage{
         super(pDriver);
     }
 
-    public void clickOnOneStopCheckBox(){
-        getWait().until(ExpectedConditions.presenceOfElementLocated(By.id(this.oneStopCheckboxSelector)));
-        this.oneStopCheckbox.click();
+    /**
+     * Verify if Sort by box is displayed in the page
+     * @return boolean
+     */
+    public boolean isTheSortBoxFlightsDisplayed(){
+        explicitWaitVisibility(sortFlightsResultBox, 40);
+        waitElementVisibility(this.sortFlightsResultBox);
+        return this.sortFlightsResultBox.isDisplayed();
     }
 
-    public void selectAFlightByAirline(String airlineToSelect){
+    /**
+     * Verify if flight price is displayed in every result
+     * @return boolean
+     */
+    public boolean isTheFlightPriceDisplayed() {
+        waitElementsVisibility(flightsOfferingsList);
+        int flightList = flightPriceList.size();
+        boolean isPresent = false;
+        int count = 0;
+        for (int i = 0; i < flightList; i++) {
+                waitElementVisibility(this.flightPriceList.get(i));
+                count++;
+            } if (count == flightList) {
+                isPresent = true;
+            }else{
+            isPresent = false;
+        }
+        System.out.println("Select button: " + count);
+        System.out.println(flightList);
+        System.out.println(isPresent);
+        return isPresent;
+    }
 
-        getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(this.flightsOfferingsListSelector)));
+    /**
+     * Verify if flight duration is displayed in every result
+     * @return boolean
+     */
+    public boolean isTheFlightDurationDisplayed() {
+        waitElementsVisibility(flightsOfferingsList);
+        int flightList = journeyDurationList.size();
+        boolean isPresent = false;
+        int count = 0;
+        for (int i = 0; i < flightList; i++) {
+            waitElementVisibility(this.journeyDurationList.get(i));
+            count++;
+        } if (count == flightList) {
+            isPresent = true;
+        }else{
+            isPresent = false;
+        }
+        System.out.println("Duration: " + count);
+        System.out.println(flightList);
+        System.out.println(isPresent);
+        return isPresent;
+    }
 
-        for(WebElement flight: this.flightsOfferingsList){
-            WebElement airline = flight.findElement(By.cssSelector(this.airlineInfoSelector));
-            String airlineText = airline.getText();
-            if(airlineText.contains(airlineToSelect)){
-                this.flightTime = flight.findElement(By.cssSelector(this.departureTimeSelector)).getText();
-                flight.click();
-                break; //MALA PRACTICA USAR WHILE
+    /**
+     * Verify if flight airline and route is displayed in every result
+     * @return boolean
+     */
+    public boolean isTheAirlineAndRouteDisplayed() {
+        waitElementsVisibility(flightsOfferingsList);
+        int flightList = departureAndDestinationList.size();
+        boolean isPresent = false;
+        int count = 0;
+        for (int i = 0; i < flightList; i++) {
+            waitElementVisibility(this.departureAndDestinationList.get(i));
+            waitElementVisibility(this.airlineIconList.get(i));
+            WebElement departure = departureAndDestinationList.get(i);
+            WebElement airline = airlineIconList.get(i);
+            if(departure.isDisplayed() && airline.isDisplayed()){
+                count++;
             }
+        } if (count == flightList) {
+            isPresent = true;
+        }else{
+            isPresent = false;
         }
+        System.out.println("Departure and Destination: " + count);
+        System.out.println(flightList);
+        System.out.println(isPresent);
+        return isPresent;
     }
 
-    public void selectAFlightByAirlineLambda(String airlineToSelect){
-        getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(this.flightsOfferingsListSelector)));
-
-        WebElement flightResult = this.flightsOfferingsList.stream().filter(
-                flight -> flight.getText().contains(airlineToSelect)).findFirst().orElse(null);
-
-        if(flightResult != null){
-            this.flightTime = flightResult.findElement(By.cssSelector(this.departureTimeSelector)).getText();
-            log.info("Departure time from selected flight to store: " + this.flightTime);
-            flightResult.click();
-        }
-
-
-    }
-    public boolean departureTimeMatchesFromSelectedFlight(){
-        waitElementVisibility(this.flightSummaryDepartureTime);
-        String confirmationFlightTime = this.flightSummaryDepartureTime.getText();
-        log.info("Departure time from element: " + confirmationFlightTime);
-        return confirmationFlightTime.equalsIgnoreCase(this.flightTime);
+    /**
+     * Click on Duration(Shortest) option in Sort By dropdown
+     */
+    public void clickOnShortestDurationSortBy(){
+         waitElementVisibility(sortByShortestDurationOption);
+            clickOnElement(sortByShortestDurationOption);
     }
 
-    public void clickOnContinueButton(){
-        this.searchFlightsPageHandle = getDriver().getWindowHandle();
-        clickOnElement(this.continueButton);
+    /**
+     *Verify if the list of flights is sorted by shortest duration correctly
+     *@return boolean
+     */
+  public boolean verifyFlightListWasSortedByShortestDuration() {
+      waitElementsVisibility(flightsOfferingsList);
+      int flightList = flightsResultSelectButton.size();
+      System.out.println(flightList);
+      for (int i = 0; i < flightList -1; i++) {
+          Integer previous = splitDurationText(journeyDurationList.get(i).getText());
+          Integer next = splitDurationText(journeyDurationList.get(i+1).getText());
+          if (previous <= next){
+          } else {
+              return false;
+          }
+      }
+     return true;
+  }
+
+    /**
+     * Method to split the journeyDuration text and get the time in minutes
+     * @param journey, String
+     * @return boolean
+     */
+  public Integer splitDurationText(String journey){
+          String[] output = journey.split("\\(");
+          String duration = output[0];
+          String[] time = duration.split(" ");
+          String hour = "";
+          String minutes = "";
+      if(time.length <= 1){
+              minutes = time[0].replace("m", "");
+          return Integer.parseInt(minutes) ;
+          }else {
+              hour =  time[0].replace("h", "");
+              minutes = time[1].replace("m", "");
+          return Integer.parseInt(hour) * 60 + Integer.parseInt(minutes) ;
+          }
+  }
+
+    /**
+     * Click on first option from flights list departure to Los Angeles
+     */
+    public void clickOnFirstFlightOption(){
+        int firstIndex = 0;
+        waitElementsVisibility(flightsOfferingsList);
+        Actions actions = new Actions(getDriver());
+        actions.moveToElement(flightsOfferingsList.get(firstIndex));
+        waitElementVisibility(flightsOfferingsList.get(firstIndex));
+        actions.perform();
+        explicitWait(flightsOfferingsList.get(firstIndex), 20);
+        clickOnElement(flightsOfferingsList.get(firstIndex));
     }
 
-    public FlightConfirmationPage clickOnNoThanksLink(){
-        clickOnElement(this.noThanksLink);
+    /**
+     *Verify if the Departure and Arrival time from selected flight match with the side panel
+     * @param index, int
+     *@return boolean
+     */
+    public boolean verifyDepartureAndArrivalTimeMatch(int index) {
+        waitElementsVisibility(estimatedDepartureAndArrivalTimeSelectedFlight);
+        waitElementVisibility(estimatedDepartureAndArrivalTimeSideBar);
+        String deparAndArriTimeSelectedFlightText = estimatedDepartureAndArrivalTimeSelectedFlight.get(index).getText();
+        String deparAndArriTimeSideBarText = estimatedDepartureAndArrivalTimeSideBar.getText();
+        System.out.println(deparAndArriTimeSelectedFlightText);
+        System.out.println(deparAndArriTimeSideBarText);
+        return deparAndArriTimeSelectedFlightText.equals(deparAndArriTimeSideBarText);
+    }
 
-        Set<String> windowsHandlesAfterClick = getDriver().getWindowHandles();
-        Iterator<String> iterator2 = windowsHandlesAfterClick.iterator();
-
-        while(iterator2.hasNext()){
-            String childWindow = iterator2.next();
-            if(!this.searchFlightsPageHandle.equals(childWindow)){
-                getDriver().switchTo().window(childWindow);
-            }
-        }
-        return new FlightConfirmationPage(getDriver());
+    /**
+     * Click on Continue button
+     * @return ChooseReturningFlightPage
+     */
+    public ChooseReturningFlightPage clickOnContinueButton(){
+        waitElementVisibility(continueButton);
+        clickOnElement(continueButton);
+        return new ChooseReturningFlightPage(getDriver());
     }
 }

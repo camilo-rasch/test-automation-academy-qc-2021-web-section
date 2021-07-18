@@ -70,9 +70,38 @@ public class BasePage {
 		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
 	}
 
+	/**
+	 * Wait element to be clickable. Explicit wait
+	 * @param element, timeout
+	 */
+	public void explicitWait(WebElement element, int timeout){
+		getWait().until(ExpectedConditions.elementToBeClickable(element));
+	}
+
+	/**
+	 * Wait element to be visible. Explicit wait
+	 * @param element, timeout
+	 */
+	public void explicitWaitVisibility(WebElement element, int timeout){
+		getWait().until(ExpectedConditions.visibilityOf(element));
+	}
+
+	/**
+	 * Click on a web element
+	 * @param element
+	 */
 	public void clickOnElement(WebElement element){
 		waitElementVisibility(element);
 		element.click();
+	}
+
+	/**
+	 * Click type on a web element
+	 * @param element
+	 */
+	public void typeOnElement(WebElement element, String text){
+		waitElementVisibility(element);
+		element.sendKeys(text);
 	}
 
 }
