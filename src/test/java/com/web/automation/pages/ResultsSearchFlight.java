@@ -1,9 +1,6 @@
 package com.web.automation.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -13,40 +10,50 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-public class ResultsSearchFlight extends BasePage{
+import static java.lang.Thread.sleep;
 
-    @FindBy(id = "stops-0")
-    private WebElement nonStopCheckbox;
+public class ResultsSearchFlight extends BasePage {
 
-    @FindBy(id = "stops-1")
-    private WebElement oneStopCheckbox;
-    private String oneStopCheckboxSelector = "stops-1";
-
-    @FindBy(css = "div[data-test-id=\"intersection-observer\"]")
-    private List<WebElement> flightsOfferingsList;
-    private String flightsOfferingsListSelector = "div[data-test-id=\"intersection-observer\"]";
-
-    @FindBy(css = "div[data-test-id=\"flight-summary\"] h3>span")
-    private WebElement flightSummaryDepartureTime;
-
-    @FindBy(css = "button[data-test-id=\"select-button\"]")
+    //Locator to find the continue button
+    @FindBy(css = "button[data-test-id='select-button']")
     private WebElement continueButton;
 
-    //Hotel search Pop UP selectors
+    //Locator to find the no thanks button in the pop-up
     @FindBy(css = "a[data-test-id='forcedChoiceNoThanks']")
-    private WebElement noThanksLink;
+    private WebElement noThanksButton;
 
+    //Locator to find the sort by list
     @FindBy(css = "#listings-sort")
-    private WebElement sortBy;
+    private WebElement sortByList;
 
-    @FindBy(css = "[data-test-id*='header-bar']")
-    private WebElement headerBar;
+    //Locator to find the price of the flight
+    @FindBy(css = "[data-test-id*='footer']>div>section")
+    private WebElement priceOfTheFlight;
 
+    //Locator to find the flight duration
+    @FindBy(css = "[data-test-id='flight-summary']")
+    private WebElement flightDuration;
 
-    private String airlineInfoSelector = "div[data-test-id='airline-info']";
-    private String departureTimeSelector = "span[data-test-id='departure-time']";
-    private String flightTime = "";
-    private String searchFlightsPageHandle ="";
+    //Locator to find close option after to select a flight option
+    @FindBy(css = "[data-icon*='close']")
+    private WebElement closeButton;
+
+    //Locator to find the airline and route
+    @FindBy(css = "[data-test-id*='review']>h2~div")
+    private WebElement airlineAndRoute;
+
+    //Locator to find the schedule flight
+    @FindBy(css = "[data-test-id*='summary']>h3>span")
+    private WebElement scheduleFlight;
+
+    //Locator to find the flight duration time
+    @FindBy(css = "[data-test-id*='summary']>h3~span")
+    private WebElement flightDurationTime;
+
+    //Locator to find each result
+    private final By listOption = By.cssSelector("[data-test-id='select-link']");
+    private String searchFlightsPageHandle = "";
+    private int i;
 
     /**
      * Constructor.
@@ -56,88 +63,145 @@ public class ResultsSearchFlight extends BasePage{
     public ResultsSearchFlight(WebDriver pDriver) {
         super(pDriver);
     }
-
-    public void clickOnOneStopCheckBox(){
-        getWait().until(ExpectedConditions.presenceOfElementLocated(By.id(this.oneStopCheckboxSelector)));
-        this.oneStopCheckbox.click();
-    }
-
-    public void selectAFlightByAirline(String airlineToSelect){
-
-        getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(this.flightsOfferingsListSelector)));
-
-        for(WebElement flight: this.flightsOfferingsList){
-            WebElement airline = flight.findElement(By.cssSelector(this.airlineInfoSelector));
-            String airlineText = airline.getText();
-            if(airlineText.contains(airlineToSelect)){
-                this.flightTime = flight.findElement(By.cssSelector(this.departureTimeSelector)).getText();
-                flight.click();
-                break; //MALA PRACTICA USAR WHILE
-            }
-        }
-    }
-
-    public void selectAFlightByAirlineLambda(String airlineToSelect){
-        getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(this.flightsOfferingsListSelector)));
-
-        WebElement flightResult = this.flightsOfferingsList.stream().filter(
-                flight -> flight.getText().contains(airlineToSelect)).findFirst().orElse(null);
-
-        if(flightResult != null){
-            this.flightTime = flightResult.findElement(By.cssSelector(this.departureTimeSelector)).getText();
-            log.info("Departure time from selected flight to store: " + this.flightTime);
-            flightResult.click();
-        }
-
-
-    }
-    public boolean departureTimeMatchesFromSelectedFlight(){
-        waitElementVisibility(this.flightSummaryDepartureTime);
-        String confirmationFlightTime = this.flightSummaryDepartureTime.getText();
-        log.info("Departure time from element: " + confirmationFlightTime);
-        return confirmationFlightTime.equalsIgnoreCase(this.flightTime);
-    }
-
-    public void clickOnContinueButton(){
+    /**
+     * Method to click on continue button
+     * @return new CustomerPaymentPage(getDriver()) CustomerPaymentPage
+     */
+    public void clickOnContinueButton() {
         this.searchFlightsPageHandle = getDriver().getWindowHandle();
         clickOnElement(this.continueButton);
     }
-
-
-    public FlightConfirmationPage clickOnNoThanksLink(){
-        boolean validation=existsElement(noThanksLink);
-        if(validation==true){
-        clickOnElement(this.noThanksLink);}
+    /**
+     * Method to send the element to existsElement method, there we
+     * wait and check if the element sortByList is displayed
+     * @return existsElement(this.sortByList) boolean
+     */
+    public boolean isSortByPresent() {
+        return existsElement(sortByList);
+    }
+    /**
+     *
+     *
+     */
+    public FlightConfirmationPage clickOnNoThanksLink() {
+        try {
+            waitElementVisibility(this.noThanksButton);
+            clickOnElement(this.noThanksButton);
+        } catch (NoSuchElementException | TimeoutException e) {
+            log.info(">> The pop-up is not present");
+        }
         Set<String> windowsHandlesAfterClick = getDriver().getWindowHandles();
         Iterator<String> iterator2 = windowsHandlesAfterClick.iterator();
 
-        while(iterator2.hasNext()){
+        while (iterator2.hasNext()) {
             String childWindow = iterator2.next();
-            if(!this.searchFlightsPageHandle.equals(childWindow)){
+            if (!this.searchFlightsPageHandle.equals(childWindow)) {
                 getDriver().switchTo().window(childWindow);
             }
         }
         return new FlightConfirmationPage(getDriver());
     }
 
-    public boolean isSortByPresent(){
-        return existsElement(sortBy);
-    }
 
     Select myDropDown;
+    /**
+     *
+     *
+     */
     public ResultsSearchFlight selectDropdownValue(String value) {
+        isSortByPresent();
         this.myDropDown = new Select(getDriver().findElement(By.id("listings-sort")));
         this.myDropDown.selectByValue(value);
         return new ResultsSearchFlight(getDriver());
-
     }
+    /**
+     *
+     *
+     */
+    public void validationsInEachResult() {
+        List<WebElement> myElements = getDriver().findElements(this.listOption);
+        waitElementsVisibility(myElements);
+        for (WebElement optionList : myElements) {
 
-    public boolean pageFinishToLoad(){
-        waitElementVisibility(headerBar);
-        boolean pageIsReady= headerBar.isDisplayed();
-        return pageIsReady;
+            clickOnElement(optionList);
+
+            waitElementVisibility(this.priceOfTheFlight);
+            this.priceOfTheFlight.isDisplayed();
+
+            waitElementVisibility(this.flightDuration);
+            this.flightDuration.isDisplayed();
+
+            waitElementVisibility(this.airlineAndRoute);
+            this.airlineAndRoute.isDisplayed();
+
+            waitElementVisibility(this.closeButton);
+            clickOnElement(this.closeButton);
+        }
     }
-
-
-
+    /**
+     *
+     *
+     */
+    public boolean clickOnFlightAndValidateTheTime(int option){
+        getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(this.listOption));
+        List<WebElement> myElements = getDriver().findElements(this.listOption);
+        WebElement element;
+        for (this.i = 0; this.i < option; this.i++) {
+            element = myElements.get(this.i);
+            if (this.i == (option - 1)) {
+                clickOnElement(element);
+                waitElementVisibility(this.scheduleFlight);
+                String scheduleFightText = element.getText();
+                String scheduleFightText1 = this.scheduleFlight.getText();
+                String[] time = scheduleFightText1.split("-");
+                boolean verificationDepartureTime = scheduleFightText.contains(time[0]);
+                boolean verificationArrivalTime = scheduleFightText.contains(time[1]);
+                if (verificationDepartureTime == verificationArrivalTime) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    /**
+     *
+     *
+     */
+    public boolean validateTheListDurationShorter1() throws InterruptedException {
+        getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(this.listOption));
+        //For some reason without this sleep the execution sometimes failed
+        sleep(2000);
+        List<WebElement> myElements = getDriver().findElements(this.listOption);
+        waitElementsVisibility(myElements);
+        int size = myElements.size();
+        int currentTime = 0;
+        WebElement optionInTheList;
+        for (i = 0; i < size; i++) {
+            int previousTime = currentTime;
+            optionInTheList = myElements.get(i);
+            waitElementVisibility(optionInTheList);
+            clickOnElement(optionInTheList);
+            waitElementVisibility(this.flightDurationTime);
+            String hourTotal = this.flightDurationTime.getText();
+            if (hourTotal.contains("h ")) {
+                String[] time = hourTotal.split("h ");
+                int hourInMinutes = Integer.parseInt(time[0]) * 60;
+                String time2 = time[1];
+                String[] time3 = time2.split("m");
+                int minutes = Integer.parseInt(time3[0]);
+                currentTime = hourInMinutes + minutes;
+            } else {
+                String[] time3 = hourTotal.split("m");
+                currentTime = Integer.parseInt(time3[0]);
+            }
+            if (currentTime < previousTime) {
+                return false;
+            }
+            waitElementVisibility(this.closeButton);
+            //For some reason without this sleep the execution sometimes failed
+            sleep(100);
+            clickOnElement(this.closeButton);
+        }
+        return true;
+    }
 }

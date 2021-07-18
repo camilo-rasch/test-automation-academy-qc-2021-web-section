@@ -82,7 +82,7 @@ public class BasePage {
 			waitElementVisibility(element);
 			return element.isDisplayed();
 		} catch (NoSuchElementException |TimeoutException e) {
-			//I use the e.printStackTrace(); for more information about the error
+			log.info(">>>>>>>> NoSuchElementException or TimeoutException for the element :"+ element);
 			e.printStackTrace();
 			return false;
 		}

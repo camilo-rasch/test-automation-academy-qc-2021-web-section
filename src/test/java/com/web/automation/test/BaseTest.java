@@ -30,7 +30,7 @@ public class BaseTest {
 
 	@AfterTest(alwaysRun=true)
 	public void afterTest() {
-		//Home.dispose();
+		Home.dispose();
 	}
 
 	/**

@@ -7,18 +7,23 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class FlightConfirmationPage extends BasePage{
 
-    @FindBy(css = "button[data-test-id='goto-checkout-button']")
+    //Locator to find the check out button
+    @FindBy(css = "[data-test-id*='checkout-button']")
     private WebElement checkOutButton;
 
-    @FindBy(css = ".uitk-table-foot>tr>td>span")
-    private WebElement tripTotal;
+    //Locator to find Trip total value
+    @FindBy(css = "[data-test-id*='total']>tbody>tr>td~td>span")
+    private WebElement tripTotalValue;
 
-    @FindBy(css = "[data-test-id='flight-review-0']")
+    //Locator to find the departure information
+    @FindBy(css = "[data-test-id*='review-0']")
     private WebElement departureInformation;
 
-    @FindBy(css = "[data-test-id='flight-review-1']")
+    //Locator to find the return information
+    @FindBy(css = "[data-test-id*='review-1']")
     private WebElement returnInformation;
 
+    //Locator to find the fare economy text of the departure information
     @FindBy(css = "[data-test-id*='review-0']>div>div[data-test-id*='fare']>h3")
     private WebElement fareEconomyText;
 
@@ -31,30 +36,50 @@ public class FlightConfirmationPage extends BasePage{
     public FlightConfirmationPage(WebDriver pDriver) {
         super(pDriver);
     }
-
+    /**
+     * Method to send the element to existsElement method, there we
+     * wait and check if the element checkOutButton is displayed
+     * @return existsElement(this.checkOutButton) boolean
+     */
     public boolean isCheckOutButtonPresent(){
         return existsElement(this.checkOutButton);
     }
-
+    /**
+     * Method to click on check out button
+     * @return new CustomerPaymentPage(getDriver()) CustomerPaymentPage
+     */
     public CustomerPaymentPage clickOnCheckOutButton(){
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        getWait().until(ExpectedConditions.elementToBeClickable(this.checkOutButton));
         this.checkOutButton.click();
         return new CustomerPaymentPage(getDriver());
     }
+    /**
+     * Method to send the element to existsElement method, there we
+     * wait and check if the element tripTotalValue is displayed
+     * @return existsElement(this.tripTotalValue) boolean
+     */
     public boolean isTripTotalPresent(){
-        return existsElement(this.tripTotal);
+        return existsElement(this.tripTotalValue);
     }
+    /**
+     * Method to send the element to existsElement method, there we
+     * wait and check if the element departureInformation is displayed
+     * @return existsElement(this.departureInformation) boolean
+     */
     public boolean isDepartureInfoPresent(){
         return existsElement(this.departureInformation);
     }
+    /**
+     * Method to send the element to existsElement method, there we
+     * wait and check if the element returnInformation is displayed
+     * @return existsElement(this.returnInformation) boolean
+     */
     public boolean isReturnInfoPresent(){
         return existsElement(this.returnInformation);
     }
+    /**
+     * Method wait the element fareEconomyText and get the text
+     * @return fareEconomyText.getText() String
+     */
     public String matchFareEconomyText(){
         waitElementVisibility(fareEconomyText);
         return this.fareEconomyText.getText();
