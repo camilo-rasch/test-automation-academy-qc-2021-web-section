@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * Parent of the other classes of pages.
- * @author camilo.mogollon
+ * @author Jonathan.Triana
  */
 public class BasePage {
 
@@ -71,11 +71,19 @@ public class BasePage {
 	public void waitElementsVisibility(List<WebElement> elements) {
 		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
 	}
-
+	/**
+	 * Wait element to be visible.
+	 * @param element WebElement
+	 */
 	public void clickOnElement(WebElement element){
 		waitElementVisibility(element);
 		element.click();
 	}
+	/**
+	 * Check if the element exist and catch NoSuchElementException, TimeoutException.
+	 * @param element WebElement
+	 * @return true or false value
+	 */
 	public boolean existsElement(WebElement element) {
 		try {
 			//with this wait I can wait until teh element is visibility
@@ -87,5 +95,4 @@ public class BasePage {
 			return false;
 		}
 	}
-
 }

@@ -1,5 +1,6 @@
 package com.web.automation.test;
 
+import com.web.automation.data.Data;
 import com.web.automation.pages.CustomerPaymentPage;
 import com.web.automation.pages.FlightConfirmationPage;
 import com.web.automation.pages.HomePage;
@@ -8,16 +9,24 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static java.lang.Thread.sleep;
-
-public class TestSuite extends BaseTest{
+/**
+ * Test to book a flight.
+ * @author Jonathan.Triana.
+ */
+public class TestBookingFlight extends BaseTest{
 
     private HomePage homePage;
 
-    @Test(description = "Booking a flight")
-    public void bookAFlight() throws InterruptedException {
+    @Test(description = "Booking a flight",dataProvider="dataBookingFlight",dataProviderClass= Data.class)
+
+    public void bookAFlight(String departure,String destination, int departureFlightOption,int arrivalFlightOption
+    ,String nameAdult1,String lastnameAdult1, String codeAdult1, String phoneAdult1, String monthBirthAdult1
+    ,String dayBirthAdult1,String yearBirthAdult1,String nameAdult2,String lastnameAdult2,String monthBirthAdult2
+    ,String dayBirthAdult2,String yearBirthAdult2) throws InterruptedException {
+
         homePage = getHomePage();
         log.info("1) Search for a flight from LAS to LAX. Selecting Flight and roundtrip. Select 2 adults in the travelers link. Dates should be at least two months in the future and MUST be selected using the datepicker calendar.");
-        ResultsSearchFlight resultsSearchFlight = homePage.searchFlight("LAS","LAX");
+        ResultsSearchFlight resultsSearchFlight = homePage.searchFlight(departure,destination);
 
         log.info("2. Verify the result page using the following:");
         log.info("2a Assert: There is a box that allow you to order by Price, Departure, Arrival and Duration.");
@@ -30,11 +39,11 @@ public class TestSuite extends BaseTest{
 
         log.info("3 Sort by duration > shorter. Verify the list was correctly sorted.");
         resultsSearchFlight.selectDropdownValue("DURATION_INCREASING");
-        Assert.assertTrue(resultsSearchFlight.validateTheListDurationShorter1(), "Verify if the 'list correctly sorted");
+        Assert.assertTrue(resultsSearchFlight.validateTheListDurationShorter(), "Verify if the 'list correctly sorted");
 
         log.info("4. Select your departure to Los Angeles first flight result.");
         log.info("4a. Assert: Verify selected flight estimated departure time and arrival time matches in sidebar flight review.");
-        Assert.assertTrue(resultsSearchFlight.clickOnFlightAndValidateTheTime(1), "Verify if flight estimated departure time and arrival time matches with the option selected");
+        Assert.assertTrue(resultsSearchFlight.clickOnFlightAndValidateTheTime(departureFlightOption), "Verify if flight estimated departure time and arrival time matches with the option selected");
 
         log.info("4b. Accept flight.");
         resultsSearchFlight.clickOnContinueButton();
@@ -44,7 +53,7 @@ public class TestSuite extends BaseTest{
 
         log.info("5. In the new page (Select your departure to Las Vegas), select the third result.");
         log.info("5a. Assert: Verify selected flight estimated departure time and arrival time matches in sidebar flight review.");
-        Assert.assertTrue(resultsSearchFlight.clickOnFlightAndValidateTheTime(3), "Verify if flight estimated departure time and arrival time matches with the option selected");
+        Assert.assertTrue(resultsSearchFlight.clickOnFlightAndValidateTheTime(arrivalFlightOption), "Verify if flight estimated departure time and arrival time matches with the option selected");
 
         log.info("5b. Accept flight.");
         resultsSearchFlight.clickOnContinueButton();
@@ -65,9 +74,6 @@ public class TestSuite extends BaseTest{
         log.info("7c Assert: Selected Fare is Economy.");
         Assert.assertEquals(flightConfirmationPage.matchFareEconomyText(), "Fare: Economy");
 
-        log.info("Assert CheckOut button is displayed");
-        Assert.assertTrue(flightConfirmationPage.isCheckOutButtonPresent(), "Assert 'Check Out' button is displayed");
-
         log.info("8. Press Checkout.");
         CustomerPaymentPage customerPaymentPage = flightConfirmationPage.clickOnCheckOutButton();
 
@@ -80,11 +86,11 @@ public class TestSuite extends BaseTest{
         Assert.assertEquals(customerPaymentPage.matchNumberOfTicketsAndAdultsText(), "2 tickets: 2 adults");
         log.info("Assert 4: validate if 'Who's traveling?' text is present and match with the correct text");
         Assert.assertEquals(customerPaymentPage.matchWhoIsTravelingText(), "Who's traveling?");
-        log.info("Assert 5: validate if 'Roundtrip flight' text is present and match with the correct text\"");
+        log.info("Assert 5: validate if 'Roundtrip flight' text is present and match with the correct text");
         Assert.assertEquals(customerPaymentPage.matchRoundTripText(), "Roundtrip flight");
 
         log.info("10. Complete passenger basic information.");
-        customerPaymentPage.informationAdult1();
-        customerPaymentPage.informationAdult2();
+        customerPaymentPage.informationAdult1(nameAdult1,lastnameAdult1,codeAdult1,phoneAdult1,monthBirthAdult1,dayBirthAdult1,yearBirthAdult1);
+        customerPaymentPage.informationAdult2(nameAdult2,lastnameAdult2,monthBirthAdult2,dayBirthAdult2,yearBirthAdult2);
     }
 }

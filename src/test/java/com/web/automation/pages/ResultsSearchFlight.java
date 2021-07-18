@@ -11,7 +11,10 @@ import java.util.Optional;
 import java.util.Set;
 
 import static java.lang.Thread.sleep;
-
+/**
+ * Result search flight page class.
+ * @author Jonathan.Triana
+ */
 public class ResultsSearchFlight extends BasePage {
 
     //Locator to find the continue button
@@ -73,15 +76,15 @@ public class ResultsSearchFlight extends BasePage {
     }
     /**
      * Method to send the element to existsElement method, there we
-     * wait and check if the element sortByList is displayed
+     * wait, check if the element sortByList is displayed and control exceptions
      * @return existsElement(this.sortByList) boolean
      */
     public boolean isSortByPresent() {
         return existsElement(sortByList);
     }
     /**
-     *
-     *
+     * If a pop-up is present click no thanks button and change th focus to the new window
+     * @return FlightConfirmationPage(getDriver()
      */
     public FlightConfirmationPage clickOnNoThanksLink() {
         try {
@@ -105,18 +108,18 @@ public class ResultsSearchFlight extends BasePage {
 
     Select myDropDown;
     /**
-     *
-     *
+     * Select the Duration (shorter) in the order by list
+     * @param valueToSelect String
      */
-    public ResultsSearchFlight selectDropdownValue(String value) {
+    public ResultsSearchFlight selectDropdownValue(String valueToSelect) {
         isSortByPresent();
         this.myDropDown = new Select(getDriver().findElement(By.id("listings-sort")));
-        this.myDropDown.selectByValue(value);
+        this.myDropDown.selectByValue(valueToSelect);
         return new ResultsSearchFlight(getDriver());
     }
     /**
-     *
-     *
+     * Check if is present the price of the flight, flight duration and airline
+     * in each result of the list.
      */
     public void validationsInEachResult() {
         List<WebElement> myElements = getDriver().findElements(this.listOption);
@@ -139,16 +142,17 @@ public class ResultsSearchFlight extends BasePage {
         }
     }
     /**
-     *
-     *
+     * Select the flights and check if the time of the value match with the option selected in the list
+     * @param optionToSelect int
+     * @return true or false value
      */
-    public boolean clickOnFlightAndValidateTheTime(int option){
+    public boolean clickOnFlightAndValidateTheTime(int optionToSelect){
         getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(this.listOption));
         List<WebElement> myElements = getDriver().findElements(this.listOption);
         WebElement element;
-        for (this.i = 0; this.i < option; this.i++) {
-            element = myElements.get(this.i);
-            if (this.i == (option - 1)) {
+        for (i = 0; i < optionToSelect; i++) {
+            element = myElements.get(i);
+            if (i == (optionToSelect - 1)) {
                 clickOnElement(element);
                 waitElementVisibility(this.scheduleFlight);
                 String scheduleFightText = element.getText();
@@ -157,20 +161,19 @@ public class ResultsSearchFlight extends BasePage {
                 boolean verificationDepartureTime = scheduleFightText.contains(time[0]);
                 boolean verificationArrivalTime = scheduleFightText.contains(time[1]);
                 if (verificationDepartureTime == verificationArrivalTime) {
-                    return true;
-                }
+                    return true; }
             }
         }
         return false;
     }
     /**
-     *
-     *
+     * Check if the results are sort by duration shorter
+     * @return true or false value
      */
-    public boolean validateTheListDurationShorter1() throws InterruptedException {
+    public boolean validateTheListDurationShorter() throws InterruptedException {
         getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(this.listOption));
-        //For some reason without this sleep the execution sometimes failed
-        sleep(2000);
+        //I have an issue with the previous wait and without the sleep sometimes failed
+        sleep(1000);
         List<WebElement> myElements = getDriver().findElements(this.listOption);
         waitElementsVisibility(myElements);
         int size = myElements.size();
@@ -189,14 +192,12 @@ public class ResultsSearchFlight extends BasePage {
                 String time2 = time[1];
                 String[] time3 = time2.split("m");
                 int minutes = Integer.parseInt(time3[0]);
-                currentTime = hourInMinutes + minutes;
-            } else {
+                currentTime = hourInMinutes + minutes; }
+            else {
                 String[] time3 = hourTotal.split("m");
-                currentTime = Integer.parseInt(time3[0]);
-            }
+                currentTime = Integer.parseInt(time3[0]); }
             if (currentTime < previousTime) {
-                return false;
-            }
+                return false; }
             waitElementVisibility(this.closeButton);
             //For some reason without this sleep the execution sometimes failed
             sleep(100);

@@ -4,7 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
+/**
+ * Flight Confirmation page class.
+ * @author Jonathan.Triana
+ */
 public class FlightConfirmationPage extends BasePage{
 
     //Locator to find the check out button
@@ -54,7 +57,7 @@ public class FlightConfirmationPage extends BasePage{
     }
     /**
      * Method to send the element to existsElement method, there we
-     * wait and check if the element tripTotalValue is displayed
+     * wait, check if the element tripTotalValue is displayed and control exceptions
      * @return existsElement(this.tripTotalValue) boolean
      */
     public boolean isTripTotalPresent(){
@@ -62,7 +65,7 @@ public class FlightConfirmationPage extends BasePage{
     }
     /**
      * Method to send the element to existsElement method, there we
-     * wait and check if the element departureInformation is displayed
+     * wait, check if the element departureInformation is displayed and control exceptions
      * @return existsElement(this.departureInformation) boolean
      */
     public boolean isDepartureInfoPresent(){
@@ -70,7 +73,7 @@ public class FlightConfirmationPage extends BasePage{
     }
     /**
      * Method to send the element to existsElement method, there we
-     * wait and check if the element returnInformation is displayed
+     * wait, check if the element returnInformation is displayed and control exceptions
      * @return existsElement(this.returnInformation) boolean
      */
     public boolean isReturnInfoPresent(){

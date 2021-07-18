@@ -5,7 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-
+/**
+ * Customer payment page class.
+ * @author Jonathan.Triana.
+ */
 public class CustomerPaymentPage extends BasePage{
 
     private String customerCountrySelector = "country_code[0]";
@@ -71,7 +74,7 @@ public class CustomerPaymentPage extends BasePage{
     }
     /**
      * Method to send the element to existsElement method, there we
-     * wait and check if the element countryCodeText is displayed
+     * wait, check if the element countryCodeText is displayed and control exceptions
      * @return existsElement(this.countryCodeText) boolean
      */
     public boolean isCountryPresent(){
@@ -79,7 +82,7 @@ public class CustomerPaymentPage extends BasePage{
     }
     /**
      * Method to send the element to existsElement method, there we
-     * wait and check if the element nameOnCardField is displayed
+     * wait, check if the element nameOnCardField is displayed and control exceptions
      * @return existsElement(this.nameOnCardField) boolean
      */
     public boolean isNameOnCardPresent(){
@@ -110,41 +113,43 @@ public class CustomerPaymentPage extends BasePage{
         return this.whoIsTravelingText.getText();
     }
     /**
-     *
-     *
+     * Method to fill the information of the first adult
      */
-    public void informationAdult1(){
+    public void informationAdult1(String nameAdult1,String lastnameAdult1, String codeAdult1, String phoneAdult1
+    ,String monthBirthAdult1,String dayBirthAdult1,String yearBirthAdult1){
+
         clickOnElement(this.nameFieldAdult1);
-        this.nameFieldAdult1.sendKeys("Name Adult uno");
+        this.nameFieldAdult1.sendKeys(nameAdult1);
         clickOnElement(this.lastNameFieldAdult1);
-        this.lastNameFieldAdult1.sendKeys("Last name Adult uno");
+        this.lastNameFieldAdult1.sendKeys(lastnameAdult1);
         this.myDropDown = new Select(getDriver().findElement(By.cssSelector("[name*='[0].phoneCountryCode']")));
-        this.myDropDown.selectByValue("57");
+        this.myDropDown.selectByValue(codeAdult1);
         clickOnElement(this.phoneNumberFieldAdult1);
-        this.phoneNumberFieldAdult1.sendKeys("3244566554");
+        this.phoneNumberFieldAdult1.sendKeys(phoneAdult1);
         clickOnElement(this.genderOptionAdult1);
         this.myDropDown = new Select(getDriver().findElement(By.cssSelector("[data-tealeaf-name*='month[0]']")));
-        this.myDropDown.selectByValue("09");
+        this.myDropDown.selectByValue(monthBirthAdult1);
         this.myDropDown = new Select(getDriver().findElement(By.cssSelector("[data-tealeaf-name*='day[0]']")));
-        this.myDropDown.selectByValue("30");
+        this.myDropDown.selectByValue(dayBirthAdult1);
         this.myDropDown = new Select(getDriver().findElement(By.cssSelector("[data-tealeaf-name*='year[0]']")));
-        this.myDropDown.selectByValue("1987");
+        this.myDropDown.selectByValue(yearBirthAdult1);
     }
     /**
-     *
-     *
+     * Method to fill the information of the second adult
      */
-    public void informationAdult2(){
+    public void informationAdult2(String nameAdult2,String lastnameAdult2,String monthBirthAdult2
+    ,String dayBirthAdult2,String yearBirthAdult2){
+
         clickOnElement(this.nameFieldAdult2);
-        this.nameFieldAdult2.sendKeys("Name Adult dos");
+        this.nameFieldAdult2.sendKeys(nameAdult2);
         clickOnElement(this.lastNameFieldAdult2);
-        this.lastNameFieldAdult2.sendKeys("Last name Adult dos");
+        this.lastNameFieldAdult2.sendKeys(lastnameAdult2);
         this.myDropDown = new Select(getDriver().findElement(By.cssSelector("[data-tealeaf-name*='month[1]']")));
-        this.myDropDown.selectByValue("07");
+        this.myDropDown.selectByValue(monthBirthAdult2);
         this.myDropDown = new Select(getDriver().findElement(By.cssSelector("[data-tealeaf-name*='day[1]']")));
-        this.myDropDown.selectByValue("17");
+        this.myDropDown.selectByValue(dayBirthAdult2);
         this.myDropDown = new Select(getDriver().findElement(By.cssSelector("[data-tealeaf-name*='year[1]']")));
-        this.myDropDown.selectByValue("1994");
+        this.myDropDown.selectByValue(yearBirthAdult2);
         clickOnElement(this.genderOptionAdult2);
     }
 }

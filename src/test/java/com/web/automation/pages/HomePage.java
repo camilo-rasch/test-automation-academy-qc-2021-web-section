@@ -18,7 +18,7 @@ import static java.lang.Thread.sleep;
 
 /**
  * Class for interact with the home page.
- * @author camilo.mogollon
+ * @author Jonathan.Triana
  */
 public class HomePage extends BasePage {
 

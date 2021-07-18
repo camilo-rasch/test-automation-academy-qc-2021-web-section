@@ -10,7 +10,8 @@
 
 	<test name="myTest">
 		<classes>
-			<class name="com.web.automation.test.TestSuite"></class>
+			<class name="com.web.automation.test.TestBookingFlight"></class>
 		</classes>
 	</test>
 </suite>
+
