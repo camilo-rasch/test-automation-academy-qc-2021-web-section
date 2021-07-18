@@ -49,6 +49,9 @@ public class HomePage extends BasePage {
     @FindBy(css = "td button.uitk-date-picker-day:not(.is-disabled)")
     private List<WebElement> calendarDayLists;
 
+    @FindBy(css = "td[class*=\"last\"] button.uitk-date-picker-day")
+    private WebElement departureDay;
+
     @FindBy(css = "button[data-testid=\"submit-button\"]")
     private WebElement submitButton;
 
@@ -91,7 +94,7 @@ public class HomePage extends BasePage {
         for(WebElement element: this.depaturesResultsList){
             if(element.getText().contains(origin)){
                 element.click();
-                log.info("The selected origin is: " + departureInput.getAttribute("value"));
+                log.info("The selected origin is: " + this.departureInput.getAttribute("value"));
             }
         }
 
@@ -103,7 +106,7 @@ public class HomePage extends BasePage {
             String elementText = element.getText();
             if(elementText.contains(destination)){
                 element.click();
-                log.info("The selected destination is: " + destinationInput.getAttribute("value"));
+                log.info("The selected destination is: " + this.destinationInput.getAttribute("value"));
             }
         }
     }
@@ -121,8 +124,9 @@ public class HomePage extends BasePage {
      */
     public ResultsSearchFlight searchFlight(int daysForReturn){
         clickOnElement(this.calendarButton);
-        this.nextMonthButton.click();
         clickOnElement(this.nextMonthButton);
+        clickOnElement(this.nextMonthButton);
+        clickOnElement(this.departureDay);
         int daysCalendarSize = this.calendarDayLists.size();
         int cont = 0;
         boolean selectedDayFlag = false;
@@ -130,9 +134,12 @@ public class HomePage extends BasePage {
         while (cont < daysCalendarSize-1 && !selectedDayFlag){
             if(this.calendarDayLists.get(cont).getAttribute("class").contains(this.focusDayCalendar)){
                 this.calendarDayLists.get(cont+daysForReturn).click();
+                log.info("The departing date is: " + this.departureDay.getAttribute("aria-label"));
+                log.info("The returning date is: " + this.calendarDayLists.get(cont+daysForReturn).getAttribute("aria-label"));
                 selectedDayFlag = true;
             }
             cont++;
+
         }
         clickOnElement(this.calendarDoneButton);
         clickOnElement(this.submitButton);

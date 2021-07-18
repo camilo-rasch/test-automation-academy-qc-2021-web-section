@@ -17,7 +17,7 @@ public class TestSuite extends BaseTest{
         log.info("Searching flight");
         homePage.selectOriginAndDestination("LAS", "LAX");
         homePage.selectTravelers();
-        ResultsSearchFlight resultsSearchFlight = homePage.searchFlight(5);
+        ResultsSearchFlight resultsSearchFlight = homePage.searchFlight(15);
         log.info("Click on one stop checkbox");
         resultsSearchFlight.clickOnOneStopCheckBox();
         log.info("Select a flight from flights result list by Airline");
