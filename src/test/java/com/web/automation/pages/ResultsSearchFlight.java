@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 public class ResultsSearchFlight extends BasePage {
 
@@ -123,10 +124,24 @@ public class ResultsSearchFlight extends BasePage {
         log.info("Departure time from element: " + confirmationFlightTime);
         return confirmationFlightTime.equalsIgnoreCase(this.flightEstimatedTime);
     }
+    
+    public boolean isContinueButtonPresent() {
+    	this.searchFlightsPageHandle = getDriver().getWindowHandle();
+    	return continueButton.isDisplayed();
+    }
 	
     public void clickOnContinueButton(){
         this.searchFlightsPageHandle = getDriver().getWindowHandle();
         clickOnElement(this.continueButton);
+    }
+    
+    public void selectDepartureArrivalFlight(int departureArrival) {
+    	log.info("Select a departure flight result");
+        selectDepartureFlight(departureArrival);
+        log.info("is continue button present?");
+        isContinueButtonPresent();
+        log.info("Click on continue button");
+        clickOnContinueButton();
     }
     
     public FlightConfirmationPage clickOnNoThanksLink(){

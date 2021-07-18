@@ -38,7 +38,7 @@ public class HomePage extends BasePage {
     
     @FindBy(css = "div[data-testid = \"room-1\"] div:nth-child(2) > button:nth-child(3)")
     private WebElement addTraveler;
-    
+     
     @FindBy(id = "adult-input-0")
     private WebElement travelerQuantity;
     
@@ -96,13 +96,13 @@ public class HomePage extends BasePage {
         
         waitElementVisibility(travelersLink);
         clickOnElement(travelersLink);
-        waitElementVisibility(addTraveler);
-        clickOnElement(addTraveler);
+        travelerQuantity();
+        //waitElementVisibility(addTraveler);
+        //clickOnElement(addTraveler);
         clickOnElement(doneTravelersButton);
 
         waitElementVisibility(this.inputDepatureWrapper);
         clickOnElement(this.inputDepatureWrapper);
-        cleanInputFields(inputDepatureWrapper);
         clickOnElement(departureInput);
         cleanInputFields(departureInput);
         this.departureInput.sendKeys(origin);
@@ -114,7 +114,6 @@ public class HomePage extends BasePage {
 
         waitElementVisibility(this.inputDestinationWrapper);
         clickOnElement(this.inputDestinationWrapper);
-        cleanInputFields(inputDestinationWrapper);
         clickOnElement(this.destinationInput);
         cleanInputFields(destinationInput);
         this.destinationInput.sendKeys(destination);
@@ -126,7 +125,6 @@ public class HomePage extends BasePage {
         }
 
         clickOnElement(this.calendarButton);
-        cleanInputFields(calendarButton);
         int daysCalendarSize = this.calendarDayLists.size();
         int daysUntilReturn = daysFromToday+stayDays;
         
@@ -148,6 +146,15 @@ public class HomePage extends BasePage {
         clickOnElement(this.submitButton);  
         
         return new ResultsSearchFlight(getDriver());
+    }
+    
+    public void travelerQuantity() {
+    	String Quantity = travelerQuantity.getAttribute("value");
+    	
+    	if (Quantity.equalsIgnoreCase("1")) {
+    		waitElementVisibility(addTraveler);
+            clickOnElement(addTraveler);
+    	}
     }
     
     public boolean isSearchButtonPresent() {

@@ -9,6 +9,15 @@ public class FlightConfirmationPage extends BasePage {
 
 	@FindBy(css = "button[data-test-id='goto-checkout-button']")
     private WebElement checkOutButton;
+	
+	@FindBy(css = "table[data-test-id=\"trip-total\"]")
+	private WebElement tripTotalPrice;
+	
+	@FindBy(css = "div[data-test-id=\"flight-review-header\"]")
+	private WebElement flightReviewHeader;
+	
+	@FindBy(css = "div[data-test-id=\"fare-summary\"] >h3")
+	private WebElement flightFare;
 
     /**
      * Constructor.
@@ -23,6 +32,25 @@ public class FlightConfirmationPage extends BasePage {
         waitElementVisibility(this.checkOutButton);
         return this.checkOutButton.isDisplayed();
     }
+	
+	public boolean isTripTotalPricePresent() {
+		waitElementVisibility(this.tripTotalPrice);
+		return this.tripTotalPrice.isDisplayed();
+	}
+	
+	public boolean isFlightReviewHeaderPresent() {
+		waitElementVisibility(flightReviewHeader);
+		return this.flightReviewHeader.isDisplayed();
+	}
+	
+	public boolean isflightFarePresent() {
+		waitElementVisibility(flightFare);
+		return this.flightFare.isDisplayed();
+	}
+	
+	public String isFlightFareEconomy() {
+		return this.flightFare.getText();
+	}
 
     public CustomerPaymentPage clickOnCheckOutButton(){
         try {
