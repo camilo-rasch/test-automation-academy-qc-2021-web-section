@@ -182,5 +182,4 @@ public class CustomerPaymentPage extends BasePage{
         log.info("Select by index on Customer year Select");
         selectOptionCustomerBirthYearByIndex(cYear);
 	}
-
 }

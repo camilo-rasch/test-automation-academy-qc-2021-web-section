@@ -97,8 +97,6 @@ public class HomePage extends BasePage {
         waitElementVisibility(travelersLink);
         clickOnElement(travelersLink);
         travelerQuantity();
-        //waitElementVisibility(addTraveler);
-        //clickOnElement(addTraveler);
         clickOnElement(doneTravelersButton);
 
         waitElementVisibility(this.inputDepatureWrapper);
@@ -129,25 +127,41 @@ public class HomePage extends BasePage {
         int daysUntilReturn = daysFromToday+stayDays;
         
         if(daysCalendarSize <= daysFromToday) {
-        	clickOnElement(calendarNextMonth); 
-        	this.calendarDayLists.get(daysFromToday).click();
+        	clickOnElement(calendarNextMonth);
+        	try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        	int diffDays = this.calendarDayLists.size() - daysCalendarSize;
+        	daysFromToday = daysFromToday - diffDays;
+        	this.calendarDayLists.get(daysFromToday-1).click();
+        	daysUntilReturn = daysFromToday+stayDays;
         }else {
-        	this.calendarDayLists.get(daysFromToday).click();
+        	this.calendarDayLists.get(daysFromToday-1).click();
         }
-        daysCalendarSize = this.calendarDayLists.size();
-        if(daysCalendarSize <= daysUntilReturn) {
-        	clickOnElement(calendarNextMonth); 
-        	this.calendarDayLists.get(daysUntilReturn).click();
+        int diffReturnDays = this.calendarDayLists.size() - daysFromToday;
+        if (stayDays <= diffReturnDays) {
+        	this.calendarDayLists.get(daysUntilReturn-1).click();
         }else {
-        	this.calendarDayLists.get(daysUntilReturn).click();
-        }
-        this.calendarDayLists.get(daysUntilReturn).click();
+        	clickOnElement(calendarNextMonth);
+        	try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        	daysUntilReturn = diffReturnDays + stayDays;
+        	this.calendarDayLists.get(daysUntilReturn-1).click();
+        }       
         clickOnElement(this.calendarDoneButton);
         clickOnElement(this.submitButton);  
         
         return new ResultsSearchFlight(getDriver());
     }
     
+    /**
+     * Get traveler quantity for after method
+     */
     public void travelerQuantity() {
     	String Quantity = travelerQuantity.getAttribute("value");
     	
@@ -157,11 +171,18 @@ public class HomePage extends BasePage {
     	}
     }
     
+    /**
+     * is search button present on Home Page
+     * @return
+     */
     public boolean isSearchButtonPresent() {
     	getWait().until(ExpectedConditions.elementToBeClickable(submitButton));
     	return submitButton.isDisplayed();
     }
     
+    /**
+     * Click on Travelocity Link Home Page - Top header page
+     */
     public void clickOnTravelocityHeaderHomePage() {
     	clickOnElement(travelocityHeaderButton);
     }

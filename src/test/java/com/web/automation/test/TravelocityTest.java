@@ -22,9 +22,9 @@ public class TravelocityTest extends BaseTest {
 		homePage = getHomePage();
 		Assert.assertTrue(homePage.isSearchButtonPresent());
         log.info("Searching flight");
-        ResultsSearchFlight resultSearchPage = homePage.searchFlight("LAS","LAX", 20, 5);
+        ResultsSearchFlight resultSearchPage = homePage.searchFlight("LAS","LAX", 60, 5);
         log.info("Verify if sort by drop dowm in results search flight is present");
-        Assert.assertTrue(resultSearchPage.isSortByDropDownPresent());
+        Assert.assertTrue(resultSearchPage.isFlightListInformationPresent());
 	}
 	
 	@AfterMethod(description = "Back to home page")
@@ -37,7 +37,7 @@ public class TravelocityTest extends BaseTest {
 	}
 
     @Test(description = "Verify the Flights Result page in Travelocity")
-    public void verifyResultPage(){
+    public void averifyResultPage(){
        
         ResultsSearchFlight resultSearchPage = homePage.giveControlToResultPage();
         log.info("Verify is all flight information displayed on page");
@@ -53,7 +53,7 @@ public class TravelocityTest extends BaseTest {
     }
     
     @Test(description = "Verify if estimated and arrival departure time matches with sidebar flight review - first result")
-    public void verifyDepartureTimeWithSidebarFlight(){
+    public void cverifyDepartureTimeWithSidebarFlight(){
     	
     	ResultsSearchFlight resultSearchPage = homePage.giveControlToResultPage();
     	log.info("Select a departure flight result");
@@ -65,16 +65,16 @@ public class TravelocityTest extends BaseTest {
         log.info("Click on continue button");
         resultSearchPage.clickOnContinueButton();
         log.info("Verify is sort by drop down is visible on page");
-        Assert.assertTrue(resultSearchPage.isSortByDropDownPresent());
+        Assert.assertTrue(resultSearchPage.isFlightListInformationPresent());
      }
     
     @Test(description = "Verify if estimated and arrival time matches with sidebar flight review - third result")
-    public void verifyArrivalTimeWithSidebarFlight(){
+    public void dverifyArrivalTimeWithSidebarFlight(){
     	
     	ResultsSearchFlight resultSearchPage = homePage.giveControlToResultPage();    	
         resultSearchPage.selectDepartureArrivalFlight(1);
         log.info("Verify is sort by drop down is visible on page");
-        Assert.assertTrue(resultSearchPage.isSortByDropDownPresent());
+        Assert.assertTrue(resultSearchPage.isFlightListInformationPresent());
         resultSearchPage.selectDepartureFlight(3);
         log.info("Assert departure time matches on emergent window");
         Assert.assertTrue(resultSearchPage.departureTimeMatchesFromSelectedFlight(),"Assert departure time matches");
@@ -85,13 +85,13 @@ public class TravelocityTest extends BaseTest {
     }
     
     @Test(description = "Booking a flight in Travelocity")
-    public void bookAFlight(){
+    public void everifybookAFlight(){
         
     	ResultsSearchFlight resultSearchPage = homePage.giveControlToResultPage();
         log.info("Select departure flight from flights result list");
         resultSearchPage.selectDepartureArrivalFlight(1);
         log.info("Verify is sort by drop down is visible on page");
-        Assert.assertTrue(resultSearchPage.isSortByDropDownPresent());
+        Assert.assertTrue(resultSearchPage.isFlightListInformationPresent());
         log.info("Select Arrival flight from flights result list");
         resultSearchPage.selectDepartureArrivalFlight(3);
         log.info("Click on No thanks link");
@@ -120,7 +120,7 @@ public class TravelocityTest extends BaseTest {
         log.info("Select departure flight from flights result list");
         resultSearchPage.selectDepartureArrivalFlight(1);
         log.info("Verify is sort by drop down is visible on page");
-        Assert.assertTrue(resultSearchPage.isSortByDropDownPresent());
+        Assert.assertTrue(resultSearchPage.isFlightListInformationPresent());
         log.info("Select Arrival flight from flights result list");
         resultSearchPage.selectDepartureArrivalFlight(3);
         log.info("Click on No thanks link");
@@ -150,6 +150,18 @@ public class TravelocityTest extends BaseTest {
         log.info("is female gender option displayed");
         Assert.assertTrue(customerPaymentPage.isFemaleGenderPresent(), "Assert female gender option displayed");
         customerPaymentPage.completeCustomerBasicInformation(user.getFirstName(), user.getLastName(), 7, user.getPhoneNumber(), 4, 22, 20);
+    }
+    
+    @Test(description = "Sort Flighst list by shorter duration")
+    public void bSortShorterFlightsDuration() {
+    	
+    	ResultsSearchFlight resultSearchPage = homePage.giveControlToResultPage();    	
+        log.info("Verify is sort by drop down is visible on page");
+        Assert.assertTrue(resultSearchPage.isFlightListInformationPresent());
+        log.info("Select shorter duration");
+        resultSearchPage.selectOptionShorterDurationByIndex(2);
+        log.info("Verify is sort by drop down is since shorter duration");
+        Assert.assertTrue(resultSearchPage.orderListShorterDuration());
     }
 
 }
