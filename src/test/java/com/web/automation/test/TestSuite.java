@@ -15,11 +15,13 @@ public class TestSuite extends BaseTest{
     public void bookAFlight(){
         homePage = getHomePage();
         log.info("Searching flight");
-        ResultsSearchFlight resultsSearchFlight = homePage.searchFlight("BOG","PAR", 5);
+        homePage.selectOriginAndDestination("LAS", "LAX");
+        homePage.selectTravelers();
+        ResultsSearchFlight resultsSearchFlight = homePage.searchFlight(5);
         log.info("Click on one stop checkbox");
         resultsSearchFlight.clickOnOneStopCheckBox();
         log.info("Select a flight from flights result list by Airline");
-        resultsSearchFlight.selectAFlightByAirlineLambda("Air Europa");
+        resultsSearchFlight.selectAFlightByAirlineLambda("Air France");
         log.info("Assert departure time matches on emergent window");
         Assert.assertTrue(resultsSearchFlight.departureTimeMatchesFromSelectedFlight(),"Assert departure time matches");
         log.info("Click on continue button");
@@ -34,3 +36,4 @@ public class TestSuite extends BaseTest{
         customerPaymentPage.selectOptionInCustomerTitleSelectByIndex(2);
     }
 }
+
