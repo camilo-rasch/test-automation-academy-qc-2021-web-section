@@ -28,30 +28,54 @@ public class FlightConfirmationPage extends BasePage {
 		super(pDriver);
 	}
 	
+	/**
+	 * Verify if Check Out button is present
+	 * @return
+	 */
 	public boolean isCheckOutButtonPresent(){
         waitElementVisibility(this.checkOutButton);
         return this.checkOutButton.isDisplayed();
     }
 	
+	/**
+	 * Verify if Flight total price is present
+	 * @return
+	 */
 	public boolean isTripTotalPricePresent() {
 		waitElementVisibility(this.tripTotalPrice);
 		return this.tripTotalPrice.isDisplayed();
 	}
 	
+	/**
+	 * Verify if Flight review header is present
+	 * @return
+	 */
 	public boolean isFlightReviewHeaderPresent() {
 		waitElementVisibility(flightReviewHeader);
 		return this.flightReviewHeader.isDisplayed();
 	}
 	
+	/**
+	 * Verify if Flight Fare field is present
+	 * @return
+	 */
 	public boolean isflightFarePresent() {
 		waitElementVisibility(flightFare);
 		return this.flightFare.isDisplayed();
 	}
 	
+	/**
+	 * Verify if Flight fare is economy
+	 * @return
+	 */
 	public String isFlightFareEconomy() {
 		return this.flightFare.getText();
 	}
-
+	
+	/**
+	 * Click on Check Out button
+	 * @return
+	 */
     public CustomerPaymentPage clickOnCheckOutButton(){
         try {
             Thread.sleep(2000);

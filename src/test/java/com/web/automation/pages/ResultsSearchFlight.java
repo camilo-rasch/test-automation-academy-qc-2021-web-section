@@ -10,7 +10,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 
 public class ResultsSearchFlight extends BasePage {
 
@@ -55,7 +54,11 @@ public class ResultsSearchFlight extends BasePage {
 	public ResultsSearchFlight(WebDriver pDriver) {
 		super(pDriver);		
 	}
-		
+	
+	/**
+	 * Select shorter duration option by Index
+	 * @param index
+	 */
 	public void selectOptionShorterDurationByIndex(int index){
 		this.sortDropDownSelector = new Select(getDriver().findElement(By.id(this.sortBySelector)));
         this.sortDropDownSelector.selectByIndex(index);
@@ -66,14 +69,15 @@ public class ResultsSearchFlight extends BasePage {
 	  * Verify if Flight list result information is present
 	  * @return
 	  */
-	public boolean isFlightListInformationPresent() {
-		
+	public boolean isFlightListInformationPresent() {		
 		getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(this.flightsOfferingsListSelector)));
-		
+		boolean exist = true;
 		for (int i=0 ; i < flightsOfferingsList.size(); i++) {			
-			this.flightsOfferingsList.get(i).isDisplayed();				
+			if (!this.flightsOfferingsList.get(i).isDisplayed()) {
+				exist = false;
+			}		
 		}
-		return true;
+		return exist;
 	}
 	
 	/**
@@ -81,11 +85,13 @@ public class ResultsSearchFlight extends BasePage {
 	 * @return
 	 */
 	public boolean isFlightAirLineInfoPresent() {
-			
+		boolean exist = true;	
 		for (int i=0 ; i < flightAirLineInfo.size(); i++) {
-			this.flightAirLineInfo.get(i).isDisplayed();					
+			if (!this.flightAirLineInfo.get(i).isDisplayed()){
+				exist = false;
+			}
 		}
-		return true;
+		return exist;
 	}
 	
 	/**
@@ -144,7 +150,7 @@ public class ResultsSearchFlight extends BasePage {
     }
     
     /**
-     * Verify is departure time sidebar matches with selected fligh
+     * Verify is departure time sidebar matches with selected flight
      * @return
      */
     public boolean departureTimeMatchesFromSelectedFlight(){
@@ -154,16 +160,27 @@ public class ResultsSearchFlight extends BasePage {
         return confirmationFlightTime.equalsIgnoreCase(this.flightEstimatedTime);
     }
     
+    /**
+     * Verify if continue button is present on page
+     * @return
+     */
     public boolean isContinueButtonPresent() {
     	this.searchFlightsPageHandle = getDriver().getWindowHandle();
     	return continueButton.isDisplayed();
     }
 	
+    /**
+     * Click on Continue button
+     */
     public void clickOnContinueButton(){
         this.searchFlightsPageHandle = getDriver().getWindowHandle();
         clickOnElement(this.continueButton);
     }
     
+    /**
+     * Select departure or arrival flight by index for booking process
+     * @param departureArrival
+     */
     public void selectDepartureArrivalFlight(int departureArrival) {
     	log.info("Select a departure flight result");
         selectDepartureFlight(departureArrival);
@@ -173,6 +190,10 @@ public class ResultsSearchFlight extends BasePage {
         clickOnContinueButton();
     }
     
+    /**
+     * Click on "No thanks" link pop up
+     * @return
+     */
     public FlightConfirmationPage clickOnNoThanksLink(){
         clickOnElement(this.noThanksLink);
 
@@ -188,6 +209,10 @@ public class ResultsSearchFlight extends BasePage {
         return new FlightConfirmationPage(getDriver());
     }
     
+    /**
+     * Verify order flight list by shorter duration
+     * @return
+     */
     public boolean orderListShorterDuration() {
     	waitElementsVisibility(flightsOfferingsList);
     	int minutes = 0;
@@ -204,6 +229,11 @@ public class ResultsSearchFlight extends BasePage {
     	return shorter;
     }
     
+    /**
+     * Get flight duration time in minutes
+     * @param flightDuration
+     * @return
+     */
     public int getDurationInMinutes(String flightDuration) {
     	int minutes = 0;
     	String[] fDurationSplit = flightDuration.split(" ");

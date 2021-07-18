@@ -1,13 +1,12 @@
 package com.web.automation.pages;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Class for interact with the home page.
@@ -68,9 +67,6 @@ public class HomePage extends BasePage {
     
     @FindBy(css = "a[href=\"/\"]")
     private WebElement travelocityHeaderButton;
-    
-    private String focusDayCalendar = "edge";
-    
 
     /**
      * Constructor.
@@ -93,12 +89,12 @@ public class HomePage extends BasePage {
     public ResultsSearchFlight searchFlight(String origin, String destination, int daysFromToday, int stayDays){
         clickOnElement(this.flightsButton);
         clickOnElement(this.roundtripButton);
-        
+        //Choose traveler option
         waitElementVisibility(travelersLink);
         clickOnElement(travelersLink);
         travelerQuantity();
         clickOnElement(doneTravelersButton);
-
+        //Fill departure Flight
         waitElementVisibility(this.inputDepatureWrapper);
         clickOnElement(this.inputDepatureWrapper);
         clickOnElement(departureInput);
@@ -109,7 +105,7 @@ public class HomePage extends BasePage {
                element.click();
            }
         }
-
+        //Fill destination Flight
         waitElementVisibility(this.inputDestinationWrapper);
         clickOnElement(this.inputDestinationWrapper);
         clickOnElement(this.destinationInput);
@@ -121,7 +117,7 @@ public class HomePage extends BasePage {
                 element.click();
             }
         }
-
+        //Choose origin and return date since date picker
         clickOnElement(this.calendarButton);
         int daysCalendarSize = this.calendarDayLists.size();
         int daysUntilReturn = daysFromToday+stayDays;
@@ -172,7 +168,7 @@ public class HomePage extends BasePage {
     }
     
     /**
-     * is search button present on Home Page
+     * Is search button present on Home Page
      * @return
      */
     public boolean isSearchButtonPresent() {

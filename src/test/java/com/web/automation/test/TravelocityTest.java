@@ -22,7 +22,7 @@ public class TravelocityTest extends BaseTest {
 		homePage = getHomePage();
 		Assert.assertTrue(homePage.isSearchButtonPresent());
         log.info("Searching flight");
-        ResultsSearchFlight resultSearchPage = homePage.searchFlight("LAS","LAX", 60, 5);
+        ResultsSearchFlight resultSearchPage = homePage.searchFlight("LAS","LAX", 45, 5);
         log.info("Verify if sort by drop dowm in results search flight is present");
         Assert.assertTrue(resultSearchPage.isFlightListInformationPresent());
 	}
@@ -31,7 +31,7 @@ public class TravelocityTest extends BaseTest {
 	public void backToHomePage() {
 		log.info("Get Home page");
 		homePage = getHomePage();
-		homePage.clickOnTravelocityHeaderHomePage();
+		homePage.clickOnTravelocityHeaderHomePage();		
 		log.info("Verify if Home page is displayed looking for search button");
 		Assert.assertTrue(homePage.isSearchButtonPresent());
 	}
@@ -51,7 +51,7 @@ public class TravelocityTest extends BaseTest {
         log.info("Verify is all flight route information is displayed on page");
         Assert.assertTrue(resultSearchPage.isFlightRouteInfoPresent());        
     }
-    
+   
     @Test(description = "Verify if estimated and arrival departure time matches with sidebar flight review - first result")
     public void cverifyDepartureTimeWithSidebarFlight(){
     	
@@ -79,9 +79,7 @@ public class TravelocityTest extends BaseTest {
         log.info("Assert departure time matches on emergent window");
         Assert.assertTrue(resultSearchPage.departureTimeMatchesFromSelectedFlight(),"Assert departure time matches");
         log.info("is continue button present?");
-        Assert.assertTrue(resultSearchPage.isContinueButtonPresent());
-        log.info("Click on continue button");
-        resultSearchPage.clickOnContinueButton();     
+        Assert.assertTrue(resultSearchPage.isContinueButtonPresent());           
     }
     
     @Test(description = "Booking a flight in Travelocity")
@@ -151,7 +149,7 @@ public class TravelocityTest extends BaseTest {
         Assert.assertTrue(customerPaymentPage.isFemaleGenderPresent(), "Assert female gender option displayed");
         customerPaymentPage.completeCustomerBasicInformation(user.getFirstName(), user.getLastName(), 7, user.getPhoneNumber(), 4, 22, 20);
     }
-    
+
     @Test(description = "Sort Flighst list by shorter duration")
     public void bSortShorterFlightsDuration() {
     	
