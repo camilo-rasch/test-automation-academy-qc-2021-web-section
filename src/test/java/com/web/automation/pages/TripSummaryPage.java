@@ -74,7 +74,7 @@ public class TripSummaryPage extends BasePage{
     }
 
     /**
-     * Get the text of the fareSummary element
+     * Click on the checkout button
      * @return PassengerInfoPage
      */
     public PassengerInfoPage clickOnCheckOutButton(){
