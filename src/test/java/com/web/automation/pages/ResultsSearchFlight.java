@@ -65,8 +65,12 @@ public class ResultsSearchFlight extends BasePage{
      * @return boolean
      */
     public boolean isTheSortBoxFlightsDisplayed(){
-        explicitWaitVisibility(sortFlightsResultBox, 40);
-        waitElementVisibility(this.sortFlightsResultBox);
+        try {
+            Thread.sleep(3000);
+            waitElementVisibility(this.sortFlightsResultBox);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return this.sortFlightsResultBox.isDisplayed();
     }
 
@@ -80,6 +84,7 @@ public class ResultsSearchFlight extends BasePage{
         boolean isPresent = false;
         int count = 0;
         for (int i = 0; i < flightList; i++) {
+                waitElementsVisibility(flightsOfferingsList);
                 waitElementVisibility(this.flightPriceList.get(i));
                 count++;
             } if (count == flightList) {
@@ -87,9 +92,6 @@ public class ResultsSearchFlight extends BasePage{
             }else{
             isPresent = false;
         }
-        System.out.println("Select button: " + count);
-        System.out.println(flightList);
-        System.out.println(isPresent);
         return isPresent;
     }
 
@@ -110,9 +112,6 @@ public class ResultsSearchFlight extends BasePage{
         }else{
             isPresent = false;
         }
-        System.out.println("Duration: " + count);
-        System.out.println(flightList);
-        System.out.println(isPresent);
         return isPresent;
     }
 
@@ -138,9 +137,6 @@ public class ResultsSearchFlight extends BasePage{
         }else{
             isPresent = false;
         }
-        System.out.println("Departure and Destination: " + count);
-        System.out.println(flightList);
-        System.out.println(isPresent);
         return isPresent;
     }
 
@@ -150,6 +146,7 @@ public class ResultsSearchFlight extends BasePage{
     public void clickOnShortestDurationSortBy(){
          waitElementVisibility(sortByShortestDurationOption);
             clickOnElement(sortByShortestDurationOption);
+            waitElementsVisibility(flightsOfferingsList);
     }
 
     /**
@@ -159,7 +156,6 @@ public class ResultsSearchFlight extends BasePage{
   public boolean verifyFlightListWasSortedByShortestDuration() {
       waitElementsVisibility(flightsOfferingsList);
       int flightList = flightsResultSelectButton.size();
-      System.out.println(flightList);
       for (int i = 0; i < flightList -1; i++) {
           Integer previous = splitDurationText(journeyDurationList.get(i).getText());
           Integer next = splitDurationText(journeyDurationList.get(i+1).getText());
@@ -216,8 +212,6 @@ public class ResultsSearchFlight extends BasePage{
         waitElementVisibility(estimatedDepartureAndArrivalTimeSideBar);
         String deparAndArriTimeSelectedFlightText = estimatedDepartureAndArrivalTimeSelectedFlight.get(index).getText();
         String deparAndArriTimeSideBarText = estimatedDepartureAndArrivalTimeSideBar.getText();
-        System.out.println(deparAndArriTimeSelectedFlightText);
-        System.out.println(deparAndArriTimeSideBarText);
         return deparAndArriTimeSelectedFlightText.equals(deparAndArriTimeSideBarText);
     }
 

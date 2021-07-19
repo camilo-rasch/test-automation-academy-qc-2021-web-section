@@ -31,6 +31,16 @@ public class FlightConfirmationPage extends BasePage{
     @FindBy(css = "div[data-test-id=\"fare-summary\"] h3")
     private List<WebElement> fareInformation;
 
+  /*  @FindBy(css = "div[data-test-id=\"additional-info-0\"]>span:nth-child(3)")
+    private List<WebElement> secondFareInformation;*/
+
+    @FindBy(css = "div[data-test-id=\"additional-info-0\"]>span:nth-child(4)")
+    private WebElement secondFareInformation;
+
+    @FindBy(css = "div[data-test-id=\"show-details-link\"] button")
+    private List<WebElement> showDetailsButton;
+
+
 
     /**
      * Constructor.
@@ -43,7 +53,7 @@ public class FlightConfirmationPage extends BasePage{
 
 
     /**
-     * Verify if price summary is displayed.
+     * Verify if price summary container is displayed.
      * @return boolean
      */
     public boolean isPriceSummaryPresent(){
@@ -76,9 +86,6 @@ public class FlightConfirmationPage extends BasePage{
         }else{
             isPresent = false;
         }
-        System.out.println("Departure and destination: " + count);
-        System.out.println(DepartureAndDestinationList);
-        System.out.println(isPresent);
         return isPresent;
     }
 
@@ -99,10 +106,9 @@ public class FlightConfirmationPage extends BasePage{
                 isEconomy = true;
             } else {
                 isEconomy = false;
+
             }
         }
-        System.out.println(fare);
-        System.out.println(isEconomy);
         return isEconomy;
     }
 

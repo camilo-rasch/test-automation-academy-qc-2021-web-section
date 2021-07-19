@@ -79,8 +79,6 @@ public class ChooseReturningFlightPage extends BasePage {
         waitElementVisibility(estimatedDepartureAndArrivalTimeSideBar);
         String deparAndArriTimeSelectedFlightText = estimatedDepartureAndArrivalTimeSelectedFlight.get(index).getText();
         String deparAndArriTimeSideBarText = estimatedDepartureAndArrivalTimeSideBar.getText();
-        System.out.println(deparAndArriTimeSelectedFlightText);
-        System.out.println(deparAndArriTimeSideBarText);
         return deparAndArriTimeSelectedFlightText.equals(deparAndArriTimeSideBarText);
     }
 

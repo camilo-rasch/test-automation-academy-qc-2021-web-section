@@ -17,7 +17,7 @@ public class TestSuite extends BaseTest{
 
     private HomePage homePage;
 
-    @Test(description = "Booking a roundtrip flight in Travelocity", dataProviderClass = Data.class, dataProvider = "user")
+    @Test(description = "Booking a roundtrip flight in Travelocity page", dataProviderClass = Data.class, dataProvider = "user")
     public void bookAFlight(User user){
         homePage = getHomePage();
         log.info("Searching flight");
@@ -50,8 +50,8 @@ public class TestSuite extends BaseTest{
         choose.clickOnContinueButton();
         log.info("Click on No thanks option");
         FlightConfirmationPage flightConfirmationPage = choose.clickOnNoThanksOption();
-        log.info("Verify if price summary is present");
-        Assert.assertTrue(flightConfirmationPage.isPriceSummaryPresent(), "Price summary is displayed");
+        log.info("Verify if price summary container is present");
+        Assert.assertTrue(flightConfirmationPage.isPriceSummaryPresent(), "Price summary container is displayed");
         log.info("Verify if Total Price is displayed");
         Assert.assertTrue(flightConfirmationPage.isTotalPricePresent(), "Total Price is displayed");
         log.info("Verify if Departure and Destination is displayed for both flights");
