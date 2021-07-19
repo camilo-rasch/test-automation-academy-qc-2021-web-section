@@ -137,7 +137,7 @@ public class SecureBooking extends BasePage{
      * @param name  String
      */
     public void secondTravelerName(String name){
-        travelerBasicInformation(inputTravelerInfo,8,name);
+        travelerBasicInformation(inputTravelerInfo,9,name);
     }
 
     /**
@@ -145,7 +145,7 @@ public class SecureBooking extends BasePage{
      * @param middleName String
      */
     public void secondTravelerMiddleName(String middleName){
-        travelerBasicInformation(inputTravelerInfo,9,middleName);
+        travelerBasicInformation(inputTravelerInfo,10,middleName);
     }
 
     /**
@@ -153,7 +153,7 @@ public class SecureBooking extends BasePage{
      * @param lastName String
      */
     public void secondTravelerLastName(String lastName){
-        travelerBasicInformation(inputTravelerInfo,10,lastName);
+        travelerBasicInformation(inputTravelerInfo,11,lastName);
     }
 
     /**

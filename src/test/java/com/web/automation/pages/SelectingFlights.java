@@ -155,7 +155,7 @@ public class SelectingFlights extends BasePage{
         List<WebElement> firstAndSecondFare = this.fareEconomy;
         String firstInTheList = firstAndSecondFare.get(0).getText();
         String secondInTheList = firstAndSecondFare.get(1).getText();
-        return (firstAndSecondFare.contains("Fare: Economy") || secondInTheList.contains("Fare: Economy"));
+        return (firstInTheList.contains("Fare: Economy") || secondInTheList.contains("Fare: Economy"));
     }
 
     /**
