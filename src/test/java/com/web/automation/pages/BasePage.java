@@ -1,6 +1,7 @@
 package com.web.automation.pages;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -44,15 +45,15 @@ public class BasePage {
 	protected WebDriver getDriver() {
 		return driver;
 	}
-	
-	/**
-	 * Close the web driver.
-	 */
+
+
 	public void dispose() {
 		if (driver != null) {
 			driver.quit();
 		}
 	}
+
+
 
 	/**
 	 * Wait element to be visible.
@@ -70,9 +71,17 @@ public class BasePage {
 		getWait().until(ExpectedConditions.visibilityOfAllElements(elements));
 	}
 
+	public void waitListElements(List<Integer> elements) {
+		getWait().until(ExpectedConditions.visibilityOfAllElements());
+	}
+
 	public void clickOnElement(WebElement element){
 		waitElementVisibility(element);
 		element.click();
+	}
+
+	public void waitElementClickeable(WebElement element) {
+		getWait().until(ExpectedConditions.elementToBeClickable(element));
 	}
 
 }

@@ -9,15 +9,12 @@ import java.util.List;
 
 /**
  * Class for interact with the home page.
- * @author camilo.mogollon
+ * @author
  */
 public class HomePage extends BasePage {
 
     @FindBy(css = "#uitk-tabs-button-container a[href*=\"flight\"]")
     private WebElement flightsButton;
-
-    @FindBy(css = "#uitk-tabs-button-container a[href*=\"one\"]")
-    private WebElement oneWayButton;
 
     @FindBy(css = "section #location-field-leg1-origin")
     private WebElement departureInput;
@@ -32,7 +29,13 @@ public class HomePage extends BasePage {
     private List<WebElement> destinationResultsList;
 
     @FindBy(id = "d1-btn")
-    private WebElement calendarButton;
+    private WebElement departingCalendarButton;
+
+    @FindBy(id = "d2-btn")
+    private WebElement returningCalendarButton;
+
+    @FindBy(css = "[class=\"uitk-calendar\"] div:nth-child(1) button:nth-child(2)")
+    private WebElement datePagingButton;
 
     @FindBy(css = "td button.uitk-date-picker-day:not(.is-disabled)")
     private List<WebElement> calendarDayLists;
@@ -49,7 +52,17 @@ public class HomePage extends BasePage {
     @FindBy(css = "div[data-testid='location-field-leg1-destination-container']")
     private WebElement inputDestinationWrapper;
 
+    @FindBy(css = "a[data-testid='travelers-field']")
+    private WebElement travelerLink;
+
+    @FindBy(css = "div[class*=\"step-input-controls\"] button:nth-child(3)")
+    private WebElement increaseAdultButton;
+
+    @FindBy(css = "[data-testid='guests-done-button']")
+    private WebElement travelersDoneButton;
+
     private String focusDayCalendar = "edge";
+
 
     /**
      * Constructor.
@@ -62,15 +75,14 @@ public class HomePage extends BasePage {
     }
 
     /**
-     * Search a one way trip flight
-     * @param origin origin
-     * @param destination destination
-     * @param daysFromToday days from today to choose
-     * @return
+     * Search a round trip flight with two travelers
+     * @param origin
+     * @param destination
+     * @param daysFromNextMonths days from today to choose
+     * @return ResultDeparturePage
      */
-    public ResultsSearchFlight searchFlight(String origin, String destination, int daysFromToday){
+    public ResultDeparturePage searchFlight(String origin, String destination, int daysFromNextMonths){
         clickOnElement(this.flightsButton);
-        clickOnElement(this.oneWayButton);
 
         waitElementVisibility(this.inputDepatureWrapper);
         clickOnElement(this.inputDepatureWrapper);
@@ -93,21 +105,47 @@ public class HomePage extends BasePage {
             }
         }
 
-        clickOnElement(this.calendarButton);
-        int daysCalendarSize = this.calendarDayLists.size();
-        int cont = 0;
-        boolean selectedDayFlag = false;
 
-        while (cont < daysCalendarSize-1 && !selectedDayFlag){
-            if(this.calendarDayLists.get(cont).getAttribute("class").contains(this.focusDayCalendar)){
-                this.calendarDayLists.get(cont+daysFromToday).click();
+        clickOnElement(this.departingCalendarButton);
+        for(int i = 0; i < 2; i++) {
+            clickOnElement(datePagingButton);
+        }
+
+        int i = 0;
+        boolean selectedDayFlag = false;
+        int daysCalendarSize = this.calendarDayLists.size();
+
+        while (i < daysCalendarSize && !selectedDayFlag){
+                this.calendarDayLists.get(i + daysFromNextMonths).click();
                 selectedDayFlag = true;
             }
-            cont++;
+            i++;
+
+        clickOnElement(this.calendarDoneButton);
+
+
+
+        clickOnElement(this.returningCalendarButton);
+        daysCalendarSize = this.calendarDayLists.size();
+        int j = 0;
+        selectedDayFlag = false;
+
+        while (j < daysCalendarSize && !selectedDayFlag){
+            if(this.calendarDayLists.get(j).getAttribute("class").contains(this.focusDayCalendar)){
+                this.calendarDayLists.get(j + daysFromNextMonths).click();
+                selectedDayFlag = true;
+            }
+            j++;
         }
         clickOnElement(this.calendarDoneButton);
+
+        clickOnElement(this.travelerLink);
+        clickOnElement(this.increaseAdultButton);
+        clickOnElement(this.travelersDoneButton);
+
         clickOnElement(this.submitButton);
 
-        return new ResultsSearchFlight(getDriver());
+
+        return new ResultDeparturePage(getDriver());
     }
 }

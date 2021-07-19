@@ -4,12 +4,15 @@ import org.testng.annotations.DataProvider;
 
 /**
  * Data provider class.
- * @author camilo.mogollon
+ * @author hernan.barroso
  */
 public class Data {
 
-    @DataProvider(name = "countries")
+    @DataProvider(name = "passengerBasicInfo")
     public Object[][] inputData() {
-        return new Object[][] {{"Colombia"}, {"Brazil"}, {"Peru"}};
+        Passenger passenger = new Passenger("Hernan","Enrique","Barroso","3127341111",
+                "Paula","Andrea","Hernandez");
+        return new Object[][] {{passenger}};
     }
+
 }

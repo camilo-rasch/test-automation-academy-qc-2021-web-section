@@ -28,11 +28,14 @@ public class BaseTest {
 		Home= new HomePage(driver.getDriver(), url);
 	}
 
+
 	@AfterTest(alwaysRun=true)
 	public void afterTest() {
 		Home.dispose();
 	}
-	
+
+
+
 	/**
 	 * Get the home page.
 	 * @return {@link HomePage}
