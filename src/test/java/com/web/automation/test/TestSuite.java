@@ -1,9 +1,6 @@
 package com.web.automation.test;
 
-import com.web.automation.pages.CustomerPaymentPage;
-import com.web.automation.pages.FlightConfirmationPage;
-import com.web.automation.pages.HomePage;
-import com.web.automation.pages.ResultsSearchFlight;
+import com.web.automation.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -11,15 +8,26 @@ public class TestSuite extends BaseTest{
 
     private HomePage homePage;
 
-    @Test(description = "Booking a flight in Travelocity")
-    public void bookAFlight(){
+    @Test(description = "Search for a flight from LAS to LAX in Travelocity", priority = 0)
+    public void searchAFlight(){
         homePage = getHomePage();
         log.info("Searching flight");
-        homePage.selectOriginAndDestination("LAS", "LAX");
-        homePage.selectTravelers();
-        ResultsSearchFlight resultsSearchFlight = homePage.searchFlight(15);
-        log.info("Click on one stop checkbox");
-        resultsSearchFlight.clickOnOneStopCheckBox();
+        homePage.selectOriginDestinationAndTravelers("LAS", "LAX",2);
+        log.info("Select 2 adults in the travelers link");
+        Assert.assertEquals(homePage.confirmTravelersSelected(),"2 Adults travelers selected","You must select 2 adults travelers");
+        log.info("Select the travel dates in the calendar, departing within 2 months and returning 10 days later.");
+        ResultsSearchFlight resultsSearchFlight = homePage.searchFlight(2,10);
+        log.info("There is a combobox that allows you to order by: ");
+        Assert.assertTrue(resultsSearchFlight.sortDropdownIsDisplayed(),"The combobox is not displayed");
+        Assert.assertNotNull(resultsSearchFlight.optionsToSortDropdown(),"The combobox is null");
+        log.info("The flight price is present on every result.");
+        Assert.assertTrue(resultsSearchFlight.flightPriceIsPresentOnEveryResult(), "Missing at least one flight price");
+        log.info("Flight duration is present on every result.");
+        Assert.assertTrue(resultsSearchFlight.flightDurationIsPresentOnEveryResult(), "Missing at least one flight duration");
+        log.info("Flight airline and flight route (Departure and Destination) are present on\n" +
+                "every result.");
+        Assert.assertTrue(resultsSearchFlight.airlineAndRouteArePresentOnEveryResult(), "Missing at least one flight airline or route");
+
         log.info("Select a flight from flights result list by Airline");
         resultsSearchFlight.selectAFlightByAirlineLambda("Air France");
         log.info("Assert departure time matches on emergent window");

@@ -25,6 +25,12 @@ public class HomePage extends BasePage {
     @FindBy(css = "div[class*=\"adult\"] div button svg[aria-labelledby*='increase-adult']")
     private WebElement increaseAdultsTravelersButton;
 
+    @FindBy(css = "div[class*=\"adult\"] input")
+    private WebElement adultsTravelersSelectedLabel;
+
+    @FindBy(css = "div[class*=\"adult\"] label")
+    private WebElement adultsTextLabel;
+
     @FindBy(css = "button[data-testid=\"guests-done-button\"")
     private WebElement travelersDoneButton;
 
@@ -49,8 +55,8 @@ public class HomePage extends BasePage {
     @FindBy(css = "td button.uitk-date-picker-day:not(.is-disabled)")
     private List<WebElement> calendarDayLists;
 
-    @FindBy(css = "td[class*=\"last\"] button.uitk-date-picker-day")
-    private WebElement departureDay;
+    //@FindBy(css = "td[class*=\"last\"] button.uitk-date-picker-day")
+    //private WebElement departureDay;
 
     @FindBy(css = "button[data-testid=\"submit-button\"]")
     private WebElement submitButton;
@@ -65,6 +71,7 @@ public class HomePage extends BasePage {
     private WebElement inputDestinationWrapper;
 
     private String focusDayCalendar = "edge";
+
 
     /**
      * Constructor.
@@ -82,7 +89,7 @@ public class HomePage extends BasePage {
      * @param destination destination
      * @return
      */
-    public void selectOriginAndDestination(String origin, String destination){
+    public void selectOriginDestinationAndTravelers(String origin, String destination, int travelers){
         clickOnElement(this.flightsButton);
         clickOnElement(this.roundtripButton);
 
@@ -109,36 +116,59 @@ public class HomePage extends BasePage {
                 log.info("The selected destination is: " + this.destinationInput.getAttribute("value"));
             }
         }
+        this.addAdultTravelers(travelers);
     }
 
-    public void selectTravelers(){
+    /**
+     * Select the number of travelers (adults, children or infants
+     */
+    public void addAdultTravelers(int travelers){
         clickOnElement(this.travelersSelector);
-        clickOnElement(this.increaseAdultsTravelersButton);
+        for (int i = 0; i < (travelers-1); i++) {
+            clickOnElement(this.increaseAdultsTravelersButton);
+        }
         clickOnElement(this.travelersDoneButton);
     }
 
     /**
-     * Search a one way trip flight
-     * @param daysForReturn days for the return flight
-     * @return
+     * Confirm the number of travelers
+     * @return adultsSelected String
      */
-    public ResultsSearchFlight searchFlight(int daysForReturn){
+    public String confirmTravelersSelected(){
+        waitElementVisibility(this.travelersSelector);
+        clickOnElement(this.travelersSelector);
+        String numberOfTravelersSelected = adultsTravelersSelectedLabel.getAttribute("value");
+        String typeOfTravelerSelected = this.adultsTextLabel.getText();
+        log.info("You have selected: " + numberOfTravelersSelected + " " +typeOfTravelerSelected + " travelers");
+        clickOnElement(this.travelersDoneButton);
+        return (numberOfTravelersSelected + " " + typeOfTravelerSelected + " travelers selected");
+    }
+
+
+    /**
+     * Search a roundtrip flight
+     * @param monthsToSelect int
+     * @param daysForReturn int
+     * @return driver
+     */
+    public ResultsSearchFlight searchFlight(int monthsToSelect, int daysForReturn){
         clickOnElement(this.calendarButton);
-        clickOnElement(this.nextMonthButton);
-        clickOnElement(this.nextMonthButton);
-        clickOnElement(this.departureDay);
         int daysCalendarSize = this.calendarDayLists.size();
-        int cont = 0;
+        int count = 0;
         boolean selectedDayFlag = false;
 
-        while (cont < daysCalendarSize-1 && !selectedDayFlag){
-            if(this.calendarDayLists.get(cont).getAttribute("class").contains(this.focusDayCalendar)){
-                this.calendarDayLists.get(cont+daysForReturn).click();
-                log.info("The departing date is: " + this.departureDay.getAttribute("aria-label"));
-                log.info("The returning date is: " + this.calendarDayLists.get(cont+daysForReturn).getAttribute("aria-label"));
+        while (count < daysCalendarSize-1 && !selectedDayFlag){
+            if(this.calendarDayLists.get(count).getAttribute("class").contains(this.focusDayCalendar)){
+                for (int i = 0; i < monthsToSelect; i++) {
+                    this.nextMonthButton.click();
+                }
+                clickOnElement(calendarDayLists.get(count));
+                clickOnElement(calendarDayLists.get(count+daysForReturn));
+                log.info("The departing date is: " + this.calendarDayLists.get(count).getAttribute("aria-label"));
+                log.info("The returning date is: " + this.calendarDayLists.get(count+daysForReturn).getAttribute("aria-label"));
                 selectedDayFlag = true;
             }
-            cont++;
+            count++;
 
         }
         clickOnElement(this.calendarDoneButton);
