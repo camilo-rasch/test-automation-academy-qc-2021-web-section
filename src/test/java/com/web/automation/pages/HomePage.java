@@ -55,11 +55,8 @@ public class HomePage extends BasePage {
     @FindBy(css = "td button.uitk-date-picker-day:not(.is-disabled)")
     private List<WebElement> calendarDayLists;
 
-    //@FindBy(css = "td[class*=\"last\"] button.uitk-date-picker-day")
-    //private WebElement departureDay;
-
     @FindBy(css = "button[data-testid=\"submit-button\"]")
-    private WebElement submitButton;
+    protected WebElement submitButton;
 
     @FindBy(css = "button[data-stid=\"apply-date-picker\"]")
     private WebElement calendarDoneButton;
@@ -69,6 +66,9 @@ public class HomePage extends BasePage {
 
     @FindBy(css = "div[data-testid='location-field-leg1-destination-container']")
     private WebElement inputDestinationWrapper;
+
+    @FindBy(css = "a.header-logo")
+    private WebElement homeLogo;
 
     private String focusDayCalendar = "edge";
 
@@ -101,7 +101,7 @@ public class HomePage extends BasePage {
         for(WebElement element: this.depaturesResultsList){
             if(element.getText().contains(origin)){
                 element.click();
-                log.info("The selected origin is: " + this.departureInput.getAttribute("value"));
+                log.info("Origin: " + this.departureInput.getAttribute("value"));
             }
         }
 
@@ -113,7 +113,7 @@ public class HomePage extends BasePage {
             String elementText = element.getText();
             if(elementText.contains(destination)){
                 element.click();
-                log.info("The selected destination is: " + this.destinationInput.getAttribute("value"));
+                log.info("Destination: " + this.destinationInput.getAttribute("value"));
             }
         }
         this.addAdultTravelers(travelers);
@@ -174,6 +174,16 @@ public class HomePage extends BasePage {
         clickOnElement(this.calendarDoneButton);
         clickOnElement(this.submitButton);
 
+        return new ResultsSearchFlight(getDriver());
+    }
+
+    public ResultsSearchFlight reloadSearch(String origin, String destination, int travelers, int monthsToSelect, int daysForReturn){
+        homeLogo.click();
+        if(this.departureInput.getText() == null || destinationInput.getText() == null){
+            selectOriginDestinationAndTravelers(origin, destination, travelers);
+            searchFlight(monthsToSelect, daysForReturn);
+        }
+        clickOnElement(submitButton);
         return new ResultsSearchFlight(getDriver());
     }
 }
